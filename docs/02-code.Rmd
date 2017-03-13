@@ -1,0 +1,15 @@
+# Programming with R
+
+## Readings
+
+1. [W] Chapter 4
+1. Software Carpentry [Programming with R](http://swcarpentry.github.io/r-novice-inflammation/).
+
+
+
+## Learning more
+
+1. Interactive course [Introduction to R](https://www.datacamp.com/courses/free-introduction-to-r) by Data Camp covers the R basics, vectors, matrices, factors and data frame.
+2. Interactive course [Intermediate R](https://www.datacamp.com/courses/free-introduction-to-r) by Data Camp covers Conditionals, Control Flow, loops, functions, and utility functions.
+3. [Google's R Style Guide](https://google.github.io/styleguide/Rguide.xml) lists Google's coding rules for R to make code easier to read, share, and verify.
+4. Hadley Wickham's [Style Guide](http://adv-r.had.co.nz/Style.html) in his Advanced R book.

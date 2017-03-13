@@ -1,0 +1,32 @@
+# Tidy
+
+## Readings
+
+1. [W] Chapter 4, 6, 8
+1. Software Carpentries [Programming with R](http://swcarpentry.github.io/r-novice-inflammation/).
+
+## 
+
+### Tidy data
+
+There are three interrelated rules which make a dataset tidy:
+
+- Each variable must have its own column.
+- Each observation must have its own row.
+- Each value must have its own cell.
+
+![tidy data](http://r4ds.had.co.nz/images/tidy-1.png)
+
+These three rules are interrelated because it’s impossible to only satisfy two of the three. That interrelationship leads to an even simpler set of practical instructions:
+
+- Put each dataset in a tibble.
+- Put each variable in a column.
+
+In this example, only table1 is tidy. It’s the only representation where each column is a variable.
+
+Why ensure that your data is tidy? There are two main advantages:
+
+1. There’s a general advantage to picking one consistent way of storing data. If you have a consistent data structure, it’s easier to learn the tools that work with it because they have an underlying uniformity.
+
+2. There’s a specific advantage to placing variables in columns because it allows R’s vectorised nature to shine. As you learned in mutate and summary functions, most built-in R functions work with vectors of values. That makes transforming tidy data feel particularly natural.
+

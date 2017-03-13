@@ -1,0 +1,13 @@
+# Explore and Visualize
+
+## Readings
+
+1. [W] Chapter 7, 
+1. Software Carpentries [Programming with R](http://swcarpentry.github.io/r-novice-inflammation/).
+
+## 
+
+## Learn more
+
+- [ggplot2: Elegant Graphics for Data Analysis](https://amzn.com/331924275X)
+- [R Graphics Cookbook](http://www.cookbook-r.com/Graphs/)

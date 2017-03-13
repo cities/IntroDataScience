@@ -1,0 +1,22 @@
+# Resources
+
+## Readings
+
+1. [W] Chapter 1
+
+## Resources
+
+### Share your code as R packages
+
+### Where to go from here
+
+Practice makes perfection
+
+Use them in your work and research
+
+#### Where to find help
+1. Package vignett and documents
+1. R cookbook
+1. stackoverflow.org/
+1. Ask
+1. Google is your friend
