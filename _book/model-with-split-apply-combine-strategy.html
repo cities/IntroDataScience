@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Introduction to Data Science for Transportation Researchers, Planners, and Engineers</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="Introduction to Data Science for Transportation Researchers, Planners, and Engineers">
+  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Introduction to Data Science for Transportation Researchers, Planners, and Engineers" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="cities/datascience" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Introduction to Data Science for Transportation Researchers, Planners, and Engineers" />
+  
+  
+  
+
+<meta name="author" content="Liming Wang">
+
+
+<meta name="date" content="2017-03-15">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="visualize.html">
+<link rel="next" href="rmarkdown.html">
+
+<script src="book_assets/jquery-2.2.3/jquery.min.js"></script>
+<link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Syllabus</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#prerequisite"><i class="fa fa-check"></i><b>1.1</b> Prerequisite</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#format"><i class="fa fa-check"></i><b>1.2</b> Format</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#software-and-hardware"><i class="fa fa-check"></i><b>1.3</b> Software and Hardware</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#textbook-and-readings"><i class="fa fa-check"></i><b>1.4</b> Textbook and Readings</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#topics"><i class="fa fa-check"></i><b>1.5</b> Topics</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i><b>1.6</b> License</a></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i><b>1.7</b> Acknowledgements</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#readings"><i class="fa fa-check"></i><b>2.1</b> Readings</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction.html"><a href="introduction.html#introduction-1"><i class="fa fa-check"></i><b>2.2</b> Introduction</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="introduction.html"><a href="introduction.html#best-practices-for-data-science-wilson-et-al-2012"><i class="fa fa-check"></i><b>2.2.1</b> Best practices for data science (Wilson et al, 2012)</a></li>
+<li class="chapter" data-level="2.2.2" data-path="introduction.html"><a href="introduction.html#the-tidyverse-work-flow"><i class="fa fa-check"></i><b>2.2.2</b> The tidyverse work flow</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="introduction.html"><a href="introduction.html#r-and-rstudio"><i class="fa fa-check"></i><b>2.3</b> R and RStudio</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="introduction.html"><a href="introduction.html#installation"><i class="fa fa-check"></i><b>2.3.1</b> Installation</a></li>
+<li class="chapter" data-level="2.3.2" data-path="introduction.html"><a href="introduction.html#testing-testing"><i class="fa fa-check"></i><b>2.3.2</b> Testing testing</a></li>
+<li class="chapter" data-level="2.3.3" data-path="introduction.html"><a href="introduction.html#add-on-packages"><i class="fa fa-check"></i><b>2.3.3</b> Add-on packages</a></li>
+<li class="chapter" data-level="2.3.4" data-path="introduction.html"><a href="introduction.html#r-and-rstudio-tutorial"><i class="fa fa-check"></i><b>2.3.4</b> R and RStudio tutorial</a></li>
+<li class="chapter" data-level="2.3.5" data-path="introduction.html"><a href="introduction.html#project-orgnization-in-rstudio"><i class="fa fa-check"></i><b>2.3.5</b> Project orgnization in RStudio</a></li>
+<li class="chapter" data-level="2.3.6" data-path="introduction.html"><a href="introduction.html#set-up-github-and-clone-datascience-course-repository"><i class="fa fa-check"></i><b>2.3.6</b> Set up github and clone datascience course repository</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="introduction.html"><a href="introduction.html#learning-more"><i class="fa fa-check"></i><b>2.4</b> Learning more</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="programming-with-r.html"><a href="programming-with-r.html"><i class="fa fa-check"></i><b>3</b> Programming with R</a><ul>
+<li class="chapter" data-level="3.1" data-path="programming-with-r.html"><a href="programming-with-r.html#readings-1"><i class="fa fa-check"></i><b>3.1</b> Readings</a></li>
+<li class="chapter" data-level="3.2" data-path="programming-with-r.html"><a href="programming-with-r.html#starting-with-data"><i class="fa fa-check"></i><b>3.2</b> Starting with Data</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="programming-with-r.html"><a href="programming-with-r.html#loading-data"><i class="fa fa-check"></i><b>3.2.1</b> Loading Data</a></li>
+<li class="chapter" data-level="3.2.2" data-path="programming-with-r.html"><a href="programming-with-r.html#manipulating-data"><i class="fa fa-check"></i><b>3.2.2</b> Manipulating Data</a></li>
+<li class="chapter" data-level="3.2.3" data-path="programming-with-r.html"><a href="programming-with-r.html#plotting"><i class="fa fa-check"></i><b>3.2.3</b> Plotting</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="programming-with-r.html"><a href="programming-with-r.html#creating-functions"><i class="fa fa-check"></i><b>3.3</b> Creating Functions</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="programming-with-r.html"><a href="programming-with-r.html#defining-a-function"><i class="fa fa-check"></i><b>3.3.1</b> Defining a Function</a></li>
+<li class="chapter" data-level="3.3.2" data-path="programming-with-r.html"><a href="programming-with-r.html#composing-functions"><i class="fa fa-check"></i><b>3.3.2</b> Composing Functions</a></li>
+<li class="chapter" data-level="3.3.3" data-path="programming-with-r.html"><a href="programming-with-r.html#testing-and-documenting"><i class="fa fa-check"></i><b>3.3.3</b> Testing and Documenting</a></li>
+<li class="chapter" data-level="3.3.4" data-path="programming-with-r.html"><a href="programming-with-r.html#defining-defaults"><i class="fa fa-check"></i><b>3.3.4</b> Defining Defaults</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="programming-with-r.html"><a href="programming-with-r.html#loops-in-r"><i class="fa fa-check"></i><b>3.4</b> Loops in R</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="programming-with-r.html"><a href="programming-with-r.html#for-loops"><i class="fa fa-check"></i><b>3.4.1</b> For Loops</a></li>
+<li class="chapter" data-level="3.4.2" data-path="programming-with-r.html"><a href="programming-with-r.html#processing-multiple-files"><i class="fa fa-check"></i><b>3.4.2</b> Processing Multiple Files</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="programming-with-r.html"><a href="programming-with-r.html#best-practice-for-repetition"><i class="fa fa-check"></i><b>3.5</b> Best Practice for Repetition</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="programming-with-r.html"><a href="programming-with-r.html#vectorized-operations"><i class="fa fa-check"></i><b>3.5.1</b> Vectorized Operations</a></li>
+<li class="chapter" data-level="3.5.2" data-path="programming-with-r.html"><a href="programming-with-r.html#vector-recycling"><i class="fa fa-check"></i><b>3.5.2</b> Vector Recycling</a></li>
+<li class="chapter" data-level="3.5.3" data-path="programming-with-r.html"><a href="programming-with-r.html#for-or-apply"><i class="fa fa-check"></i><b>3.5.3</b> <code>for</code> or <code>apply</code>?</a></li>
+<li class="chapter" data-level="3.5.4" data-path="programming-with-r.html"><a href="programming-with-r.html#loops-in-r-are-slow"><i class="fa fa-check"></i><b>3.5.4</b> Loops in R Are Slow</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="programming-with-r.html"><a href="programming-with-r.html#make-choices"><i class="fa fa-check"></i><b>3.6</b> Make Choices</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="programming-with-r.html"><a href="programming-with-r.html#saving-plots-to-a-file"><i class="fa fa-check"></i><b>3.6.1</b> Saving Plots to a File</a></li>
+<li class="chapter" data-level="3.6.2" data-path="programming-with-r.html"><a href="programming-with-r.html#conditionals"><i class="fa fa-check"></i><b>3.6.2</b> Conditionals</a></li>
+<li class="chapter" data-level="3.6.3" data-path="programming-with-r.html"><a href="programming-with-r.html#saving-automatically-generated-figures"><i class="fa fa-check"></i><b>3.6.3</b> Saving Automatically Generated Figures</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="programming-with-r.html"><a href="programming-with-r.html#command-line-programs"><i class="fa fa-check"></i><b>3.7</b> Command-Line Programs</a><ul>
+<li class="chapter" data-level="3.7.1" data-path="programming-with-r.html"><a href="programming-with-r.html#command-line-arguments"><i class="fa fa-check"></i><b>3.7.1</b> Command-Line Arguments</a></li>
+<li class="chapter" data-level="3.7.2" data-path="programming-with-r.html"><a href="programming-with-r.html#handling-multiple-files"><i class="fa fa-check"></i><b>3.7.2</b> Handling Multiple Files</a></li>
+<li class="chapter" data-level="3.7.3" data-path="programming-with-r.html"><a href="programming-with-r.html#handling-command-line-flags"><i class="fa fa-check"></i><b>3.7.3</b> Handling Command-Line Flags</a></li>
+<li class="chapter" data-level="3.7.4" data-path="programming-with-r.html"><a href="programming-with-r.html#handling-standard-input"><i class="fa fa-check"></i><b>3.7.4</b> Handling Standard Input</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="programming-with-r.html"><a href="programming-with-r.html#addressing-data"><i class="fa fa-check"></i><b>3.8</b> Addressing Data</a><ul>
+<li class="chapter" data-level="3.8.1" data-path="programming-with-r.html"><a href="programming-with-r.html#addressing-by-index"><i class="fa fa-check"></i><b>3.8.1</b> Addressing by Index</a></li>
+<li class="chapter" data-level="3.8.2" data-path="programming-with-r.html"><a href="programming-with-r.html#addressing-by-name"><i class="fa fa-check"></i><b>3.8.2</b> Addressing by Name</a></li>
+<li class="chapter" data-level="3.8.3" data-path="programming-with-r.html"><a href="programming-with-r.html#logical-indexing"><i class="fa fa-check"></i><b>3.8.3</b> Logical Indexing</a></li>
+<li class="chapter" data-level="3.8.4" data-path="programming-with-r.html"><a href="programming-with-r.html#combining-indexing-and-assignment"><i class="fa fa-check"></i><b>3.8.4</b> Combining Indexing and Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="programming-with-r.html"><a href="programming-with-r.html#r-data-structures"><i class="fa fa-check"></i><b>3.9</b> R Data Structures</a><ul>
+<li class="chapter" data-level="3.9.1" data-path="programming-with-r.html"><a href="programming-with-r.html#understanding-basic-data-types-in-r"><i class="fa fa-check"></i><b>3.9.1</b> Understanding Basic Data Types in R</a></li>
+<li class="chapter" data-level="3.9.2" data-path="programming-with-r.html"><a href="programming-with-r.html#atomic-vectors"><i class="fa fa-check"></i><b>3.9.2</b> Atomic Vectors</a></li>
+<li class="chapter" data-level="3.9.3" data-path="programming-with-r.html"><a href="programming-with-r.html#the-different-vector-modes"><i class="fa fa-check"></i><b>3.9.3</b> The Different Vector Modes</a></li>
+<li class="chapter" data-level="3.9.4" data-path="programming-with-r.html"><a href="programming-with-r.html#examining-vectors"><i class="fa fa-check"></i><b>3.9.4</b> Examining Vectors</a></li>
+<li class="chapter" data-level="3.9.5" data-path="programming-with-r.html"><a href="programming-with-r.html#adding-elements"><i class="fa fa-check"></i><b>3.9.5</b> Adding Elements</a></li>
+<li class="chapter" data-level="3.9.6" data-path="programming-with-r.html"><a href="programming-with-r.html#vectors-from-a-sequence-of-numbers"><i class="fa fa-check"></i><b>3.9.6</b> Vectors from a Sequence of Numbers</a></li>
+<li class="chapter" data-level="3.9.7" data-path="programming-with-r.html"><a href="programming-with-r.html#missing-data"><i class="fa fa-check"></i><b>3.9.7</b> Missing Data</a></li>
+<li class="chapter" data-level="3.9.8" data-path="programming-with-r.html"><a href="programming-with-r.html#other-special-values"><i class="fa fa-check"></i><b>3.9.8</b> Other Special Values</a></li>
+<li class="chapter" data-level="3.9.9" data-path="programming-with-r.html"><a href="programming-with-r.html#what-happens-when-you-mix-types-inside-a-vector"><i class="fa fa-check"></i><b>3.9.9</b> What Happens When You Mix Types Inside a Vector?</a></li>
+<li class="chapter" data-level="3.9.10" data-path="programming-with-r.html"><a href="programming-with-r.html#objects-attributes"><i class="fa fa-check"></i><b>3.9.10</b> Objects Attributes</a></li>
+<li class="chapter" data-level="3.9.11" data-path="programming-with-r.html"><a href="programming-with-r.html#matrix"><i class="fa fa-check"></i><b>3.9.11</b> Matrix</a></li>
+<li class="chapter" data-level="3.9.12" data-path="programming-with-r.html"><a href="programming-with-r.html#list"><i class="fa fa-check"></i><b>3.9.12</b> List</a></li>
+<li class="chapter" data-level="3.9.13" data-path="programming-with-r.html"><a href="programming-with-r.html#data-frame"><i class="fa fa-check"></i><b>3.9.13</b> Data Frame</a></li>
+<li class="chapter" data-level="3.9.14" data-path="programming-with-r.html"><a href="programming-with-r.html#creating-data-frames-by-hand"><i class="fa fa-check"></i><b>3.9.14</b> Creating Data Frames by Hand</a></li>
+</ul></li>
+<li class="chapter" data-level="3.10" data-path="programming-with-r.html"><a href="programming-with-r.html#understanding-factors"><i class="fa fa-check"></i><b>3.10</b> Understanding Factors</a><ul>
+<li class="chapter" data-level="3.10.1" data-path="programming-with-r.html"><a href="programming-with-r.html#converting-factors"><i class="fa fa-check"></i><b>3.10.1</b> Converting Factors</a></li>
+<li class="chapter" data-level="3.10.2" data-path="programming-with-r.html"><a href="programming-with-r.html#using-factors"><i class="fa fa-check"></i><b>3.10.2</b> Using Factors</a></li>
+<li class="chapter" data-level="3.10.3" data-path="programming-with-r.html"><a href="programming-with-r.html#removing-levels-from-a-factor"><i class="fa fa-check"></i><b>3.10.3</b> Removing Levels from a Factor</a></li>
+</ul></li>
+<li class="chapter" data-level="3.11" data-path="programming-with-r.html"><a href="programming-with-r.html#learning-more-1"><i class="fa fa-check"></i><b>3.11</b> Learning more</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="version-control-with-git.html"><a href="version-control-with-git.html"><i class="fa fa-check"></i><b>4</b> Version Control with Git</a><ul>
+<li class="chapter" data-level="4.1" data-path="version-control-with-git.html"><a href="version-control-with-git.html#readings-2"><i class="fa fa-check"></i><b>4.1</b> Readings</a></li>
+<li class="chapter" data-level="4.2" data-path="version-control-with-git.html"><a href="version-control-with-git.html#introduction-2"><i class="fa fa-check"></i><b>4.2</b> Introduction</a></li>
+<li class="chapter" data-level="4.3" data-path="version-control-with-git.html"><a href="version-control-with-git.html#setting-up-git"><i class="fa fa-check"></i><b>4.3</b> Setting up Git</a></li>
+<li class="chapter" data-level="4.4" data-path="version-control-with-git.html"><a href="version-control-with-git.html#creating-a-repository"><i class="fa fa-check"></i><b>4.4</b> Creating a Repository</a></li>
+<li class="chapter" data-level="4.5" data-path="version-control-with-git.html"><a href="version-control-with-git.html#tracking-changes"><i class="fa fa-check"></i><b>4.5</b> Tracking Changes</a></li>
+<li class="chapter" data-level="4.6" data-path="version-control-with-git.html"><a href="version-control-with-git.html#exploring-history"><i class="fa fa-check"></i><b>4.6</b> Exploring History</a></li>
+<li class="chapter" data-level="4.7" data-path="version-control-with-git.html"><a href="version-control-with-git.html#ignoring-things"><i class="fa fa-check"></i><b>4.7</b> Ignoring Things</a></li>
+<li class="chapter" data-level="4.8" data-path="version-control-with-git.html"><a href="version-control-with-git.html#remotes-in-github"><i class="fa fa-check"></i><b>4.8</b> Remotes in GitHub</a></li>
+<li class="chapter" data-level="4.9" data-path="version-control-with-git.html"><a href="version-control-with-git.html#collaborating"><i class="fa fa-check"></i><b>4.9</b> Collaborating</a></li>
+<li class="chapter" data-level="4.10" data-path="version-control-with-git.html"><a href="version-control-with-git.html#conflicts"><i class="fa fa-check"></i><b>4.10</b> Conflicts</a></li>
+<li class="chapter" data-level="4.11" data-path="version-control-with-git.html"><a href="version-control-with-git.html#open-science"><i class="fa fa-check"></i><b>4.11</b> Open Science</a></li>
+<li class="chapter" data-level="4.12" data-path="version-control-with-git.html"><a href="version-control-with-git.html#licensing"><i class="fa fa-check"></i><b>4.12</b> Licensing</a></li>
+<li class="chapter" data-level="4.13" data-path="version-control-with-git.html"><a href="version-control-with-git.html#citation"><i class="fa fa-check"></i><b>4.13</b> Citation</a></li>
+<li class="chapter" data-level="4.14" data-path="version-control-with-git.html"><a href="version-control-with-git.html#hosting"><i class="fa fa-check"></i><b>4.14</b> Hosting</a></li>
+<li class="chapter" data-level="4.15" data-path="version-control-with-git.html"><a href="version-control-with-git.html#using-git-from-rstudio"><i class="fa fa-check"></i><b>4.15</b> Using Git from RStudio</a></li>
+<li class="chapter" data-level="4.16" data-path="version-control-with-git.html"><a href="version-control-with-git.html#learn-more"><i class="fa fa-check"></i><b>4.16</b> Learn more</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>5</b> Import</a><ul>
+<li class="chapter" data-level="5.1" data-path="import.html"><a href="import.html#readings-3"><i class="fa fa-check"></i><b>5.1</b> Readings</a></li>
+<li class="chapter" data-level="5.2" data-path="import.html"><a href="import.html#tibbles-vs.data.frame"><i class="fa fa-check"></i><b>5.2</b> Tibbles vs. data.frame</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="import.html"><a href="import.html#data-frames-are-awesome"><i class="fa fa-check"></i><b>5.2.1</b> Data frames are awesome</a></li>
+<li class="chapter" data-level="5.2.2" data-path="import.html"><a href="import.html#printing"><i class="fa fa-check"></i><b>5.2.2</b> Printing</a></li>
+<li class="chapter" data-level="5.2.3" data-path="import.html"><a href="import.html#subsetting"><i class="fa fa-check"></i><b>5.2.3</b> Subsetting</a></li>
+<li class="chapter" data-level="5.2.4" data-path="import.html"><a href="import.html#converting"><i class="fa fa-check"></i><b>5.2.4</b> Converting</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="import.html"><a href="import.html#data-import"><i class="fa fa-check"></i><b>5.3</b> Data Import</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="import.html"><a href="import.html#compared-to-base-r"><i class="fa fa-check"></i><b>5.3.1</b> Compared to base R</a></li>
+<li class="chapter" data-level="5.3.2" data-path="import.html"><a href="import.html#exercises"><i class="fa fa-check"></i><b>5.3.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="import.html"><a href="import.html#writing-to-a-file"><i class="fa fa-check"></i><b>5.4</b> Writing to a file</a></li>
+<li class="chapter" data-level="5.5" data-path="import.html"><a href="import.html#learn-more-1"><i class="fa fa-check"></i><b>5.5</b> Learn More</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="tidy.html"><a href="tidy.html"><i class="fa fa-check"></i><b>6</b> Tidy</a><ul>
+<li class="chapter" data-level="6.1" data-path="tidy.html"><a href="tidy.html#readings-4"><i class="fa fa-check"></i><b>6.1</b> Readings</a></li>
+<li class="chapter" data-level="6.2" data-path="tidy.html"><a href="tidy.html#introduction-3"><i class="fa fa-check"></i><b>6.2</b> Introduction</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="tidy.html"><a href="tidy.html#prerequisites"><i class="fa fa-check"></i><b>6.2.1</b> Prerequisites</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="tidy.html"><a href="tidy.html#tidy-data"><i class="fa fa-check"></i><b>6.3</b> Tidy data</a></li>
+<li class="chapter" data-level="6.4" data-path="tidy.html"><a href="tidy.html#spreading-and-gathering"><i class="fa fa-check"></i><b>6.4</b> Spreading and gathering</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="tidy.html"><a href="tidy.html#gathering"><i class="fa fa-check"></i><b>6.4.1</b> Gathering</a></li>
+<li class="chapter" data-level="6.4.2" data-path="tidy.html"><a href="tidy.html#spreading"><i class="fa fa-check"></i><b>6.4.2</b> Spreading</a></li>
+<li class="chapter" data-level="6.4.3" data-path="tidy.html"><a href="tidy.html#exercises-1"><i class="fa fa-check"></i><b>6.4.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="tidy.html"><a href="tidy.html#separating-and-uniting"><i class="fa fa-check"></i><b>6.5</b> Separating and uniting</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="tidy.html"><a href="tidy.html#separate"><i class="fa fa-check"></i><b>6.5.1</b> Separate</a></li>
+<li class="chapter" data-level="6.5.2" data-path="tidy.html"><a href="tidy.html#unite"><i class="fa fa-check"></i><b>6.5.2</b> Unite</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="tidy.html"><a href="tidy.html#case-study"><i class="fa fa-check"></i><b>6.6</b> Case Study</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="transform-with-dplyr.html"><a href="transform-with-dplyr.html"><i class="fa fa-check"></i><b>7</b> Transform with dplyr</a><ul>
+<li class="chapter" data-level="7.1" data-path="transform-with-dplyr.html"><a href="transform-with-dplyr.html#readings-5"><i class="fa fa-check"></i><b>7.1</b> Readings</a></li>
+<li class="chapter" data-level="7.2" data-path="transform-with-dplyr.html"><a href="transform-with-dplyr.html#prerequisites-1"><i class="fa fa-check"></i><b>7.2</b> Prerequisites</a></li>
+<li class="chapter" data-level="7.3" data-path="transform-with-dplyr.html"><a href="transform-with-dplyr.html#dplyr-introduction"><i class="fa fa-check"></i><b>7.3</b> dplyr introduction</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="transform-with-dplyr.html"><a href="transform-with-dplyr.html#say-hello-to-the-gapminder-tibble"><i class="fa fa-check"></i><b>7.3.1</b> Say hello to the Gapminder tibble</a></li>
+<li class="chapter" data-level="7.3.2" data-path="transform-with-dplyr.html"><a href="transform-with-dplyr.html#think-before-you-create-excerpts-of-your-data"><i class="fa fa-check"></i><b>7.3.2</b> Think before you create excerpts of your data …</a></li>
+<li class="chapter" data-level="7.3.3" data-path="transform-with-dplyr.html"><a href="transform-with-dplyr.html#use-filter-to-subset-data-row-wise."><i class="fa fa-check"></i><b>7.3.3</b> Use <code>filter()</code> to subset data row-wise.</a></li>
+<li class="chapter" data-level="7.3.4" data-path="transform-with-dplyr.html"><a href="transform-with-dplyr.html#meet-the-new-pipe-operator"><i class="fa fa-check"></i><b>7.3.4</b> Meet the new pipe operator</a></li>
+<li class="chapter" data-level="7.3.5" data-path="transform-with-dplyr.html"><a href="transform-with-dplyr.html#use-select-to-subset-the-data-on-variables-or-columns."><i class="fa fa-check"></i><b>7.3.5</b> Use <code>select()</code> to subset the data on variables or columns.</a></li>
+<li class="chapter" data-level="7.3.6" data-path="transform-with-dplyr.html"><a href="transform-with-dplyr.html#revel-in-the-convenience"><i class="fa fa-check"></i><b>7.3.6</b> Revel in the convenience</a></li>
+<li class="chapter" data-level="7.3.7" data-path="transform-with-dplyr.html"><a href="transform-with-dplyr.html#pure-predictable-pipeable"><i class="fa fa-check"></i><b>7.3.7</b> Pure, predictable, pipeable</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="transform-with-dplyr.html"><a href="transform-with-dplyr.html#dplyr-grammar"><i class="fa fa-check"></i><b>7.4</b> dplyr grammar</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="transform-with-dplyr.html"><a href="transform-with-dplyr.html#create-a-copy-of-gapminder"><i class="fa fa-check"></i><b>7.4.1</b> Create a copy of gapminder</a></li>
+<li class="chapter" data-level="7.4.2" data-path="transform-with-dplyr.html"><a href="transform-with-dplyr.html#use-mutate-to-add-new-variables"><i class="fa fa-check"></i><b>7.4.2</b> Use <code>mutate()</code> to add new variables</a></li>
+<li class="chapter" data-level="7.4.3" data-path="transform-with-dplyr.html"><a href="transform-with-dplyr.html#use-arrange-to-row-order-data-in-a-principled-way"><i class="fa fa-check"></i><b>7.4.3</b> Use <code>arrange()</code> to row-order data in a principled way</a></li>
+<li class="chapter" data-level="7.4.4" data-path="transform-with-dplyr.html"><a href="transform-with-dplyr.html#use-rename-to-rename-variables"><i class="fa fa-check"></i><b>7.4.4</b> Use <code>rename()</code> to rename variables</a></li>
+<li class="chapter" data-level="7.4.5" data-path="transform-with-dplyr.html"><a href="transform-with-dplyr.html#select-can-rename-and-reposition-variables"><i class="fa fa-check"></i><b>7.4.5</b> <code>select()</code> can rename and reposition variables</a></li>
+<li class="chapter" data-level="7.4.6" data-path="transform-with-dplyr.html"><a href="transform-with-dplyr.html#group_by-is-a-mighty-weapon"><i class="fa fa-check"></i><b>7.4.6</b> <code>group_by()</code> is a mighty weapon</a></li>
+<li class="chapter" data-level="7.4.7" data-path="transform-with-dplyr.html"><a href="transform-with-dplyr.html#grouped-mutate"><i class="fa fa-check"></i><b>7.4.7</b> Grouped mutate</a></li>
+<li class="chapter" data-level="7.4.8" data-path="transform-with-dplyr.html"><a href="transform-with-dplyr.html#grand-finale"><i class="fa fa-check"></i><b>7.4.8</b> Grand Finale</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="transform-with-dplyr.html"><a href="transform-with-dplyr.html#working-with-two-datasets"><i class="fa fa-check"></i><b>7.5</b> Working with two datasets</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="transform-with-dplyr.html"><a href="transform-with-dplyr.html#inner_joinsuperheroes-publishers"><i class="fa fa-check"></i><b>7.5.1</b> inner_join(superheroes, publishers)</a></li>
+<li class="chapter" data-level="7.5.2" data-path="transform-with-dplyr.html"><a href="transform-with-dplyr.html#semi_joinsuperheroes-publishers"><i class="fa fa-check"></i><b>7.5.2</b> semi_join(superheroes, publishers)</a></li>
+<li class="chapter" data-level="7.5.3" data-path="transform-with-dplyr.html"><a href="transform-with-dplyr.html#left_joinsuperheroes-publishers"><i class="fa fa-check"></i><b>7.5.3</b> left_join(superheroes, publishers)</a></li>
+<li class="chapter" data-level="7.5.4" data-path="transform-with-dplyr.html"><a href="transform-with-dplyr.html#anti_joinsuperheroes-publishers"><i class="fa fa-check"></i><b>7.5.4</b> anti_join(superheroes, publishers)</a></li>
+<li class="chapter" data-level="7.5.5" data-path="transform-with-dplyr.html"><a href="transform-with-dplyr.html#inner_joinpublishers-superheroes"><i class="fa fa-check"></i><b>7.5.5</b> inner_join(publishers, superheroes)</a></li>
+<li class="chapter" data-level="7.5.6" data-path="transform-with-dplyr.html"><a href="transform-with-dplyr.html#semi_joinpublishers-superheroes"><i class="fa fa-check"></i><b>7.5.6</b> semi_join(publishers, superheroes)</a></li>
+<li class="chapter" data-level="7.5.7" data-path="transform-with-dplyr.html"><a href="transform-with-dplyr.html#left_joinpublishers-superheroes"><i class="fa fa-check"></i><b>7.5.7</b> left_join(publishers, superheroes)</a></li>
+<li class="chapter" data-level="7.5.8" data-path="transform-with-dplyr.html"><a href="transform-with-dplyr.html#anti_joinpublishers-superheroes"><i class="fa fa-check"></i><b>7.5.8</b> anti_join(publishers, superheroes)</a></li>
+<li class="chapter" data-level="7.5.9" data-path="transform-with-dplyr.html"><a href="transform-with-dplyr.html#full_joinsuperheroes-publishers"><i class="fa fa-check"></i><b>7.5.9</b> full_join(superheroes, publishers)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="transform-with-dplyr.html"><a href="transform-with-dplyr.html#learn-more-2"><i class="fa fa-check"></i><b>7.6</b> Learn more</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="visualize.html"><a href="visualize.html"><i class="fa fa-check"></i><b>8</b> Visualize</a><ul>
+<li class="chapter" data-level="8.1" data-path="visualize.html"><a href="visualize.html#readings-6"><i class="fa fa-check"></i><b>8.1</b> Readings</a></li>
+<li class="chapter" data-level="8.2" data-path="visualize.html"><a href="visualize.html#introduction-4"><i class="fa fa-check"></i><b>8.2</b> Introduction</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="visualize.html"><a href="visualize.html#prerequisites-2"><i class="fa fa-check"></i><b>8.2.1</b> Prerequisites</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="visualize.html"><a href="visualize.html#first-steps"><i class="fa fa-check"></i><b>8.3</b> First steps</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="visualize.html"><a href="visualize.html#the-mpg-data-frame"><i class="fa fa-check"></i><b>8.3.1</b> The <code>mpg</code> data frame</a></li>
+<li class="chapter" data-level="8.3.2" data-path="visualize.html"><a href="visualize.html#creating-a-ggplot"><i class="fa fa-check"></i><b>8.3.2</b> Creating a ggplot</a></li>
+<li class="chapter" data-level="8.3.3" data-path="visualize.html"><a href="visualize.html#a-graphing-template"><i class="fa fa-check"></i><b>8.3.3</b> A graphing template</a></li>
+<li class="chapter" data-level="8.3.4" data-path="visualize.html"><a href="visualize.html#exercises-2"><i class="fa fa-check"></i><b>8.3.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="visualize.html"><a href="visualize.html#aesthetic-mappings"><i class="fa fa-check"></i><b>8.4</b> Aesthetic mappings</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="visualize.html"><a href="visualize.html#exercises-3"><i class="fa fa-check"></i><b>8.4.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="visualize.html"><a href="visualize.html#common-problems"><i class="fa fa-check"></i><b>8.5</b> Common problems</a></li>
+<li class="chapter" data-level="8.6" data-path="visualize.html"><a href="visualize.html#facets"><i class="fa fa-check"></i><b>8.6</b> Facets</a><ul>
+<li class="chapter" data-level="8.6.1" data-path="visualize.html"><a href="visualize.html#exercises-4"><i class="fa fa-check"></i><b>8.6.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="visualize.html"><a href="visualize.html#geometric-objects"><i class="fa fa-check"></i><b>8.7</b> Geometric objects</a><ul>
+<li class="chapter" data-level="8.7.1" data-path="visualize.html"><a href="visualize.html#exercises-5"><i class="fa fa-check"></i><b>8.7.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="visualize.html"><a href="visualize.html#statistical-transformations"><i class="fa fa-check"></i><b>8.8</b> Statistical transformations</a><ul>
+<li class="chapter" data-level="8.8.1" data-path="visualize.html"><a href="visualize.html#exercises-6"><i class="fa fa-check"></i><b>8.8.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8.9" data-path="visualize.html"><a href="visualize.html#position-adjustments"><i class="fa fa-check"></i><b>8.9</b> Position adjustments</a><ul>
+<li class="chapter" data-level="8.9.1" data-path="visualize.html"><a href="visualize.html#exercises-7"><i class="fa fa-check"></i><b>8.9.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8.10" data-path="visualize.html"><a href="visualize.html#coordinate-systems"><i class="fa fa-check"></i><b>8.10</b> Coordinate systems</a><ul>
+<li class="chapter" data-level="8.10.1" data-path="visualize.html"><a href="visualize.html#exercises-8"><i class="fa fa-check"></i><b>8.10.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8.11" data-path="visualize.html"><a href="visualize.html#the-layered-grammar-of-graphics"><i class="fa fa-check"></i><b>8.11</b> The layered grammar of graphics</a></li>
+<li class="chapter" data-level="8.12" data-path="visualize.html"><a href="visualize.html#learn-more-3"><i class="fa fa-check"></i><b>8.12</b> Learn More</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="model-with-split-apply-combine-strategy.html"><a href="model-with-split-apply-combine-strategy.html"><i class="fa fa-check"></i><b>9</b> Model with Split-Apply-Combine Strategy</a><ul>
+<li class="chapter" data-level="9.1" data-path="model-with-split-apply-combine-strategy.html"><a href="model-with-split-apply-combine-strategy.html#readings-7"><i class="fa fa-check"></i><b>9.1</b> Readings</a></li>
+<li class="chapter" data-level="9.2" data-path="model-with-split-apply-combine-strategy.html"><a href="model-with-split-apply-combine-strategy.html#think-before-you-create-excerpts-of-your-data-1"><i class="fa fa-check"></i><b>9.2</b> Think before you create excerpts of your data …</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="model-with-split-apply-combine-strategy.html"><a href="model-with-split-apply-combine-strategy.html#load-dplyr-tidyr-purrr-and-gapminder"><i class="fa fa-check"></i><b>9.2.1</b> Load dplyr, tidyr, purrr and gapminder</a></li>
+<li class="chapter" data-level="9.2.2" data-path="model-with-split-apply-combine-strategy.html"><a href="model-with-split-apply-combine-strategy.html#split-apply-combine"><i class="fa fa-check"></i><b>9.2.2</b> Split Apply Combine</a></li>
+<li class="chapter" data-level="9.2.3" data-path="model-with-split-apply-combine-strategy.html"><a href="model-with-split-apply-combine-strategy.html#entry-level-dplyrgroup_by"><i class="fa fa-check"></i><b>9.2.3</b> Entry level: <code>dplyr::group_by()</code></a></li>
+<li class="chapter" data-level="9.2.4" data-path="model-with-split-apply-combine-strategy.html"><a href="model-with-split-apply-combine-strategy.html#general-approach-nesting"><i class="fa fa-check"></i><b>9.2.4</b> General approach: nesting</a></li>
+<li class="chapter" data-level="9.2.5" data-path="model-with-split-apply-combine-strategy.html"><a href="model-with-split-apply-combine-strategy.html#apply-a-function-purrrmap-and-mutate"><i class="fa fa-check"></i><b>9.2.5</b> Apply a function <code>purrr::map()</code> and <code>mutate()</code></a></li>
+<li class="chapter" data-level="9.2.6" data-path="model-with-split-apply-combine-strategy.html"><a href="model-with-split-apply-combine-strategy.html#always-have-an-exit-strategy"><i class="fa fa-check"></i><b>9.2.6</b> Always have an exit strategy</a></li>
+<li class="chapter" data-level="9.2.7" data-path="model-with-split-apply-combine-strategy.html"><a href="model-with-split-apply-combine-strategy.html#simplify-and-combine"><i class="fa fa-check"></i><b>9.2.7</b> Simplify and combine</a></li>
+<li class="chapter" data-level="9.2.8" data-path="model-with-split-apply-combine-strategy.html"><a href="model-with-split-apply-combine-strategy.html#recap"><i class="fa fa-check"></i><b>9.2.8</b> Recap</a></li>
+<li class="chapter" data-level="9.2.9" data-path="model-with-split-apply-combine-strategy.html"><a href="model-with-split-apply-combine-strategy.html#enjoy-the-payoff-of-your-work"><i class="fa fa-check"></i><b>9.2.9</b> Enjoy the payoff of your work</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>10</b> RMarkdown</a><ul>
+<li class="chapter" data-level="10.1" data-path="rmarkdown.html"><a href="rmarkdown.html#readings-8"><i class="fa fa-check"></i><b>10.1</b> Readings</a></li>
+<li class="chapter" data-level="10.2" data-path="rmarkdown.html"><a href="rmarkdown.html#overview"><i class="fa fa-check"></i><b>10.2</b> Overview</a></li>
+<li class="chapter" data-level="10.3" data-path="rmarkdown.html"><a href="rmarkdown.html#step-0-software-installation-and-configuration"><i class="fa fa-check"></i><b>10.3</b> Step 0: Software installation and configuration</a></li>
+<li class="chapter" data-level="10.4" data-path="rmarkdown.html"><a href="rmarkdown.html#step-1-get-ready-to-work"><i class="fa fa-check"></i><b>10.4</b> Step 1: Get ready to work</a></li>
+<li class="chapter" data-level="10.5" data-path="rmarkdown.html"><a href="rmarkdown.html#step-2-practice-with-rstudios-boilerplate-r-markdown-document"><i class="fa fa-check"></i><b>10.5</b> Step 2: Practice with RStudio’s boilerplate R Markdown document</a></li>
+<li class="chapter" data-level="10.6" data-path="rmarkdown.html"><a href="rmarkdown.html#step-3-take-control-of-the-output-format"><i class="fa fa-check"></i><b>10.6</b> Step 3: Take control of the output format</a></li>
+<li class="chapter" data-level="10.7" data-path="rmarkdown.html"><a href="rmarkdown.html#step-4-swap-out-the-guts-of-the-document"><i class="fa fa-check"></i><b>10.7</b> Step 4: Swap out the “guts” of the document</a></li>
+<li class="chapter" data-level="10.8" data-path="rmarkdown.html"><a href="rmarkdown.html#step-5-develop-your-report"><i class="fa fa-check"></i><b>10.8</b> Step 5: Develop your report</a></li>
+<li class="chapter" data-level="10.9" data-path="rmarkdown.html"><a href="rmarkdown.html#step-6-publish-your-report"><i class="fa fa-check"></i><b>10.9</b> Step 6: Publish your report</a><ul>
+<li class="chapter" data-level="10.9.1" data-path="rmarkdown.html"><a href="rmarkdown.html#html-on-github"><i class="fa fa-check"></i><b>10.9.1</b> HTML on GitHub</a></li>
+</ul></li>
+<li class="chapter" data-level="10.10" data-path="rmarkdown.html"><a href="rmarkdown.html#troubleshooting"><i class="fa fa-check"></i><b>10.10</b> Troubleshooting</a></li>
+<li class="chapter" data-level="10.11" data-path="rmarkdown.html"><a href="rmarkdown.html#learn-more-4"><i class="fa fa-check"></i><b>10.11</b> Learn More</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>11</b> Resources</a><ul>
+<li class="chapter" data-level="11.1" data-path="resources.html"><a href="resources.html#where-to-go-from-here"><i class="fa fa-check"></i><b>11.1</b> Where to go from here</a><ul>
+<li class="chapter" data-level="11.1.1" data-path="resources.html"><a href="resources.html#automate-testing-your-code"><i class="fa fa-check"></i><b>11.1.1</b> Automate testing your code</a></li>
+<li class="chapter" data-level="11.1.2" data-path="resources.html"><a href="resources.html#automate-your-workflow"><i class="fa fa-check"></i><b>11.1.2</b> Automate your workflow</a></li>
+<li class="chapter" data-level="11.1.3" data-path="resources.html"><a href="resources.html#share-your-work-as-a-r-package"><i class="fa fa-check"></i><b>11.1.3</b> Share your work as a R package</a></li>
+<li class="chapter" data-level="11.1.4" data-path="resources.html"><a href="resources.html#develop-interactive-apps-with-shiny"><i class="fa fa-check"></i><b>11.1.4</b> Develop interactive apps with Shiny</a></li>
+<li class="chapter" data-level="11.1.5" data-path="resources.html"><a href="resources.html#where-to-go-from-here-1"><i class="fa fa-check"></i><b>11.1.5</b> Where to go from here</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="resources.html"><a href="resources.html#where-to-find-help"><i class="fa fa-check"></i><b>11.2</b> Where to find help</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Data Science for Transportation Researchers, Planners, and Engineers</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="model-with-split-apply-combine-strategy" class="section level1">
+<h1><span class="header-section-number">9</span> Model with Split-Apply-Combine Strategy</h1>
+<div id="readings-7" class="section level2">
+<h2><span class="header-section-number">9.1</span> Readings</h2>
+<ol style="list-style-type: decimal">
+<li><a href="https://www.jstatsoft.org/article/view/v040i01/v40i01.pdf">Wickham, Hadley, 2011. The Split-Apply-Combine Strategy for Data Analysis, Journal of Statistical Software, Volume 40, Issue 1.</a></li>
+<li><a href="http://r4ds.had.co.nz/many-models.html">R4DS Many Models</a></li>
+</ol>
+<p>If you are not familiar with the basic workflow of fitting models with R, you should review two chapters:</p>
+<ol style="list-style-type: decimal">
+<li><a href="http://r4ds.had.co.nz/model-basics.html">R4DS Model basics</a></li>
+<li><a href="http://r4ds.had.co.nz/model-building.html">R4DS Model building</a></li>
+</ol>
+</div>
+<div id="think-before-you-create-excerpts-of-your-data-1" class="section level2">
+<h2><span class="header-section-number">9.2</span> Think before you create excerpts of your data …</h2>
+<p>If you feel the urge to store a little snippet of your data:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">snippet &lt;-<span class="st"> </span>my_big_dataset %&gt;%
+<span class="st">  </span><span class="kw">filter</span>(some_variable ==<span class="st"> </span>some_value)
+## or
+snippet &lt;-<span class="st"> </span><span class="kw">subset</span>(my_big_dataset, some_variable ==<span class="st"> </span>some_value)</code></pre></div>
+<p>Stop and ask yourself …</p>
+<blockquote>
+<p>Do I want to create mini datasets for each level of some factor (or unique combination of several factors) … in order to compute or graph something? If YES, <strong>use proper data aggregation techniques</strong> or facetting in <code>ggplot2</code> – <strong>don’t subset the data</strong>. Or, more realistically, only subset the data as a temporary measure while you develop your elegant code for computing on or visualizing these data subsets.</p>
+</blockquote>
+<p>If NO, then maybe you really do need to store a copy of a subset of the data. But seriously consider whether one of these strategies that subset at “compute time” will get the job done:</p>
+<ul>
+<li><p>Pass an intact data frame and use the <code>subset =</code> argument of a command. Many functions have it!</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## regress life expectancy on year for Canada
+canada_fit &lt;-
+<span class="st">  </span><span class="kw">lm</span>(lifeExp ~<span class="st"> </span>year, <span class="dt">data =</span> gapminder, <span class="dt">subset =</span> country ==<span class="st"> &quot;Canada&quot;</span>)</code></pre></div></li>
+<li><p>Pipe filtered data into a command. A very general solution.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## compare gdpPercap in Australia vs New Zealand
+oceania_ttest &lt;-<span class="st"> </span>gapminder %&gt;%
+<span class="st">  </span><span class="kw">filter</span>(continent ==<span class="st"> &quot;Asia&quot;</span>) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">t.test</span>(gdpPercap ~<span class="st"> </span>country, <span class="dt">data =</span> .)</code></pre></div></li>
+</ul>
+<p>Creating copies and excerpts of your data clutters up your workspace, script, and mind, often leading to confusion and mistakes. It can be useful during development, but try to eliminate this as you polish your analysis.</p>
+<div id="load-dplyr-tidyr-purrr-and-gapminder" class="section level3">
+<h3><span class="header-section-number">9.2.1</span> Load dplyr, tidyr, purrr and gapminder</h3>
+<p>I choose to load the entire tidyverse. Also load gapminder.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(gapminder)
+<span class="kw">library</span>(tidyverse)</code></pre></div>
+</div>
+<div id="split-apply-combine" class="section level3">
+<h3><span class="header-section-number">9.2.2</span> Split Apply Combine</h3>
+<p>A common analytical pattern is to</p>
+<ul>
+<li>split data into pieces,</li>
+<li>apply some function to each piece,</li>
+<li>combine the results back together again.</li>
+</ul>
+<p>R has specialized tools for this that are much nicer than whatever DIY approach you might be contemplating. Especially if it involves <code>for()</code> loops. There’s nothing inherently wrong or evil about <code>for()</code> loops, but you will spend alot of time and characters on bookkeeping tasks. That can be a great way to pilot a computation, because it is so blessedly concrete. But consider revisiting your implementation with higher-level data aggregation tools once you’ve established proof-of-principle.</p>
+<p>In base R, these are the “apply” functions, such as <code>apply()</code>, <code>aggregate()</code>, <code>tapply()</code>, and <code>by()</code>. We prefer to use similar tools from the tidyverse, due to a more consistent interface, analysis-friendly output, and a more concise way to describe what to compute. This article by Hadley Wickham – <a href="http://www.jstatsoft.org/v40/i01/paper">The split-apply-combine strategy for data analysis</a> – provides a good high-level overview, but know that the tidyverse approaches outlined here now supercede the plyr package described there.</p>
+</div>
+<div id="entry-level-dplyrgroup_by" class="section level3">
+<h3><span class="header-section-number">9.2.3</span> Entry level: <code>dplyr::group_by()</code></h3>
+<p>The most lightweight solution is given by <code>dplyr::group_by()</code>. <code>group_by()</code> adds some extra grouping structure to a data frame, based on levels of one or more categorical variables, but leaves the data frame intact. Then you can do group-wise computations using various functions in the tidyverse that automatically honor these groups.</p>
+<p>The main function here is <code>summarize()</code>, which collapses each group into a single row in a new group-summarized data frame.</p>
+<p>When does this break down? If anything you want to compute for a group is more complicated than, say, a single number, you have outgrown <code>dplyr::summarize()</code>. Example: getting the range of life expectancies seen for each continent doesn’t work with the code below.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gapminder %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(continent) %&gt;%
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">range =</span> <span class="kw">range</span>(lifeExp))</code></pre></div>
+<p>Now, in this case, we could reframe this in a <code>summarize()</code>-friendly form, but that doesn’t work in general.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gapminder %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(continent) %&gt;%
+<span class="st">  </span><span class="kw">summarize_each</span>(<span class="kw">funs</span>(min, max), lifeExp)</code></pre></div>
+<pre><code>## # A tibble: 5 × 3
+##   continent    min    max
+##      &lt;fctr&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1    Africa 23.599 76.442
+## 2  Americas 37.579 80.653
+## 3      Asia 28.801 82.603
+## 4    Europe 43.585 81.757
+## 5   Oceania 69.120 81.235</code></pre>
+</div>
+<div id="general-approach-nesting" class="section level3">
+<h3><span class="header-section-number">9.2.4</span> General approach: nesting</h3>
+<p>We use <strong>nesting</strong> as an extension of <strong>grouping</strong> in order to support more general group-wise computation. The collapse to a single row per group happens right away here, unlike the simple grouping above. When you nest data, the non-grouping variables are packaged into group-specific data frames that are held in a special variable called a list-column. You then apply your computation to the components of this list, i.e. the data frames. List-columns take a little getting used to, but the payoff is huge.</p>
+<p>Let’s get ready to fit a model for each country in the Gapminder dataset. First we group, as above, and then nest. We group by country and continent in order to keep those two variables “on the outside”.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(gap_nested &lt;-<span class="st"> </span>gapminder %&gt;%<span class="st"> </span>
+<span class="st">   </span><span class="kw">group_by</span>(continent, country) %&gt;%<span class="st"> </span>
+<span class="st">   </span><span class="kw">nest</span>())</code></pre></div>
+<pre><code>## # A tibble: 142 × 3
+##    continent     country              data
+##       &lt;fctr&gt;      &lt;fctr&gt;            &lt;list&gt;
+## 1       Asia Afghanistan &lt;tibble [12 × 4]&gt;
+## 2     Europe     Albania &lt;tibble [12 × 4]&gt;
+## 3     Africa     Algeria &lt;tibble [12 × 4]&gt;
+## 4     Africa      Angola &lt;tibble [12 × 4]&gt;
+## 5   Americas   Argentina &lt;tibble [12 × 4]&gt;
+## 6    Oceania   Australia &lt;tibble [12 × 4]&gt;
+## 7     Europe     Austria &lt;tibble [12 × 4]&gt;
+## 8       Asia     Bahrain &lt;tibble [12 × 4]&gt;
+## 9       Asia  Bangladesh &lt;tibble [12 × 4]&gt;
+## 10    Europe     Belgium &lt;tibble [12 × 4]&gt;
+## # ... with 132 more rows</code></pre>
+<p>What do you notice?</p>
+<ul>
+<li>The immediate collapse to 142 rows, one per country.</li>
+<li>The familiar presence of <code>continent</code> and <code>country</code>.</li>
+<li>The unfamiliar look of the new <code>data</code> variable, which is … a list! It is a list-column of continent-specific tibbles.</li>
+</ul>
+<p>How on earth do you inspect it?!? In RStudio, <code>gap_nested %&gt;% View()</code> is often helpful (moderately so in this case). It’s often nicer to inspect a single element like so:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gap_nested[[<span class="dv">1</span>, <span class="st">&quot;data&quot;</span>]]</code></pre></div>
+<pre><code>## # A tibble: 12 × 4
+##     year lifeExp      pop gdpPercap
+##    &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+## 1   1952  28.801  8425333  779.4453
+## 2   1957  30.332  9240934  820.8530
+## 3   1962  31.997 10267083  853.1007
+## 4   1967  34.020 11537966  836.1971
+## 5   1972  36.088 13079460  739.9811
+## 6   1977  38.438 14880372  786.1134
+## 7   1982  39.854 12881816  978.0114
+## 8   1987  40.822 13867957  852.3959
+## 9   1992  41.674 16317921  649.3414
+## 10  1997  41.763 22227415  635.3414
+## 11  2002  42.129 25268405  726.7341
+## 12  2007  43.828 31889923  974.5803</code></pre>
+<p><a href="block004_basic-r-objects.html">Remember that</a> double square brackets can only be used to extract a single element and they are simplifying. An equivalent call is <code>gap_nested[[&quot;data&quot;]][[1]]</code> (which I find even more opaque) or <code>gap_nested$data[[1]]</code> (which is pretty nice). We’re looking at the first of 142 country-specific data frames, which happens to be for Afghanistan.</p>
+<p>The presence of list-columns is always a temporary, uncomfortable state.</p>
+</div>
+<div id="apply-a-function-purrrmap-and-mutate" class="section level3">
+<h3><span class="header-section-number">9.2.5</span> Apply a function <code>purrr::map()</code> and <code>mutate()</code></h3>
+<p>How do we now iterate over the elements of <code>gap_nested$data</code>? It is a list, so we use general approaches for applying a function to each element of a list. In base R, this means <code>lapply()</code>, but we will use the tidyverse function <code>purrr::map()</code>, which has a few advantages <a href="https://speakerdeck.com/jennybc/purrr-tutorial-intro-very-rough-draft">described elsewhere</a>.</p>
+<p>Walk before you run, i.e. do an example first!</p>
+<p>Let’s fit a model to the data from Afghanistan. The form of the right-hand side is so that our intercept has a nice interpretation.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(fit &lt;-<span class="st"> </span><span class="kw">lm</span>(lifeExp ~<span class="st"> </span><span class="kw">I</span>(year -<span class="st"> </span><span class="dv">1950</span>), <span class="dt">data =</span> gap_nested[[<span class="dv">1</span>, <span class="st">&quot;data&quot;</span>]]))</code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = lifeExp ~ I(year - 1950), data = gap_nested[[1, 
+##     &quot;data&quot;]])
+## 
+## Coefficients:
+##    (Intercept)  I(year - 1950)  
+##        29.3566          0.2753</code></pre>
+<p>Let’s capture that logic in a function and informally test that it returns the same results for Afghanistan.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">le_vs_yr &lt;-<span class="st"> </span>function(df) {
+  <span class="kw">lm</span>(lifeExp ~<span class="st"> </span><span class="kw">I</span>(year -<span class="st"> </span><span class="dv">1950</span>), <span class="dt">data =</span> df)
+}
+<span class="kw">le_vs_yr</span>(gap_nested[[<span class="dv">1</span>, <span class="st">&quot;data&quot;</span>]])</code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = lifeExp ~ I(year - 1950), data = df)
+## 
+## Coefficients:
+##    (Intercept)  I(year - 1950)  
+##        29.3566          0.2753</code></pre>
+<p>After you walk, jog before you run. Use <code>purrr::map()</code> to apply the fitting function <code>le_vs_yr()</code> to the first two elements of <code>gap_nested$data</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fits &lt;-<span class="st"> </span>purrr::<span class="kw">map</span>(gap_nested$data[<span class="dv">1</span>:<span class="dv">2</span>], le_vs_yr)
+fits</code></pre></div>
+<pre><code>## [[1]]
+## 
+## Call:
+## lm(formula = lifeExp ~ I(year - 1950), data = df)
+## 
+## Coefficients:
+##    (Intercept)  I(year - 1950)  
+##        29.3566          0.2753  
+## 
+## 
+## [[2]]
+## 
+## Call:
+## lm(formula = lifeExp ~ I(year - 1950), data = df)
+## 
+## Coefficients:
+##    (Intercept)  I(year - 1950)  
+##        58.5598          0.3347</code></pre>
+<p>So, how do we run, i.e. scale this up to all countries? And where do we put these fitted models? We’ll use <code>purrr::map()</code> inside <code>mutate()</code>, meaning we store the models inside <code>gap_nested</code> in another list-column.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(gap_nested &lt;-<span class="st"> </span>gap_nested %&gt;%<span class="st"> </span>
+<span class="st">   </span><span class="kw">mutate</span>(<span class="dt">fit =</span> purrr::<span class="kw">map</span>(data, le_vs_yr)))</code></pre></div>
+<pre><code>## # A tibble: 142 × 4
+##    continent     country              data      fit
+##       &lt;fctr&gt;      &lt;fctr&gt;            &lt;list&gt;   &lt;list&gt;
+## 1       Asia Afghanistan &lt;tibble [12 × 4]&gt; &lt;S3: lm&gt;
+## 2     Europe     Albania &lt;tibble [12 × 4]&gt; &lt;S3: lm&gt;
+## 3     Africa     Algeria &lt;tibble [12 × 4]&gt; &lt;S3: lm&gt;
+## 4     Africa      Angola &lt;tibble [12 × 4]&gt; &lt;S3: lm&gt;
+## 5   Americas   Argentina &lt;tibble [12 × 4]&gt; &lt;S3: lm&gt;
+## 6    Oceania   Australia &lt;tibble [12 × 4]&gt; &lt;S3: lm&gt;
+## 7     Europe     Austria &lt;tibble [12 × 4]&gt; &lt;S3: lm&gt;
+## 8       Asia     Bahrain &lt;tibble [12 × 4]&gt; &lt;S3: lm&gt;
+## 9       Asia  Bangladesh &lt;tibble [12 × 4]&gt; &lt;S3: lm&gt;
+## 10    Europe     Belgium &lt;tibble [12 × 4]&gt; &lt;S3: lm&gt;
+## # ... with 132 more rows</code></pre>
+<p>We have a new list-column <code>fit</code> that is even more intimidating than the previous, <code>data</code>. The <code>fit</code> variable holds 142 fitted linear models. What shall we do with that?</p>
+</div>
+<div id="always-have-an-exit-strategy" class="section level3">
+<h3><span class="header-section-number">9.2.6</span> Always have an exit strategy</h3>
+<p>The list-column state is an uncomfortable and temporary one. The goal is always to pull information out of these complicated objects and package as something simpler, usually a tibble. You always want a list-column exit strategy!</p>
+<p>We are not afraid to fit linear models in this example because there is a fantastic package called <a href="https://github.com/dgrtwo/broom">broom</a> from David Robinson that provides exactly this for <code>lm()</code> and many other functions.</p>
+<p>broom provides three key functions that take a <code>lm()</code> fit as input and give a useful tibble back:</p>
+<ul>
+<li><code>tidy()</code>: a tidy version of <code>summary()</code>, e.g. a table with one row per parameter estimate</li>
+<li><code>augment()</code>: the original data, augmented with columns such as fitted values and residuals</li>
+<li><code>glance()</code>: a one-row model summary</li>
+</ul>
+<p>All of these are much friendlier than a fitted <code>lm()</code> object and set us up for interesting downstream analyses and plots.</p>
+</div>
+<div id="simplify-and-combine" class="section level3">
+<h3><span class="header-section-number">9.2.7</span> Simplify and combine</h3>
+<p>Let’s look at the result of <code>broom::tidy()</code> for a single model. Walk before you run.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(broom)
+<span class="kw">tidy</span>(gap_nested$fit[[<span class="dv">1</span>]])</code></pre></div>
+<pre><code>##             term   estimate  std.error statistic      p.value
+## 1    (Intercept) 29.3566375 0.69898128  41.99918 1.404235e-12
+## 2 I(year - 1950)  0.2753287 0.02045093  13.46289 9.835213e-08</code></pre>
+<p>We get a two row data frame, one with results for the intercept and one for the slope. This is much more approachable than fitted <code>lm</code> objects!</p>
+<p>Apply <code>tidy()</code> to the model for each country with the same <code>purrr::map()</code> inside <code>mutate()</code> strategy as above.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(gap_nested &lt;-<span class="st"> </span>gap_nested %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">tidy =</span> purrr::<span class="kw">map</span>(fit, tidy)))</code></pre></div>
+<pre><code>## # A tibble: 142 × 5
+##    continent     country              data      fit                 tidy
+##       &lt;fctr&gt;      &lt;fctr&gt;            &lt;list&gt;   &lt;list&gt;               &lt;list&gt;
+## 1       Asia Afghanistan &lt;tibble [12 × 4]&gt; &lt;S3: lm&gt; &lt;data.frame [2 × 5]&gt;
+## 2     Europe     Albania &lt;tibble [12 × 4]&gt; &lt;S3: lm&gt; &lt;data.frame [2 × 5]&gt;
+## 3     Africa     Algeria &lt;tibble [12 × 4]&gt; &lt;S3: lm&gt; &lt;data.frame [2 × 5]&gt;
+## 4     Africa      Angola &lt;tibble [12 × 4]&gt; &lt;S3: lm&gt; &lt;data.frame [2 × 5]&gt;
+## 5   Americas   Argentina &lt;tibble [12 × 4]&gt; &lt;S3: lm&gt; &lt;data.frame [2 × 5]&gt;
+## 6    Oceania   Australia &lt;tibble [12 × 4]&gt; &lt;S3: lm&gt; &lt;data.frame [2 × 5]&gt;
+## 7     Europe     Austria &lt;tibble [12 × 4]&gt; &lt;S3: lm&gt; &lt;data.frame [2 × 5]&gt;
+## 8       Asia     Bahrain &lt;tibble [12 × 4]&gt; &lt;S3: lm&gt; &lt;data.frame [2 × 5]&gt;
+## 9       Asia  Bangladesh &lt;tibble [12 × 4]&gt; &lt;S3: lm&gt; &lt;data.frame [2 × 5]&gt;
+## 10    Europe     Belgium &lt;tibble [12 × 4]&gt; &lt;S3: lm&gt; &lt;data.frame [2 × 5]&gt;
+## # ... with 132 more rows</code></pre>
+<p>The last step is now to simplify, preferably back to a normal tibble. We do this by retaining variables that are amenable to simplification and using <code>unnest()</code>, thus completing the circle.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(gap_coefs &lt;-<span class="st"> </span>gap_nested %&gt;%<span class="st"> </span>
+<span class="st">   </span><span class="kw">select</span>(continent, country, tidy) %&gt;%<span class="st"> </span>
+<span class="st">   </span><span class="kw">unnest</span>(tidy))</code></pre></div>
+<pre><code>## # A tibble: 284 × 7
+##    continent     country           term   estimate   std.error  statistic
+##       &lt;fctr&gt;      &lt;fctr&gt;          &lt;chr&gt;      &lt;dbl&gt;       &lt;dbl&gt;      &lt;dbl&gt;
+## 1       Asia Afghanistan    (Intercept) 29.3566375 0.698981278  41.999176
+## 2       Asia Afghanistan I(year - 1950)  0.2753287 0.020450934  13.462890
+## 3     Europe     Albania    (Intercept) 58.5597618 1.133575812  51.659325
+## 4     Europe     Albania I(year - 1950)  0.3346832 0.033166387  10.091036
+## 5     Africa     Algeria    (Intercept) 42.2364149 0.756269040  55.848399
+## 6     Africa     Algeria I(year - 1950)  0.5692797 0.022127070  25.727749
+## 7     Africa      Angola    (Intercept) 31.7079741 0.804287463  39.423683
+## 8     Africa      Angola I(year - 1950)  0.2093399 0.023532003   8.895964
+## 9   Americas   Argentina    (Intercept) 62.2250191 0.167091314 372.401279
+## 10  Americas   Argentina I(year - 1950)  0.2317084 0.004888791  47.395847
+## # ... with 274 more rows, and 1 more variables: p.value &lt;dbl&gt;</code></pre>
+</div>
+<div id="recap" class="section level3">
+<h3><span class="header-section-number">9.2.8</span> Recap</h3>
+<p>The whole point of this was to get apply a computation to all the pieces of a dataset and glue the results back together. First, let’s review all of our work so far in one place. It’s remarkably compact.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gap_nested &lt;-<span class="st"> </span>gapminder %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(continent, country) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">nest</span>()
+
+le_vs_yr &lt;-<span class="st"> </span>function(df) {
+  <span class="kw">lm</span>(lifeExp ~<span class="st"> </span><span class="kw">I</span>(year -<span class="st"> </span><span class="dv">1950</span>), <span class="dt">data =</span> df)
+}
+
+gap_coefs &lt;-<span class="st"> </span>gap_nested %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">fit =</span> purrr::<span class="kw">map</span>(data, le_vs_yr),
+         <span class="dt">tidy =</span> purrr::<span class="kw">map</span>(fit, tidy)) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(continent, country, tidy) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">unnest</span>(tidy)</code></pre></div>
+<p>Reflect on how you would have obtained a data frame of country-specific intercepts and slopes from a regression of life expectancy on year. Did you know any approaches for solving this problem? If no, then rejoice that you now have one! If yes, does the approach outlined here seem simpler?</p>
+<p>List-columns take some getting used to, but they are a required component of the strategy laid out above for general-purpose split-apply-combine.</p>
+</div>
+<div id="enjoy-the-payoff-of-your-work" class="section level3">
+<h3><span class="header-section-number">9.2.9</span> Enjoy the payoff of your work</h3>
+<p>Let’s celebrate by exploring the estimated slopes and intercepts a bit. First we recode the variable corresponding to “intercept” vs “slope”.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(gap_coefs &lt;-<span class="st"> </span>gap_coefs %&gt;%
+<span class="st">   </span><span class="kw">mutate</span>(<span class="dt">term =</span> <span class="kw">recode</span>(term,
+                        <span class="st">`</span><span class="dt">(Intercept)</span><span class="st">`</span> =<span class="st"> &quot;intercept&quot;</span>,
+                        <span class="st">`</span><span class="dt">I(year - 1950)</span><span class="st">`</span> =<span class="st"> &quot;slope&quot;</span>)))</code></pre></div>
+<pre><code>## # A tibble: 284 × 7
+##    continent     country      term   estimate   std.error  statistic
+##       &lt;fctr&gt;      &lt;fctr&gt;     &lt;chr&gt;      &lt;dbl&gt;       &lt;dbl&gt;      &lt;dbl&gt;
+## 1       Asia Afghanistan intercept 29.3566375 0.698981278  41.999176
+## 2       Asia Afghanistan     slope  0.2753287 0.020450934  13.462890
+## 3     Europe     Albania intercept 58.5597618 1.133575812  51.659325
+## 4     Europe     Albania     slope  0.3346832 0.033166387  10.091036
+## 5     Africa     Algeria intercept 42.2364149 0.756269040  55.848399
+## 6     Africa     Algeria     slope  0.5692797 0.022127070  25.727749
+## 7     Africa      Angola intercept 31.7079741 0.804287463  39.423683
+## 8     Africa      Angola     slope  0.2093399 0.023532003   8.895964
+## 9   Americas   Argentina intercept 62.2250191 0.167091314 372.401279
+## 10  Americas   Argentina     slope  0.2317084 0.004888791  47.395847
+## # ... with 274 more rows, and 1 more variables: p.value &lt;dbl&gt;</code></pre>
+<p>Due to the way we parametrized the model, the intercepts correspond to expected life expectancy in 1950. These numbers should be plausible as human life expectancies. The slopes correspond to change in expected life expectancy from one year to the next. We expect positive numbers to dominate, but they’ll probably less than one. A reshaped version of the estimates, <code>gap_ests</code>, is handy for numerical summarization and visualization.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(gap_ests &lt;-<span class="st"> </span>gap_coefs %&gt;%<span class="st"> </span>
+<span class="st">   </span><span class="kw">select</span>(continent:estimate) %&gt;%<span class="st"> </span>
+<span class="st">   </span><span class="kw">spread</span>(<span class="dt">key =</span> term, <span class="dt">value =</span> estimate))</code></pre></div>
+<pre><code>## # A tibble: 142 × 4
+##    continent                  country intercept      slope
+## *     &lt;fctr&gt;                   &lt;fctr&gt;     &lt;dbl&gt;      &lt;dbl&gt;
+## 1     Africa                  Algeria  42.23641 0.56927972
+## 2     Africa                   Angola  31.70797 0.20933986
+## 3     Africa                    Benin  38.92005 0.33423287
+## 4     Africa                 Botswana  52.80778 0.06066853
+## 5     Africa             Burkina Faso  33.95674 0.36397483
+## 6     Africa                  Burundi  40.27037 0.15413427
+## 7     Africa                 Cameroon  40.74917 0.25014685
+## 8     Africa Central African Republic  38.44170 0.18390559
+## 9     Africa                     Chad  39.30288 0.25324406
+## 10    Africa                  Comoros  39.09522 0.45039091
+## # ... with 132 more rows</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gap_ests %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(intercept, slope) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">summary</span>()</code></pre></div>
+<pre><code>##    intercept         slope         
+##  Min.   :27.24   Min.   :-0.09302  
+##  1st Qu.:39.36   1st Qu.: 0.20832  
+##  Median :47.42   Median : 0.32145  
+##  Mean   :49.86   Mean   : 0.32590  
+##  3rd Qu.:62.05   3rd Qu.: 0.44948  
+##  Max.   :71.95   Max.   : 0.77218</code></pre>
+<p>The numerical summaries look reasonable. We conclude with a look at the full distribution.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(gap_coefs, <span class="kw">aes</span>(<span class="dt">x =</span> estimate)) +
+<span class="st">  </span><span class="kw">geom_density</span>() +<span class="st"> </span><span class="kw">geom_rug</span>() +<span class="st"> </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>term, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>)</code></pre></div>
+<p><img src="_main_files/figure-html/intercept-slope-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(gap_ests, <span class="kw">aes</span>(<span class="dt">x =</span> intercept, <span class="dt">y =</span> slope)) +
+<span class="st">  </span><span class="kw">geom_point</span>() +
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)</code></pre></div>
+<p><img src="_main_files/figure-html/intercept-slope-2.png" width="672" /></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="visualize.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="rmarkdown.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
+<script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/lunr.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
