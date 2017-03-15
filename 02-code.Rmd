@@ -1714,7 +1714,7 @@ analyze("data/inflammation-01.csv")
 but also use it to save plots,
 
 ```{r results='hide'}
-analyze("data/inflammation-01.csv", output = "inflammation-01.pdf")
+analyze("data/inflammation-01.csv", output = "results/inflammation-01.pdf")
 ```
 
 Before going further, we will create a directory `results` for saving our plots.
