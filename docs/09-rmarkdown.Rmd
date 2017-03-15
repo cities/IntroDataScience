@@ -3,9 +3,54 @@
 ## Readings
 
 1. [W] Chapter 30, 29
-1.  
 
-### Overview
+`knitr` is an R package that allows you to organize your notes, code, and results in a single document. It's a great tool for "literate programming" -- the idea that your code should be readable by humans as well as computers! It also keeps your writing and results together, so if you collect some new data or change how you clean the data, you just have to re-compile the document and you're up to date!
+
+You write `knitr` documents in a simple plain text-like format called markdown, which allows you to format text using intuitive notation, so that you can focus on the content you're writing. But you still get a well-formatted document out. In fact, you can turn your plain text (and R code and results) into an html file or, if you have an installation of LaTeX and Pandoc on your machine, a pdf, or even a Word document (if you must!).
+
+To get started, install the `knitr` package.
+
+```{r, eval=FALSE}
+install.packages("knitr")
+```
+
+When you click on File -> New File, there is an option for "R Markdown...". Choose this and accept the default options in the dialog box that follows (but note that you can also create presentations this way). Save the file and click on the "Knit HTML" button at the top of the script. Compare the output to the source.
+
+> **Formatting Text in Markdown**
+>
+> Visit <http://rmarkdown.rstudio.com/authoring_basics.html> and briefly check out some of the formatting options.
+>
+> In the example document add
+>
+> * Headers using `#`
+> * Emphasis using astericks:  \*italics\* and \*\*bold\*\*
+> * Lists using `*` and numbered lists using `1.`, `2.`, etc.
+> * **Bonus:** Create a table
+{: .challenge}
+
+Markdown also supports LaTeX equation editing.
+We can display pretty equations by enclosing them in `$`,
+e.g., `$\alpha = \dfrac{1}{(1 - \beta)^2}$` renders as: $\alpha = \dfrac{1}{(1 - \beta)^2}$.
+
+The top of the source (.Rmd) file has some header material in YAML format (enclosed by triple dashes).
+Some of this gets displayed in the output header, other of it provides formatting information to the conversion engine.
+
+To distinguish R code from text, RMarkdown uses three back-ticks followed by `{r}` to distinguish a "code chunk".
+In RStudio, the keyboard shortcut to create a code chunk is command-option-i or control-alt-i.
+
+A code chunk will set off the code and its results in the output document,
+but you can also print the results of code within a text block by enclosing code like so: `` `r '\x60r code-here\x60'` ``.
+
+> **Use knitr to Produce a Report**
+>
+> 1. Open an new .Rmd script and save it as inflammation_report.Rmd
+> 2. Copy code from earlier into code chunks to read the inflammation data and plot average inflammation.
+> 3. Add a few notes describing what the code does and what the main findings are. Include an in-line calculation of the median inflammation level.
+> 4. `knit` the document and view the html result.
+{: .challenge}
+
+
+## Overview
 
 This describes a hands-on activity where the goal is to author an R Markdown document and render it to HTML/pdf/docx.
 
@@ -13,7 +58,7 @@ For people also using Git and GitHub, we discuss how to keep the intermediate Ma
 
 Here is the official R Markdown documentation: <http://rmarkdown.rstudio.com>
 
-### Step 0: Software installation and configuration
+## Step 0: Software installation and configuration
 
 We assume the following
 
@@ -23,13 +68,13 @@ We assume the following
   * You've [tested your installation and configuration of Git, GitHub, and RStudio](git07_git-github-rstudio.html)
   * You've completed [Homework 01](hw01_edit-README.html) or an equivalent exercise to truly test all of the above and to introduce you to Markdown.
 
-### Step 1: Get ready to work
+## Step 1: Get ready to work
 
 Launch RStudio, probably in the Project that corresponds to the repository where you are keeping all STAT 545 coursework. Make sure the workspace is clean and you've launched a fresh R process. Make sure the working directory is sensible.
 
 Git people: we assume you are working inside a Git repo -- probably one that is already set up to push/pull with a GitHub remote. That is [covered elsewhere](git07_git-github-rstudio.html).
 
-### Step 2: Practice with RStudio's boilerplate R Markdown document
+## Step 2: Practice with RStudio's boilerplate R Markdown document
 
 I am modelling "walk before you run" here. It is best, especially for novices, to increase complexity in small increments. We will test our system's ability to render the ["hello world"](http://en.wikipedia.org/wiki/%22Hello,_world!%22_program) of R Markdown documents before we muddy the waters with our own, probably buggy, documents.
 
@@ -50,7 +95,7 @@ Congratulations, you've just made your first reproducible report with R Markdown
 
 Git people: this is a decent time to commit your new HTML. One day you might reconsider whether you want HTML in your repo, but don't worry about that now.
 
-### Step 3: Take control of the output format
+## Step 3: Take control of the output format
 
 Do you really want HTML? Do you only want HTML? If so, you can skip this step!
 
@@ -102,7 +147,7 @@ If your output format is `html_document`, you should still see `foo.html`. If yo
 
 Git people: this is a decent time to commit current state of everything.
 
-### Step 4: Swap out the "guts" of the document
+## Step 4: Swap out the "guts" of the document
 
 Select everything but the YAML frontmatter and ... delete it!
 
@@ -122,7 +167,7 @@ Now render the whole document via "Knit HTML." Voilà!
 
 Git people: this is a decent time to commit.
 
-### Step 5: Develop your report
+## Step 5: Develop your report
 
 In this incremental manner, develop your report. Add code to this chunk. Refine it. Add new chunks. Go crazy! But keep running the code "manually" to make sure it works.
 
@@ -134,7 +179,7 @@ You'll develop your own mojo soon, but this should give you your first successfu
 
 Git people: keep making periodic commits. It's probably better to err on the side of "too often" instead of "too seldom" at this point.
 
-### Step 6: Publish your report
+## Step 6: Publish your report
 
 If you've been making HTML, you can put that up on the web somewhere, email to your collaborator, whatever.
 
@@ -149,13 +194,13 @@ Creating, commiting, and pushing markdown is a very functional, lighweight publi
 
 This is (sort of) another example of keeping things machine- and human-readable, which is bliss. By making `foo.Rmd` available, others can see and run your __actual code__. By sharing `foo.md` and/or `foo.html`, others can casually browse your end product and decide if they even want to bother.
 
-#### HTML on GitHub
+### HTML on GitHub
 
 HTML files, such as `foo.html`, are not immediately useful on GitHub (though your local versions are easily viewable). Visit one and you'll see the raw HTML. Yuck. But there are ways to get a preview: such as <https://rawgit.com> or <http://htmlpreview.github.io>. Expect some pain with HTML files inside private repos. When it becomes vital for the whole world to see proper HTML in its full glory, it's time to use a more sophisticated web publishing strategy.
 
 I have more [general ideas](bit006_github-browsability-wins.html) about how to make a GitHub repo function as a website.
 
-### Troubleshooting
+## Troubleshooting
 
 __Make sure RStudio and the `rmarkdown` package (and its dependencies) are up-to-date.__ In case of catastrophic failure to render R Markdown, consider that your software may be too old. R Markdown has been developing rapidly (written 2015-09), so you need a very current version of RStudio and `rmarkdown` to enjoy all the goodies we describe in this course.
 
@@ -163,9 +208,9 @@ __Get rid of your `.Rprofile`__, at least temporarily. I have found that a "matu
 
 __Insert a chunk in your `.Rmd` document so that it renders even when there are errors.__ Some errors are easier to diagnose if you can execute specific R statements during rendering and leave more evidence behind for forensic examination. Put this chunk:
 
-    ```{r setup, include = FALSE, cache = FALSE}  
-    knitr::opts_chunk$set(error = TRUE)  
-    ```
+>    ```{r, include = FALSE, cache = FALSE}  
+>    knitr::opts_chunk$set(error = TRUE)  
+>    ```
     
 near the top of your R Markdown document if you want to soldier on through errors, i.e. turn `foo.Rmd` into `foo.md` and/or `foo.html` no matter what. This is also helpful if you are writing a tutorial and want to demo code that throws an error. You might want to keep this as an [RStudio snippet](https://support.rstudio.com/hc/en-us/articles/204463668-Code-Snippets) for easy insertion.
 
@@ -188,3 +233,7 @@ Drop these commands into R chunks to check the above:
 __Don't try to change working directory within an R Markdown document__. [Just don't](https://github.com/yihui/knitr/blob/master/FAQ.md). That is all.
 
 __Don't be in a hurry to create a complicated sub-directory structure.__ RStudio/`knitr`/`rmarkdown` (which bring you the "Knit HTML" button) are rather opinionated about the working directory being set to the `.Rmd` file's location and about all files living together in one big happy directory. This can all be worked around. But not today.
+
+## Learn More
+
+- [R Markdown Cheat Sheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)

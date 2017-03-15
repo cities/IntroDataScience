@@ -4,6 +4,7 @@ author: "Liming Wang"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
+#output: word_document2
 documentclass: book
 #bibliography: []
 biblio-style: apalike
@@ -11,6 +12,16 @@ link-citations: yes
 github-repo: cities/datascience
 description: ""
 ---
+
+```{r setup, include=F}
+if (!require("pacman")) {install.packages("pacman"); library(pacman)}
+p_load(pander, knitr)
+opts_knit$set(root.dir = normalizePath(".."))
+opts_chunk$set(message=FALSE, warning=F)
+panderOptions('round', 2)
+panderOptions('keep.trailing.zeros', TRUE)
+```
+
 
 # Syllabus
 
@@ -65,6 +76,7 @@ The course materials have greatly benefited from the following sources:
 - [R for Data Science](https://github.com/hadley/r4ds) by Hadley Wickham
 - [Software Carpentry workshop lessons](https://software-carpentry.org/lessons/)
 - [UBC Stat 545](http://stat545.com) by Professor Jenny Bryan at UBC
+- [NEU 5110 Introduction to Data Science](http://janvitek.org/events/NEU/5110/) by Professor Jan Vitek
 
 The writing-up and website is powered by the [bookdown](https://bookdown.org) package and [github](https://www.github.com).
 

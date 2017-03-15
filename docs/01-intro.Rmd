@@ -45,7 +45,7 @@
 
 ### The tidyverse work flow
 
-Data Science is a discipline that combines computing with statistics. A data analysis problem is solved in a series of data-centric steps: data acquisition and representation (Import), data cleaning (Tidy), and an iterative sequence of data transformation (Transform), data modelling (Model) and data visualization (Visualize). The end result of the process is to communicate insights obtained from the data (Communicate). This class will take you through all the steps in the process and will teach you how to approach such problems in a systematic manner. You will learn how to design data analysis pipelines as well as how to implement data analysis pipelines in a widely used industrial language. The class will also emphasize how elegant code leads to reproducible science.
+Data Science is a discipline that combines computing with statistics. A data analysis problem is solved in a series of data-centric steps: data acquisition and representation (Import), data cleaning (Tidy), and an iterative sequence of data transformation (Transform), data modelling (Model) and data visualization (Visualize). The end result of the process is to communicate insights obtained from the data (Communicate). This class will take you through all the steps in the process and will teach you how to approach such problems in a systematic manner. You will learn how to design data analysis pipelines as well as how to implement data analysis pipelines in R. The class will also emphasize how elegant code leads to reproducible science.
 
 1. Import your data into R
 2. Tidy it
@@ -53,9 +53,10 @@ Data Science is a discipline that combines computing with statistics. A data ana
   - visualizing
   - tranforming and
   - modeling your data
-4. Communicate your results to an audience, or
+4. Communicate your results to an audience
 
 Program and automate your analysis for easy reuse the whole way through, since you do each of these things on a computer. For this course, we focus on the tidyverse packages namely:
+
 * ggplot2, for data visualisation.
 * dplyr, for data manipulation.
 * tidyr, for data tidying.
@@ -63,7 +64,7 @@ Program and automate your analysis for easy reuse the whole way through, since y
 * purrr, for functional programming.
 * tibble, for tibbles, a modern re-imagining of data frames.
 
-For more R packages for the tidyverse workflow see [RStartHere](https://github.com/rstudio/RStartHere)
+For more R packages you can use for the tidyverse workflow see [list here](https://github.com/rstudio/RStartHere)
 
 ![Figure tidyverse workfow](http://r4ds.had.co.nz/diagrams/data-science.png) 
 
@@ -133,7 +134,7 @@ The RStudio interface is divided into panes for Editing, Console, Environment/Hi
 
 ### Project orgnization in RStudio
 
-RStudio organizes work by projects. A RStudio project is a group of files and directories organized for self-contained work. For example, it can be a R package under development, or code, data and documents for a research project, or a book project (for example, Hadley use a RStudio project for the R for Data Science book at https://github.com/hadley/r4ds). 
+R experts keep all the files associated with a project together — input data, R scripts, analytical results, figures. This is such a wise and common practice that RStudio has built-in support for this via projects. For example, a project can be a R package under development, or code, data and documents for a research project, or a book project (for example, Hadley use a RStudio project for the R for Data Science book at https://github.com/hadley/r4ds). 
 
 A RStudio project must contain a file with extension Rproj and can contain any files within the directory where the project file lives or its subdirectories. Typical types of files in a RStudio project include:
   - R Script
@@ -142,20 +143,34 @@ A RStudio project must contain a file with extension Rproj and can contain any f
   - Shiny Web App
   - Text file, C++, html, ...
 
-I prefer to organize my files in subdirectories, typically with these items:
+Hadley recommends the following for RStudio projects workflow:
+
+- Create an RStudio project for each data analyis project.
+- Keep data files there and load them into R with data import.
+- Keep scripts there; edit them, run them in bits or as a whole.
+- Save your outputs (plots and cleaned data) there.
+- Only ever use relative paths (relative to the root path of the project), not absolute paths.
+
+Everything you need is in one place, and cleanly separated from all the other projects that you are working on.
+
+I recommend organizing files in subdirectories by types, typically with at least these items:
   - project_name.Rproj, RStudio project file
   - README.md, a description file of the project
   - code, for R scripts
   - data, for data files
   - docs, for document/report files, such as R Markdown files
 
+### Set up github and clone datascience course repository
+
+
+
 ## Learning more
 
 The above will get your basic setup ready but here are some links if you are interested in reading a bit further.
 
-  * How to Use RStudio
-    - <https://support.rstudio.com/hc/en-us>
-  * RStudio's leads for learning R
+  * RStudio Cheat Sheet
+    - <https://www.rstudio.com/wp-content/uploads/2016/01/rstudio-IDE-cheatsheet.pdf>
+  * RStudio's leads for getting help with R
     - <https://support.rstudio.com/hc/en-us/articles/200717153-Getting-Help-with-R>
   * R FAQ:
     - <http://cran.r-project.org/doc/FAQ/R-FAQ.html>
