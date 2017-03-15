@@ -118,7 +118,7 @@ table4a %>%
 The columns to gather are specified with `dplyr::select()` style notation. Here there are only two columns, so we list them individually. Note that "1999" and "2000" are non-syntactic names so we have to surround them in backticks. To refresh your memory of the other ways to select columns, see [select](#select).
 
 ```{r tidy-gather, echo = FALSE, out.width = "100%", fig.cap = "Gathering `table4` into a tidy form."}
-knitr::include_graphics("images/tidy-9.png")
+knitr::include_graphics("fig/tidy-9.png")
 ```
 
 In the final result, the gathered columns are dropped, and we get new `key` and `value` columns. Otherwise, the relationships between the original variables are preserved. Visually, this is shown in Figure \@ref(fig:tidy-gather). We can use `gather()` to tidy `table4b` in a similar fashion. The only difference is the variable stored in the cell values:
@@ -161,7 +161,7 @@ spread(table2, key = type, value = count)
 ```
 
 ```{r tidy-spread, echo = FALSE, out.width = "100%", fig.cap = "Spreading `table2` makes it tidy"}
-knitr::include_graphics("images/tidy-8.png")
+knitr::include_graphics("fig/tidy-8.png")
 ```
 
 As you might have guessed from the common `key` and `value` arguments, `spread()` and `gather()` are complements. `gather()` makes wide tables narrower and longer; `spread()` makes long tables shorter and wider.
@@ -240,7 +240,7 @@ table3 %>%
 ```
 
 ```{r tidy-separate, echo = FALSE, out.width = "75%", fig.cap = "Separating `table3` makes it tidy"}
-knitr::include_graphics("images/tidy-17.png")
+knitr::include_graphics("fig/tidy-17.png")
 ```
 
 By default, `separate()` will split values wherever it sees a non-alphanumeric character (i.e. a character that isn't a number or letter). For example, in the code above, `separate()` split the values of `rate` at the forward slash characters. If you wish to use a specific character to separate a column, you can pass the character to the `sep` argument of `separate()`. For example, we could rewrite the code above as:
@@ -273,7 +273,7 @@ table3 %>%
 `unite()` is the inverse of `separate()`: it combines multiple columns into a single column. You'll need it much less frequently than `separate()`, but it's still a useful tool to have in your back pocket.
 
 ```{r tidy-unite, echo = FALSE, out.width = "75%", fig.cap = "Uniting `table5` makes it tidy"}
-knitr::include_graphics("images/tidy-18.png")
+knitr::include_graphics("fig/tidy-18.png")
 ```
 
 We can use `unite()` to rejoin the *century* and *year* columns that we created in the last example. That data is saved as `tidyr::table5`. `unite()` takes a data frame, the name of the new variable to create, and a set of columns to combine, again specified in `dplyr::select()` style:
