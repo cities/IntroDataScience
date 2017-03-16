@@ -73,7 +73,7 @@ This course is developed with the financial support from National Institute of T
 [![NITC](http://nitc.trec.pdx.edu/sites/default/files/nitc_4c_horiz_tag.jpg)](http://nitc.trec.pdx.edu/)
 </div>
 
-The course materials have greatly benefited from the following sources:
+Parts of the course materials have been adpated from the following sources:
 
 - [R for Data Science](https://github.com/hadley/r4ds) by Hadley Wickham
 - [Software Carpentry workshop lessons](https://software-carpentry.org/lessons/)
