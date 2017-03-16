@@ -4,8 +4,8 @@ author: "Liming Wang"
 date: "`r Sys.Date()`"
 site: "bookdown::bookdown_site"
 output:
-  bookdown::gitbook:
-    lib_dir: "book_assets"
+   bookdown::gitbook:
+     lib_dir: "book_assets"
 #output: bookdown::word_document2
 documentclass: book
 #bibliography: []
@@ -16,10 +16,8 @@ description: ""
 ---
 
 ```{r setup, include=F}
-#if (!require("pacman")) {install.packages("pacman"); library(pacman)}
-#p_load(pander, knitr)
-library(knitr)
-library(pander)
+if (!require("pacman")) {install.packages("pacman"); library(pacman)}
+p_load(pander, knitr, tidyverse)
 #opts_knit$set(root.dir = normalizePath(".."))
 opts_chunk$set(message=FALSE, warning=F)
 panderOptions('round', 2)

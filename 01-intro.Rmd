@@ -3,7 +3,7 @@
 ## Readings
 
 1.	Davenport, T.H., Patil, D.J., 2012. Data Scientist: The Sexiest Job of the 21st Century. Harvard Business Review. URL https://hbr.org/2012/10/data-scientist-the-sexiest-job-of-the-21st-century (accessed 2/10/2017).
-1. [W] Chapter 1, 6, 8
+1. [R4DS] Chapter 1, 6, 8
 1.	Wilson, G., Aruliah, D.A., Brown, C.T., Hong, N.P.C., Davis, M., Guy, R.T., Haddock, S.H.D., Huff, K., Mitchell, I.M., Plumbley, M., Waugh, B., White, E.P., Wilson, P., 2012. Best Practices for Scientific Computing. arXiv:1210.0530. URL https://arxiv.org/abs/1210.0530 (accessed 3/7/17).
 
 ## Introduction

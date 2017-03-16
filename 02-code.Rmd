@@ -4,7 +4,7 @@ This section has been adapted from Software Carpentry lesson [Programming with R
 
 ## Readings
 
-1. [W] Chapter 4
+1. [R4DS] Chapter 4
 1. Software Carpentry [Programming with R](http://swcarpentry.github.io/r-novice-inflammation/).
 
 ## Starting with Data

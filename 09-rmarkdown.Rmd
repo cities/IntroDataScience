@@ -1,8 +1,17 @@
+```{r setup, include=F}
+if (!require("pacman")) {install.packages("pacman"); library(pacman)}
+p_load(pander, knitr, tidyverse)
+#opts_knit$set(root.dir = normalizePath(".."))
+opts_chunk$set(message=FALSE, warning=F)
+panderOptions('round', 2)
+panderOptions('keep.trailing.zeros', TRUE)
+```
+
 # RMarkdown
 
 ## Readings
 
-1. [W] Chapter 30, 29
+1. [R4DS] Chapter 30, 29
 
 `knitr` is an R package that allows you to organize your notes, code, and results in a single document. It's a great tool for "literate programming" -- the idea that your code should be readable by humans as well as computers! It also keeps your writing and results together, so if you collect some new data or change how you clean the data, you just have to re-compile the document and you're up to date!
 

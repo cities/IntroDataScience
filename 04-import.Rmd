@@ -1,8 +1,17 @@
+```{r setup, include=F}
+if (!require("pacman")) {install.packages("pacman"); library(pacman)}
+p_load(pander, knitr, tidyverse)
+#opts_knit$set(root.dir = normalizePath(".."))
+opts_chunk$set(message=FALSE, warning=F)
+panderOptions('round', 2)
+panderOptions('keep.trailing.zeros', TRUE)
+```
+
 # Import
 
 ## Readings
 
-1. [W] Chapter 10, 11
+1. [R4DS] Chapter 10, 11
 
 ## Tibbles vs. data.frame
 

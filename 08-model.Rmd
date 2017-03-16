@@ -1,3 +1,12 @@
+```{r setup, include=F}
+if (!require("pacman")) {install.packages("pacman"); library(pacman)}
+p_load(pander, knitr, tidyverse)
+#opts_knit$set(root.dir = normalizePath(".."))
+opts_chunk$set(message=FALSE, warning=F)
+panderOptions('round', 2)
+panderOptions('keep.trailing.zeros', TRUE)
+```
+
 # Model with Split-Apply-Combine Strategy
 
 ## Readings
@@ -14,7 +23,7 @@ If you are not familiar with the basic workflow of fitting models with R, you sh
 
 If you feel the urge to store a little snippet of your data:
 
-```{r eval = FALSE}
+```{r, eval = FALSE}
 snippet <- my_big_dataset %>%
   filter(some_variable == some_value)
 ## or
