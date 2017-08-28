@@ -1,7 +1,7 @@
 --- 
 title: "Introduction to Data Science \nfor Transportation Researchers, Planners, and Engineers"
 author: "Liming Wang"
-date: "2017-03-16"
+date: "2017-08-28"
 site: "bookdown::bookdown_site"
 output:
    bookdown::gitbook:

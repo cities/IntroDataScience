@@ -6,9 +6,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Introduction to Data Science for Transportation Researchers, Planners, and Engineers</title>
-  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="Introduction to Data Science for Transportation Researchers, Planners, and Engineers">
-  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
 
   <meta property="og:title" content="Introduction to Data Science for Transportation Researchers, Planners, and Engineers" />
   <meta property="og:type" content="book" />
@@ -26,7 +25,7 @@
 <meta name="author" content="Liming Wang">
 
 
-<meta name="date" content="2017-03-16">
+<meta name="date" content="2017-08-28">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -35,7 +34,6 @@
   
 <link rel="prev" href="index.html">
 <link rel="next" href="programming-with-r.html">
-
 <script src="book_assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="book_assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -92,6 +90,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </head>
 
 <body>
+
 
 
   <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
@@ -413,16 +412,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>use a profiler to identify bottlenecks</li>
 <li>write code in the highest-level language possible</li>
 </ol></li>
-<li>Document design and purpose, not mechan- ics.
+<li>Document design and purpose, not mechanics.
 <ol style="list-style-type: decimal">
-<li>document interfaces and reasons, not imple- mentations</li>
+<li>document interfaces and reasons, not implementations</li>
 <li>refactor code in preference to explaining how it works</li>
 <li>embed the documentation for a piece of software in that software</li>
 </ol></li>
 <li>Collaborate
 <ol style="list-style-type: decimal">
 <li>use pre-merge code reviews</li>
-<li>use pair programming when bring- ing someone new up to speed and when tackling particularly tricky problems</li>
+<li>use pair programming when bringing someone new up to speed and when tackling particularly tricky problems</li>
 <li>use an issue tracking tool</li>
 </ol></li>
 </ol>
@@ -557,8 +556,9 @@ devtools::<span class="kw">install_github</span>(<span class="st">&quot;richfitz
         </div>
       </div>
 <a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="programming-with-r.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
-
+<a href="programming-with-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
 <script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>
 <script src="book_assets/gitbook-2.6.7/js/lunr.js"></script>
 <script src="book_assets/gitbook-2.6.7/js/plugin-search.js"></script>
@@ -601,7 +601,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(script.src))
       script.src  = script.src.replace(/^https?:/, '');
     document.getElementsByTagName("head")[0].appendChild(script);

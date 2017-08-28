@@ -96,14 +96,14 @@ gapminder %>%
 ```
 
 ```
-## # A tibble: 5 × 3
-##   continent    min    max
-##      <fctr>  <dbl>  <dbl>
-## 1    Africa 23.599 76.442
-## 2  Americas 37.579 80.653
-## 3      Asia 28.801 82.603
-## 4    Europe 43.585 81.757
-## 5   Oceania 69.120 81.235
+## # A tibble: 5 x 3
+##   continent lifeExp_min lifeExp_max
+##      <fctr>       <dbl>       <dbl>
+## 1    Africa      23.599      76.442
+## 2  Americas      37.579      80.653
+## 3      Asia      28.801      82.603
+## 4    Europe      43.585      81.757
+## 5   Oceania      69.120      81.235
 ```
 
 ### General approach: nesting
@@ -120,19 +120,19 @@ Let's get ready to fit a model for each country in the Gapminder dataset. First 
 ```
 
 ```
-## # A tibble: 142 × 3
+## # A tibble: 142 x 3
 ##    continent     country              data
 ##       <fctr>      <fctr>            <list>
-## 1       Asia Afghanistan <tibble [12 × 4]>
-## 2     Europe     Albania <tibble [12 × 4]>
-## 3     Africa     Algeria <tibble [12 × 4]>
-## 4     Africa      Angola <tibble [12 × 4]>
-## 5   Americas   Argentina <tibble [12 × 4]>
-## 6    Oceania   Australia <tibble [12 × 4]>
-## 7     Europe     Austria <tibble [12 × 4]>
-## 8       Asia     Bahrain <tibble [12 × 4]>
-## 9       Asia  Bangladesh <tibble [12 × 4]>
-## 10    Europe     Belgium <tibble [12 × 4]>
+##  1      Asia Afghanistan <tibble [12 x 4]>
+##  2    Europe     Albania <tibble [12 x 4]>
+##  3    Africa     Algeria <tibble [12 x 4]>
+##  4    Africa      Angola <tibble [12 x 4]>
+##  5  Americas   Argentina <tibble [12 x 4]>
+##  6   Oceania   Australia <tibble [12 x 4]>
+##  7    Europe     Austria <tibble [12 x 4]>
+##  8      Asia     Bahrain <tibble [12 x 4]>
+##  9      Asia  Bangladesh <tibble [12 x 4]>
+## 10    Europe     Belgium <tibble [12 x 4]>
 ## # ... with 132 more rows
 ```
 
@@ -150,18 +150,18 @@ gap_nested[[1, "data"]]
 ```
 
 ```
-## # A tibble: 12 × 4
+## # A tibble: 12 x 4
 ##     year lifeExp      pop gdpPercap
 ##    <int>   <dbl>    <int>     <dbl>
-## 1   1952  28.801  8425333  779.4453
-## 2   1957  30.332  9240934  820.8530
-## 3   1962  31.997 10267083  853.1007
-## 4   1967  34.020 11537966  836.1971
-## 5   1972  36.088 13079460  739.9811
-## 6   1977  38.438 14880372  786.1134
-## 7   1982  39.854 12881816  978.0114
-## 8   1987  40.822 13867957  852.3959
-## 9   1992  41.674 16317921  649.3414
+##  1  1952  28.801  8425333  779.4453
+##  2  1957  30.332  9240934  820.8530
+##  3  1962  31.997 10267083  853.1007
+##  4  1967  34.020 11537966  836.1971
+##  5  1972  36.088 13079460  739.9811
+##  6  1977  38.438 14880372  786.1134
+##  7  1982  39.854 12881816  978.0114
+##  8  1987  40.822 13867957  852.3959
+##  9  1992  41.674 16317921  649.3414
 ## 10  1997  41.763 22227415  635.3414
 ## 11  2002  42.129 25268405  726.7341
 ## 12  2007  43.828 31889923  974.5803
@@ -253,19 +253,19 @@ So, how do we run, i.e. scale this up to all countries? And where do we put thes
 ```
 
 ```
-## # A tibble: 142 × 4
+## # A tibble: 142 x 4
 ##    continent     country              data      fit
 ##       <fctr>      <fctr>            <list>   <list>
-## 1       Asia Afghanistan <tibble [12 × 4]> <S3: lm>
-## 2     Europe     Albania <tibble [12 × 4]> <S3: lm>
-## 3     Africa     Algeria <tibble [12 × 4]> <S3: lm>
-## 4     Africa      Angola <tibble [12 × 4]> <S3: lm>
-## 5   Americas   Argentina <tibble [12 × 4]> <S3: lm>
-## 6    Oceania   Australia <tibble [12 × 4]> <S3: lm>
-## 7     Europe     Austria <tibble [12 × 4]> <S3: lm>
-## 8       Asia     Bahrain <tibble [12 × 4]> <S3: lm>
-## 9       Asia  Bangladesh <tibble [12 × 4]> <S3: lm>
-## 10    Europe     Belgium <tibble [12 × 4]> <S3: lm>
+##  1      Asia Afghanistan <tibble [12 x 4]> <S3: lm>
+##  2    Europe     Albania <tibble [12 x 4]> <S3: lm>
+##  3    Africa     Algeria <tibble [12 x 4]> <S3: lm>
+##  4    Africa      Angola <tibble [12 x 4]> <S3: lm>
+##  5  Americas   Argentina <tibble [12 x 4]> <S3: lm>
+##  6   Oceania   Australia <tibble [12 x 4]> <S3: lm>
+##  7    Europe     Austria <tibble [12 x 4]> <S3: lm>
+##  8      Asia     Bahrain <tibble [12 x 4]> <S3: lm>
+##  9      Asia  Bangladesh <tibble [12 x 4]> <S3: lm>
+## 10    Europe     Belgium <tibble [12 x 4]> <S3: lm>
 ## # ... with 132 more rows
 ```
 
@@ -312,19 +312,19 @@ Apply `tidy()` to the model for each country with the same `purrr::map()` inside
 ```
 
 ```
-## # A tibble: 142 × 5
+## # A tibble: 142 x 5
 ##    continent     country              data      fit                 tidy
 ##       <fctr>      <fctr>            <list>   <list>               <list>
-## 1       Asia Afghanistan <tibble [12 × 4]> <S3: lm> <data.frame [2 × 5]>
-## 2     Europe     Albania <tibble [12 × 4]> <S3: lm> <data.frame [2 × 5]>
-## 3     Africa     Algeria <tibble [12 × 4]> <S3: lm> <data.frame [2 × 5]>
-## 4     Africa      Angola <tibble [12 × 4]> <S3: lm> <data.frame [2 × 5]>
-## 5   Americas   Argentina <tibble [12 × 4]> <S3: lm> <data.frame [2 × 5]>
-## 6    Oceania   Australia <tibble [12 × 4]> <S3: lm> <data.frame [2 × 5]>
-## 7     Europe     Austria <tibble [12 × 4]> <S3: lm> <data.frame [2 × 5]>
-## 8       Asia     Bahrain <tibble [12 × 4]> <S3: lm> <data.frame [2 × 5]>
-## 9       Asia  Bangladesh <tibble [12 × 4]> <S3: lm> <data.frame [2 × 5]>
-## 10    Europe     Belgium <tibble [12 × 4]> <S3: lm> <data.frame [2 × 5]>
+##  1      Asia Afghanistan <tibble [12 x 4]> <S3: lm> <data.frame [2 x 5]>
+##  2    Europe     Albania <tibble [12 x 4]> <S3: lm> <data.frame [2 x 5]>
+##  3    Africa     Algeria <tibble [12 x 4]> <S3: lm> <data.frame [2 x 5]>
+##  4    Africa      Angola <tibble [12 x 4]> <S3: lm> <data.frame [2 x 5]>
+##  5  Americas   Argentina <tibble [12 x 4]> <S3: lm> <data.frame [2 x 5]>
+##  6   Oceania   Australia <tibble [12 x 4]> <S3: lm> <data.frame [2 x 5]>
+##  7    Europe     Austria <tibble [12 x 4]> <S3: lm> <data.frame [2 x 5]>
+##  8      Asia     Bahrain <tibble [12 x 4]> <S3: lm> <data.frame [2 x 5]>
+##  9      Asia  Bangladesh <tibble [12 x 4]> <S3: lm> <data.frame [2 x 5]>
+## 10    Europe     Belgium <tibble [12 x 4]> <S3: lm> <data.frame [2 x 5]>
 ## # ... with 132 more rows
 ```
 
@@ -338,18 +338,18 @@ The last step is now to simplify, preferably back to a normal tibble. We do this
 ```
 
 ```
-## # A tibble: 284 × 7
+## # A tibble: 284 x 7
 ##    continent     country           term   estimate   std.error  statistic
 ##       <fctr>      <fctr>          <chr>      <dbl>       <dbl>      <dbl>
-## 1       Asia Afghanistan    (Intercept) 29.3566375 0.698981278  41.999176
-## 2       Asia Afghanistan I(year - 1950)  0.2753287 0.020450934  13.462890
-## 3     Europe     Albania    (Intercept) 58.5597618 1.133575812  51.659325
-## 4     Europe     Albania I(year - 1950)  0.3346832 0.033166387  10.091036
-## 5     Africa     Algeria    (Intercept) 42.2364149 0.756269040  55.848399
-## 6     Africa     Algeria I(year - 1950)  0.5692797 0.022127070  25.727749
-## 7     Africa      Angola    (Intercept) 31.7079741 0.804287463  39.423683
-## 8     Africa      Angola I(year - 1950)  0.2093399 0.023532003   8.895964
-## 9   Americas   Argentina    (Intercept) 62.2250191 0.167091314 372.401279
+##  1      Asia Afghanistan    (Intercept) 29.3566375 0.698981278  41.999176
+##  2      Asia Afghanistan I(year - 1950)  0.2753287 0.020450934  13.462890
+##  3    Europe     Albania    (Intercept) 58.5597618 1.133575812  51.659325
+##  4    Europe     Albania I(year - 1950)  0.3346832 0.033166387  10.091036
+##  5    Africa     Algeria    (Intercept) 42.2364149 0.756269040  55.848399
+##  6    Africa     Algeria I(year - 1950)  0.5692797 0.022127070  25.727749
+##  7    Africa      Angola    (Intercept) 31.7079741 0.804287463  39.423683
+##  8    Africa      Angola I(year - 1950)  0.2093399 0.023532003   8.895964
+##  9  Americas   Argentina    (Intercept) 62.2250191 0.167091314 372.401279
 ## 10  Americas   Argentina I(year - 1950)  0.2317084 0.004888791  47.395847
 ## # ... with 274 more rows, and 1 more variables: p.value <dbl>
 ```
@@ -392,18 +392,18 @@ Let's celebrate by exploring the estimated slopes and intercepts a bit. First we
 ```
 
 ```
-## # A tibble: 284 × 7
+## # A tibble: 284 x 7
 ##    continent     country      term   estimate   std.error  statistic
 ##       <fctr>      <fctr>     <chr>      <dbl>       <dbl>      <dbl>
-## 1       Asia Afghanistan intercept 29.3566375 0.698981278  41.999176
-## 2       Asia Afghanistan     slope  0.2753287 0.020450934  13.462890
-## 3     Europe     Albania intercept 58.5597618 1.133575812  51.659325
-## 4     Europe     Albania     slope  0.3346832 0.033166387  10.091036
-## 5     Africa     Algeria intercept 42.2364149 0.756269040  55.848399
-## 6     Africa     Algeria     slope  0.5692797 0.022127070  25.727749
-## 7     Africa      Angola intercept 31.7079741 0.804287463  39.423683
-## 8     Africa      Angola     slope  0.2093399 0.023532003   8.895964
-## 9   Americas   Argentina intercept 62.2250191 0.167091314 372.401279
+##  1      Asia Afghanistan intercept 29.3566375 0.698981278  41.999176
+##  2      Asia Afghanistan     slope  0.2753287 0.020450934  13.462890
+##  3    Europe     Albania intercept 58.5597618 1.133575812  51.659325
+##  4    Europe     Albania     slope  0.3346832 0.033166387  10.091036
+##  5    Africa     Algeria intercept 42.2364149 0.756269040  55.848399
+##  6    Africa     Algeria     slope  0.5692797 0.022127070  25.727749
+##  7    Africa      Angola intercept 31.7079741 0.804287463  39.423683
+##  8    Africa      Angola     slope  0.2093399 0.023532003   8.895964
+##  9  Americas   Argentina intercept 62.2250191 0.167091314 372.401279
 ## 10  Americas   Argentina     slope  0.2317084 0.004888791  47.395847
 ## # ... with 274 more rows, and 1 more variables: p.value <dbl>
 ```
@@ -418,18 +418,18 @@ Due to the way we parametrized the model, the intercepts correspond to expected 
 ```
 
 ```
-## # A tibble: 142 × 4
+## # A tibble: 142 x 4
 ##    continent                  country intercept      slope
-## *     <fctr>                   <fctr>     <dbl>      <dbl>
-## 1     Africa                  Algeria  42.23641 0.56927972
-## 2     Africa                   Angola  31.70797 0.20933986
-## 3     Africa                    Benin  38.92005 0.33423287
-## 4     Africa                 Botswana  52.80778 0.06066853
-## 5     Africa             Burkina Faso  33.95674 0.36397483
-## 6     Africa                  Burundi  40.27037 0.15413427
-## 7     Africa                 Cameroon  40.74917 0.25014685
-## 8     Africa Central African Republic  38.44170 0.18390559
-## 9     Africa                     Chad  39.30288 0.25324406
+##  *    <fctr>                   <fctr>     <dbl>      <dbl>
+##  1    Africa                  Algeria  42.23641 0.56927972
+##  2    Africa                   Angola  31.70797 0.20933986
+##  3    Africa                    Benin  38.92005 0.33423287
+##  4    Africa                 Botswana  52.80778 0.06066853
+##  5    Africa             Burkina Faso  33.95674 0.36397483
+##  6    Africa                  Burundi  40.27037 0.15413427
+##  7    Africa                 Cameroon  40.74917 0.25014685
+##  8    Africa Central African Republic  38.44170 0.18390559
+##  9    Africa                     Chad  39.30288 0.25324406
 ## 10    Africa                  Comoros  39.09522 0.45039091
 ## # ... with 132 more rows
 ```

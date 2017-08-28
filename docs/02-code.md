@@ -504,7 +504,10 @@ As the diagram below shows, we want to perform the operation across a margin of 
 knitr::include_graphics("fig/r-operations-across-axes.svg")
 ```
 
-![Operations Across Axes.](fig/r-operations-across-axes.svg)
+<div class="figure">
+<img src="fig/r-operations-across-axes.svg" alt="Operations Across Axes."  />
+<p class="caption">(\#fig:apply_axes)Operations Across Axes.</p>
+</div>
 
 To support this, we can use the `apply` function.
 
@@ -1908,7 +1911,7 @@ system.time(avg2 <- analyze2(filenames))
 
 ```
 ##    user  system elapsed 
-##   0.010   0.000   0.011
+##   0.021   0.000   0.021
 ```
 
 Note how we add a new column to `out` at each iteration?
@@ -1934,7 +1937,7 @@ system.time(avg3 <- analyze3(filenames))
 
 ```
 ##    user  system elapsed 
-##    0.01    0.00    0.01
+##   0.020   0.000   0.019
 ```
 
 In this simple example there is little difference in the compute time of `analyze2` and `analyze3`.
@@ -2045,7 +2048,10 @@ Only one or the other is ever executed:
 knitr::include_graphics("fig/python-flowchart-conditional.svg")
 ```
 
-![Flowchart Executing a Conditional.](fig/python-flowchart-conditional.svg)
+<div class="figure">
+<img src="fig/python-flowchart-conditional.svg" alt="Flowchart Executing a Conditional."  />
+<p class="caption">(\#fig:conditional)Flowchart Executing a Conditional.</p>
+</div>
 
 
 In the example above, the test `num > 100` returns the value `FALSE`, which is why the code inside the `if` block was skipped and the code inside the `else` statement was run instead.
@@ -2510,9 +2516,13 @@ Rscript code/session-info.R
 ```
 
 ```
-## R version 3.3.2 (2016-10-31)
+## R version 3.4.0 (2017-04-21)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
-## Running under: Ubuntu 16.04.1 LTS
+## Running under: Ubuntu 16.04.2 LTS
+## 
+## Matrix products: default
+## BLAS: /usr/lib/openblas-base/libblas.so.3
+## LAPACK: /usr/lib/libopenblasp-r0.2.18.so
 ## 
 ## locale:
 ##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
@@ -2523,7 +2533,10 @@ Rscript code/session-info.R
 ## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 ## 
 ## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets  base
+## [1] stats     graphics  grDevices utils     datasets  base     
+## 
+## loaded via a namespace (and not attached):
+## [1] compiler_3.4.0
 ```
 
 > **The Right Directory**

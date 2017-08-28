@@ -34,13 +34,13 @@
 1. Optimize software only after it works correctly
     1. use a profiler to identify bottlenecks
     1. write code in the highest-level language possible
-1. Document design and purpose, not mechan- ics.
-    1. document interfaces and reasons, not imple- mentations
+1. Document design and purpose, not mechanics.
+    1. document interfaces and reasons, not implementations
     1. refactor code in preference to explaining how it works
     1. embed the documentation for a piece of software in that software
 1. Collaborate
     1. use pre-merge code reviews
-    1. use pair programming when bring- ing someone new up to speed and when tackling particularly tricky problems
+    1. use pair programming when bringing someone new up to speed and when tackling particularly tricky problems
     1. use an issue tracking tool
 
 ### The tidyverse work flow

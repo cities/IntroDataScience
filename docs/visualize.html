@@ -6,9 +6,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Introduction to Data Science for Transportation Researchers, Planners, and Engineers</title>
-  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="Introduction to Data Science for Transportation Researchers, Planners, and Engineers">
-  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
 
   <meta property="og:title" content="Introduction to Data Science for Transportation Researchers, Planners, and Engineers" />
   <meta property="og:type" content="book" />
@@ -26,7 +25,7 @@
 <meta name="author" content="Liming Wang">
 
 
-<meta name="date" content="2017-03-16">
+<meta name="date" content="2017-08-28">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -35,7 +34,6 @@
   
 <link rel="prev" href="transform-with-dplyr.html">
 <link rel="next" href="model-with-split-apply-combine-strategy.html">
-
 <script src="book_assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="book_assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -92,6 +90,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </head>
 
 <body>
+
 
 
   <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
@@ -394,18 +393,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h3><span class="header-section-number">8.3.1</span> The <code>mpg</code> data frame</h3>
 <p>You can test your answer with the <code>mpg</code> <strong>data frame</strong> found in ggplot2 (aka <code>ggplot2::mpg</code>). A data frame is a rectangular collection of variables (in the columns) and observations (in the rows). <code>mpg</code> contains observations collected by the US Environment Protection Agency on 38 models of cars.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mpg</code></pre></div>
-<pre><code>## # A tibble: 234 × 11
+<pre><code>## # A tibble: 234 x 11
 ##    manufacturer      model displ  year   cyl      trans   drv   cty   hwy
 ##           &lt;chr&gt;      &lt;chr&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt;      &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt;
-## 1          audi         a4   1.8  1999     4   auto(l5)     f    18    29
-## 2          audi         a4   1.8  1999     4 manual(m5)     f    21    29
-## 3          audi         a4   2.0  2008     4 manual(m6)     f    20    31
-## 4          audi         a4   2.0  2008     4   auto(av)     f    21    30
-## 5          audi         a4   2.8  1999     6   auto(l5)     f    16    26
-## 6          audi         a4   2.8  1999     6 manual(m5)     f    18    26
-## 7          audi         a4   3.1  2008     6   auto(av)     f    18    27
-## 8          audi a4 quattro   1.8  1999     4 manual(m5)     4    18    26
-## 9          audi a4 quattro   1.8  1999     4   auto(l5)     4    16    25
+##  1         audi         a4   1.8  1999     4   auto(l5)     f    18    29
+##  2         audi         a4   1.8  1999     4 manual(m5)     f    21    29
+##  3         audi         a4   2.0  2008     4 manual(m6)     f    20    31
+##  4         audi         a4   2.0  2008     4   auto(av)     f    21    30
+##  5         audi         a4   2.8  1999     6   auto(l5)     f    16    26
+##  6         audi         a4   2.8  1999     6 manual(m5)     f    18    26
+##  7         audi         a4   3.1  2008     6   auto(av)     f    18    27
+##  8         audi a4 quattro   1.8  1999     4 manual(m5)     4    18    26
+##  9         audi a4 quattro   1.8  1999     4   auto(l5)     4    16    25
 ## 10         audi a4 quattro   2.0  2008     4 manual(m6)     4    20    28
 ## # ... with 224 more rows, and 2 more variables: fl &lt;chr&gt;, class &lt;chr&gt;</code></pre>
 <p>Among the variables in <code>mpg</code> are:</p>
@@ -485,12 +484,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ul>
 <li><p>The name of a color as a character string.</p></li>
 <li><p>The size of a point in mm.</p></li>
-<li><p>The shape of a point as a number, as shown in Figure <a href="#fig:shapes"><strong>??</strong></a>.</p></li>
+<li><p>The shape of a point as a number, as shown in Figure <a href="visualize.html#fig:shapes">8.1</a>.</p></li>
 </ul>
-<div class="figure">
+<div class="figure"><span id="fig:shapes"></span>
 <img src="07-visualize_files/figure-html/shapes-1.png" alt="R has 25 built in shapes that are identified by numbers. There are some seeming duplicates: for example, 0, 15, and 22 are all squares. The difference comes from the interaction of the `colour` and `fill` aesthetics. The hollow shapes (0--14) have a border determined by `colour`; the solid shapes (15--18) are filled with `colour`; the filled shapes (21--24) have a border of `colour` and are filled with `fill`." width="75%" />
 <p class="caption">
-R has 25 built in shapes that are identified by numbers. There are some seeming duplicates: for example, 0, 15, and 22 are all squares. The difference comes from the interaction of the <code>colour</code> and <code>fill</code> aesthetics. The hollow shapes (0–14) have a border determined by <code>colour</code>; the solid shapes (15–18) are filled with <code>colour</code>; the filled shapes (21–24) have a border of <code>colour</code> and are filled with <code>fill</code>.
+Figure 8.1: R has 25 built in shapes that are identified by numbers. There are some seeming duplicates: for example, 0, 15, and 22 are all squares. The difference comes from the interaction of the <code>colour</code> and <code>fill</code> aesthetics. The hollow shapes (0–14) have a border determined by <code>colour</code>; the solid shapes (15–18) are filled with <code>colour</code>; the filled shapes (21–24) have a border of <code>colour</code> and are filled with <code>fill</code>.
 </p>
 </div>
 <div id="exercises-3" class="section level3">
@@ -845,8 +844,9 @@ bar +<span class="st"> </span><span class="kw">coord_flip</span>()</code></pre><
         </div>
       </div>
 <a href="transform-with-dplyr.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="model-with-split-apply-combine-strategy.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
-
+<a href="model-with-split-apply-combine-strategy.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
 <script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>
 <script src="book_assets/gitbook-2.6.7/js/lunr.js"></script>
 <script src="book_assets/gitbook-2.6.7/js/plugin-search.js"></script>
@@ -889,7 +889,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(script.src))
       script.src  = script.src.replace(/^https?:/, '');
     document.getElementsByTagName("head")[0].appendChild(script);

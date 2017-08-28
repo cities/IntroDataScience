@@ -6,9 +6,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Introduction to Data Science for Transportation Researchers, Planners, and Engineers</title>
-  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="Introduction to Data Science for Transportation Researchers, Planners, and Engineers">
-  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
 
   <meta property="og:title" content="Introduction to Data Science for Transportation Researchers, Planners, and Engineers" />
   <meta property="og:type" content="book" />
@@ -26,7 +25,7 @@
 <meta name="author" content="Liming Wang">
 
 
-<meta name="date" content="2017-03-16">
+<meta name="date" content="2017-08-28">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -35,7 +34,6 @@
   
 <link rel="prev" href="introduction.html">
 <link rel="next" href="version-control-with-git.html">
-
 <script src="book_assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="book_assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -92,6 +90,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </head>
 
 <body>
+
 
 
   <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
@@ -603,8 +602,10 @@ patient_1 &lt;-<span class="st"> </span>dat[<span class="dv">1</span>, ]
 <p>What if we need the maximum inflammation for all patients, or the average for each day? As the diagram below shows, we want to perform the operation across a margin of the data frame:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">knitr::<span class="kw">include_graphics</span>(<span class="st">&quot;fig/r-operations-across-axes.svg&quot;</span>)</code></pre></div>
 <div class="figure">
-<img src="fig/r-operations-across-axes.svg" alt="Operations Across Axes." />
-<p class="caption">Operations Across Axes.</p>
+<img src="fig/r-operations-across-axes.svg" alt="Operations Across Axes."  />
+<p class="caption">
+(#fig:apply_axes)Operations Across Axes.
+</p>
 </div>
 <p>To support this, we can use the <code>apply</code> function.</p>
 <blockquote>
@@ -1316,7 +1317,7 @@ a +<span class="st"> </span>b</code></pre></div>
 
 <span class="kw">system.time</span>(avg2 &lt;-<span class="st"> </span><span class="kw">analyze2</span>(filenames))</code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.010   0.000   0.011</code></pre>
+##   0.021   0.000   0.021</code></pre>
 <p>Note how we add a new column to <code>out</code> at each iteration? This is a cardinal sin of writing a <code>for</code> loop in R.</p>
 <p>Instead, we can create an empty matrix with the right dimensions (rows/columns) to hold the results. Then we loop over the files but this time we fill in the <code>f</code>th column of our results matrix <code>out</code>. This time there is no copying/growing for R to deal with.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">analyze3 &lt;-<span class="st"> </span>function(filenames) {
@@ -1330,7 +1331,7 @@ a +<span class="st"> </span>b</code></pre></div>
 
 <span class="kw">system.time</span>(avg3 &lt;-<span class="st"> </span><span class="kw">analyze3</span>(filenames))</code></pre></div>
 <pre><code>##    user  system elapsed 
-##    0.01    0.00    0.01</code></pre>
+##   0.020   0.000   0.019</code></pre>
 <p>In this simple example there is little difference in the compute time of <code>analyze2</code> and <code>analyze3</code>. This is because we are only iterating over 12 files and hence we only incur 12 copy/grow operations. If we were doing this over more files or the data objects we were growing were larger, the penalty for copying/growing would be much larger.</p>
 <p>Note that <code>apply</code> handles these memory allocation issues for you, but then you have to write the loop part as a function to pass to <code>apply</code>. At its heart, <code>apply</code> is just a <code>for</code> loop with extra convenience.</p>
 </div>
@@ -1387,9 +1388,11 @@ if (num &gt;<span class="st"> </span><span class="dv">100</span>) {
 ## [1] &quot;done&quot;</code></pre>
 <p>The second line of this code uses an <code>if</code> statement to tell R that we want to make a choice. If the following test is true, the body of the <code>if</code> (i.e., the lines in the curly braces underneath it) are executed. If the test is false, the body of the <code>else</code> is executed instead. Only one or the other is ever executed:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">knitr::<span class="kw">include_graphics</span>(<span class="st">&quot;fig/python-flowchart-conditional.svg&quot;</span>)</code></pre></div>
-<div class="figure">
-<img src="fig/python-flowchart-conditional.svg" alt="Flowchart Executing a Conditional." />
-<p class="caption">Flowchart Executing a Conditional.</p>
+<div class="figure"><span id="fig:conditional"></span>
+<img src="fig/python-flowchart-conditional.svg" alt="Flowchart Executing a Conditional."  />
+<p class="caption">
+Figure 3.1: Flowchart Executing a Conditional.
+</p>
 </div>
 <p>In the example above, the test <code>num &gt; 100</code> returns the value <code>FALSE</code>, which is why the code inside the <code>if</code> block was skipped and the code inside the <code>else</code> statement was run instead.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">num &gt;<span class="st"> </span><span class="dv">100</span></code></pre></div>
@@ -1639,9 +1642,13 @@ for (f in filenames) {
 <p>The function, <code>sessionInfo</code>, outputs the version of R you are running as well as the type of computer you are using (as well as the versions of the packages that have been loaded). This is very useful information to include when asking others for help with your R code.</p>
 <p>Now we can run the code in the file we created from the Unix Shell using <code>Rscript</code>:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Rscript</span> code/session-info.R</code></pre></div>
-<pre><code>## R version 3.3.2 (2016-10-31)
+<pre><code>## R version 3.4.0 (2017-04-21)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
-## Running under: Ubuntu 16.04.1 LTS
+## Running under: Ubuntu 16.04.2 LTS
+## 
+## Matrix products: default
+## BLAS: /usr/lib/openblas-base/libblas.so.3
+## LAPACK: /usr/lib/libopenblasp-r0.2.18.so
 ## 
 ## locale:
 ##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
@@ -1652,7 +1659,10 @@ for (f in filenames) {
 ## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 ## 
 ## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets  base</code></pre>
+## [1] stats     graphics  grDevices utils     datasets  base     
+## 
+## loaded via a namespace (and not attached):
+## [1] compiler_3.4.0</code></pre>
 <blockquote>
 <p><strong>The Right Directory</strong></p>
 <p>If that did not work, you might have seen an error message indicating that the file <code>session-info.R</code> does not exist. Remember that you must be in the correct directory, the one in which you created your script file. You can determine which directory you are currently in using <code>pwd</code> and change to a different directory using <code>cd</code>. For a review, see this <a href="%7B%7B%20site.swc_pages%20%7D%7D/shell-novice/01-filedir/">lesson</a>. {: .callout}</p>
@@ -2655,8 +2665,9 @@ f &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(f)</code></pr
         </div>
       </div>
 <a href="introduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="version-control-with-git.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
-
+<a href="version-control-with-git.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
 <script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>
 <script src="book_assets/gitbook-2.6.7/js/lunr.js"></script>
 <script src="book_assets/gitbook-2.6.7/js/plugin-search.js"></script>
@@ -2699,7 +2710,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(script.src))
       script.src  = script.src.replace(/^https?:/, '');
     document.getElementsByTagName("head")[0].appendChild(script);

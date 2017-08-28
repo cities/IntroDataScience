@@ -6,9 +6,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Introduction to Data Science for Transportation Researchers, Planners, and Engineers</title>
-  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="Introduction to Data Science for Transportation Researchers, Planners, and Engineers">
-  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
 
   <meta property="og:title" content="Introduction to Data Science for Transportation Researchers, Planners, and Engineers" />
   <meta property="og:type" content="book" />
@@ -26,7 +25,7 @@
 <meta name="author" content="Liming Wang">
 
 
-<meta name="date" content="2017-03-16">
+<meta name="date" content="2017-08-28">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -35,7 +34,6 @@
   
 <link rel="prev" href="tidy.html">
 <link rel="next" href="visualize.html">
-
 <script src="book_assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="book_assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -92,6 +90,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </head>
 
 <body>
+
 
 
   <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
@@ -395,18 +394,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h3><span class="header-section-number">7.3.1</span> Say hello to the Gapminder tibble</h3>
 <p>The <code>gapminder</code> data frame is a special kind of data frame: a tibble.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gapminder</code></pre></div>
-<pre><code>## # A tibble: 1,704 × 6
+<pre><code>## # A tibble: 1,704 x 6
 ##        country continent  year lifeExp      pop gdpPercap
 ##         &lt;fctr&gt;    &lt;fctr&gt; &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
-## 1  Afghanistan      Asia  1952  28.801  8425333  779.4453
-## 2  Afghanistan      Asia  1957  30.332  9240934  820.8530
-## 3  Afghanistan      Asia  1962  31.997 10267083  853.1007
-## 4  Afghanistan      Asia  1967  34.020 11537966  836.1971
-## 5  Afghanistan      Asia  1972  36.088 13079460  739.9811
-## 6  Afghanistan      Asia  1977  38.438 14880372  786.1134
-## 7  Afghanistan      Asia  1982  39.854 12881816  978.0114
-## 8  Afghanistan      Asia  1987  40.822 13867957  852.3959
-## 9  Afghanistan      Asia  1992  41.674 16317921  649.3414
+##  1 Afghanistan      Asia  1952  28.801  8425333  779.4453
+##  2 Afghanistan      Asia  1957  30.332  9240934  820.8530
+##  3 Afghanistan      Asia  1962  31.997 10267083  853.1007
+##  4 Afghanistan      Asia  1967  34.020 11537966  836.1971
+##  5 Afghanistan      Asia  1972  36.088 13079460  739.9811
+##  6 Afghanistan      Asia  1977  38.438 14880372  786.1134
+##  7 Afghanistan      Asia  1982  39.854 12881816  978.0114
+##  8 Afghanistan      Asia  1987  40.822 13867957  852.3959
+##  9 Afghanistan      Asia  1992  41.674 16317921  649.3414
 ## 10 Afghanistan      Asia  1997  41.763 22227415  635.3414
 ## # ... with 1,694 more rows</code></pre>
 <p>It’s tibble-ness is why we get nice compact printing. For a reminder of the problems with base data frame printing, go type <code>iris</code> in the R Console or, better yet, print a data frame to screen that has lots of columns.</p>
@@ -416,18 +415,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>There will be some functions, like <code>print()</code>, that know about tibbles and do something special. There will others that do not, like <code>summary()</code>. In which case the regular data frame treatment will happen, because every tibble is also a regular data frame.</p>
 <p>To turn any data frame into a tibble use <code>as_tibble()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as_tibble</span>(iris)</code></pre></div>
-<pre><code>## # A tibble: 150 × 5
+<pre><code>## # A tibble: 150 x 5
 ##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
 ##           &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;  &lt;fctr&gt;
-## 1           5.1         3.5          1.4         0.2  setosa
-## 2           4.9         3.0          1.4         0.2  setosa
-## 3           4.7         3.2          1.3         0.2  setosa
-## 4           4.6         3.1          1.5         0.2  setosa
-## 5           5.0         3.6          1.4         0.2  setosa
-## 6           5.4         3.9          1.7         0.4  setosa
-## 7           4.6         3.4          1.4         0.3  setosa
-## 8           5.0         3.4          1.5         0.2  setosa
-## 9           4.4         2.9          1.4         0.2  setosa
+##  1          5.1         3.5          1.4         0.2  setosa
+##  2          4.9         3.0          1.4         0.2  setosa
+##  3          4.7         3.2          1.3         0.2  setosa
+##  4          4.6         3.1          1.5         0.2  setosa
+##  5          5.0         3.6          1.4         0.2  setosa
+##  6          5.4         3.9          1.7         0.4  setosa
+##  7          4.6         3.4          1.4         0.3  setosa
+##  8          5.0         3.4          1.5         0.2  setosa
+##  9          4.4         2.9          1.4         0.2  setosa
 ## 10          4.9         3.1          1.5         0.1  setosa
 ## # ... with 140 more rows</code></pre>
 </div>
@@ -435,18 +434,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h3><span class="header-section-number">7.3.2</span> Think before you create excerpts of your data …</h3>
 <p>If you feel the urge to store a little snippet of your data:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(canada &lt;-<span class="st"> </span>gapminder[<span class="dv">241</span>:<span class="dv">252</span>, ])</code></pre></div>
-<pre><code>## # A tibble: 12 × 6
+<pre><code>## # A tibble: 12 x 6
 ##    country continent  year lifeExp      pop gdpPercap
 ##     &lt;fctr&gt;    &lt;fctr&gt; &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
-## 1   Canada  Americas  1952  68.750 14785584  11367.16
-## 2   Canada  Americas  1957  69.960 17010154  12489.95
-## 3   Canada  Americas  1962  71.300 18985849  13462.49
-## 4   Canada  Americas  1967  72.130 20819767  16076.59
-## 5   Canada  Americas  1972  72.880 22284500  18970.57
-## 6   Canada  Americas  1977  74.210 23796400  22090.88
-## 7   Canada  Americas  1982  75.760 25201900  22898.79
-## 8   Canada  Americas  1987  76.860 26549700  26626.52
-## 9   Canada  Americas  1992  77.950 28523502  26342.88
+##  1  Canada  Americas  1952  68.750 14785584  11367.16
+##  2  Canada  Americas  1957  69.960 17010154  12489.95
+##  3  Canada  Americas  1962  71.300 18985849  13462.49
+##  4  Canada  Americas  1967  72.130 20819767  16076.59
+##  5  Canada  Americas  1972  72.880 22284500  18970.57
+##  6  Canada  Americas  1977  74.210 23796400  22090.88
+##  7  Canada  Americas  1982  75.760 25201900  22898.79
+##  8  Canada  Americas  1987  76.860 26549700  26626.52
+##  9  Canada  Americas  1992  77.950 28523502  26342.88
 ## 10  Canada  Americas  1997  78.610 30305843  28954.93
 ## 11  Canada  Americas  2002  79.770 31902268  33328.97
 ## 12  Canada  Americas  2007  80.653 33390141  36319.24</code></pre>
@@ -463,13 +462,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h3><span class="header-section-number">7.3.3</span> Use <code>filter()</code> to subset data row-wise.</h3>
 <p><code>filter()</code> takes logical expressions and returns the rows for which all are <code>TRUE</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(gapminder, lifeExp &lt;<span class="st"> </span><span class="dv">29</span>)</code></pre></div>
-<pre><code>## # A tibble: 2 × 6
+<pre><code>## # A tibble: 2 x 6
 ##       country continent  year lifeExp     pop gdpPercap
 ##        &lt;fctr&gt;    &lt;fctr&gt; &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;     &lt;dbl&gt;
 ## 1 Afghanistan      Asia  1952  28.801 8425333  779.4453
 ## 2      Rwanda    Africa  1992  23.599 7290203  737.0686</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(gapminder, country ==<span class="st"> &quot;Rwanda&quot;</span>, year &gt;<span class="st"> </span><span class="dv">1979</span>)</code></pre></div>
-<pre><code>## # A tibble: 6 × 6
+<pre><code>## # A tibble: 6 x 6
 ##   country continent  year lifeExp     pop gdpPercap
 ##    &lt;fctr&gt;    &lt;fctr&gt; &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;     &lt;dbl&gt;
 ## 1  Rwanda    Africa  1982  46.218 5507565  881.5706
@@ -479,18 +478,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## 5  Rwanda    Africa  2002  43.413 7852401  785.6538
 ## 6  Rwanda    Africa  2007  46.242 8860588  863.0885</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(gapminder, country %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Rwanda&quot;</span>, <span class="st">&quot;Afghanistan&quot;</span>))</code></pre></div>
-<pre><code>## # A tibble: 24 × 6
+<pre><code>## # A tibble: 24 x 6
 ##        country continent  year lifeExp      pop gdpPercap
 ##         &lt;fctr&gt;    &lt;fctr&gt; &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
-## 1  Afghanistan      Asia  1952  28.801  8425333  779.4453
-## 2  Afghanistan      Asia  1957  30.332  9240934  820.8530
-## 3  Afghanistan      Asia  1962  31.997 10267083  853.1007
-## 4  Afghanistan      Asia  1967  34.020 11537966  836.1971
-## 5  Afghanistan      Asia  1972  36.088 13079460  739.9811
-## 6  Afghanistan      Asia  1977  38.438 14880372  786.1134
-## 7  Afghanistan      Asia  1982  39.854 12881816  978.0114
-## 8  Afghanistan      Asia  1987  40.822 13867957  852.3959
-## 9  Afghanistan      Asia  1992  41.674 16317921  649.3414
+##  1 Afghanistan      Asia  1952  28.801  8425333  779.4453
+##  2 Afghanistan      Asia  1957  30.332  9240934  820.8530
+##  3 Afghanistan      Asia  1962  31.997 10267083  853.1007
+##  4 Afghanistan      Asia  1967  34.020 11537966  836.1971
+##  5 Afghanistan      Asia  1972  36.088 13079460  739.9811
+##  6 Afghanistan      Asia  1977  38.438 14880372  786.1134
+##  7 Afghanistan      Asia  1982  39.854 12881816  978.0114
+##  8 Afghanistan      Asia  1987  40.822 13867957  852.3959
+##  9 Afghanistan      Asia  1992  41.674 16317921  649.3414
 ## 10 Afghanistan      Asia  1997  41.763 22227415  635.3414
 ## # ... with 14 more rows</code></pre>
 <p>Compare with some base R code to accomplish the same things</p>
@@ -512,7 +511,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Here’s what it looks like: <code>%&gt;%</code>. The RStudio keyboard shortcut: Ctrl + Shift + M (Windows), Cmd + Shift + M (Mac).</p>
 <p>Let’s demo then I’ll explain:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gapminder %&gt;%<span class="st"> </span><span class="kw">head</span>()</code></pre></div>
-<pre><code>## # A tibble: 6 × 6
+<pre><code>## # A tibble: 6 x 6
 ##       country continent  year lifeExp      pop gdpPercap
 ##        &lt;fctr&gt;    &lt;fctr&gt; &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
 ## 1 Afghanistan      Asia  1952  28.801  8425333  779.4453
@@ -524,7 +523,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>This is equivalent to <code>head(gapminder)</code>. The pipe operator takes the thing on the left-hand-side and <strong>pipes</strong> it into the function call on the right-hand-side – literally, drops it in as the first argument.</p>
 <p>Never fear, you can still specify other arguments to this function! To see the first 3 rows of Gapminder, we could say <code>head(gapminder, 3)</code> or this:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gapminder %&gt;%<span class="st"> </span><span class="kw">head</span>(<span class="dv">3</span>)</code></pre></div>
-<pre><code>## # A tibble: 3 × 6
+<pre><code>## # A tibble: 3 x 6
 ##       country continent  year lifeExp      pop gdpPercap
 ##        &lt;fctr&gt;    &lt;fctr&gt; &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
 ## 1 Afghanistan      Asia  1952  28.801  8425333  779.4453
@@ -538,25 +537,25 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Back to <code>dplyr</code> …</p>
 <p>Use <code>select()</code> to subset the data on variables or columns. Here’s a conventional call:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(gapminder, year, lifeExp)</code></pre></div>
-<pre><code>## # A tibble: 1,704 × 2
+<pre><code>## # A tibble: 1,704 x 2
 ##     year lifeExp
 ##    &lt;int&gt;   &lt;dbl&gt;
-## 1   1952  28.801
-## 2   1957  30.332
-## 3   1962  31.997
-## 4   1967  34.020
-## 5   1972  36.088
-## 6   1977  38.438
-## 7   1982  39.854
-## 8   1987  40.822
-## 9   1992  41.674
+##  1  1952  28.801
+##  2  1957  30.332
+##  3  1962  31.997
+##  4  1967  34.020
+##  5  1972  36.088
+##  6  1977  38.438
+##  7  1982  39.854
+##  8  1987  40.822
+##  9  1992  41.674
 ## 10  1997  41.763
 ## # ... with 1,694 more rows</code></pre>
 <p>And here’s the same operation, but written with the pipe operator and piped through <code>head()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gapminder %&gt;%
 <span class="st">  </span><span class="kw">select</span>(year, lifeExp) %&gt;%
 <span class="st">  </span><span class="kw">head</span>(<span class="dv">4</span>)</code></pre></div>
-<pre><code>## # A tibble: 4 × 2
+<pre><code>## # A tibble: 4 x 2
 ##    year lifeExp
 ##   &lt;int&gt;   &lt;dbl&gt;
 ## 1  1952  28.801
@@ -571,35 +570,35 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gapminder %&gt;%
 <span class="st">  </span><span class="kw">filter</span>(country ==<span class="st"> &quot;Cambodia&quot;</span>) %&gt;%
 <span class="st">  </span><span class="kw">select</span>(year, lifeExp)</code></pre></div>
-<pre><code>## # A tibble: 12 × 2
+<pre><code>## # A tibble: 12 x 2
 ##     year lifeExp
 ##    &lt;int&gt;   &lt;dbl&gt;
-## 1   1952  39.417
-## 2   1957  41.366
-## 3   1962  43.415
-## 4   1967  45.415
-## 5   1972  40.317
-## 6   1977  31.220
-## 7   1982  50.957
-## 8   1987  53.914
-## 9   1992  55.803
+##  1  1952  39.417
+##  2  1957  41.366
+##  3  1962  43.415
+##  4  1967  45.415
+##  5  1972  40.317
+##  6  1977  31.220
+##  7  1982  50.957
+##  8  1987  53.914
+##  9  1992  55.803
 ## 10  1997  56.534
 ## 11  2002  56.752
 ## 12  2007  59.723</code></pre>
 <p>and what a typical base R call would look like:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gapminder[gapminder$country ==<span class="st"> &quot;Cambodia&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;lifeExp&quot;</span>)]</code></pre></div>
-<pre><code>## # A tibble: 12 × 2
+<pre><code>## # A tibble: 12 x 2
 ##     year lifeExp
 ##    &lt;int&gt;   &lt;dbl&gt;
-## 1   1952  39.417
-## 2   1957  41.366
-## 3   1962  43.415
-## 4   1967  45.415
-## 5   1972  40.317
-## 6   1977  31.220
-## 7   1982  50.957
-## 8   1987  53.914
-## 9   1992  55.803
+##  1  1952  39.417
+##  2  1957  41.366
+##  3  1962  43.415
+##  4  1967  45.415
+##  5  1972  40.317
+##  6  1977  31.220
+##  7  1982  50.957
+##  8  1987  53.914
+##  9  1992  55.803
 ## 10  1997  56.534
 ## 11  2002  56.752
 ## 12  2007  59.723</code></pre>
@@ -623,18 +622,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h3><span class="header-section-number">7.4.1</span> Create a copy of gapminder</h3>
 <p>We’re going to make changes to the <code>gapminder</code> tibble. To eliminate any fear that you’re damaging the data that comes with the package, we create an explicit copy of <code>gapminder</code> for our experiments.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(my_gap &lt;-<span class="st"> </span>gapminder)</code></pre></div>
-<pre><code>## # A tibble: 1,704 × 6
+<pre><code>## # A tibble: 1,704 x 6
 ##        country continent  year lifeExp      pop gdpPercap
 ##         &lt;fctr&gt;    &lt;fctr&gt; &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
-## 1  Afghanistan      Asia  1952  28.801  8425333  779.4453
-## 2  Afghanistan      Asia  1957  30.332  9240934  820.8530
-## 3  Afghanistan      Asia  1962  31.997 10267083  853.1007
-## 4  Afghanistan      Asia  1967  34.020 11537966  836.1971
-## 5  Afghanistan      Asia  1972  36.088 13079460  739.9811
-## 6  Afghanistan      Asia  1977  38.438 14880372  786.1134
-## 7  Afghanistan      Asia  1982  39.854 12881816  978.0114
-## 8  Afghanistan      Asia  1987  40.822 13867957  852.3959
-## 9  Afghanistan      Asia  1992  41.674 16317921  649.3414
+##  1 Afghanistan      Asia  1952  28.801  8425333  779.4453
+##  2 Afghanistan      Asia  1957  30.332  9240934  820.8530
+##  3 Afghanistan      Asia  1962  31.997 10267083  853.1007
+##  4 Afghanistan      Asia  1967  34.020 11537966  836.1971
+##  5 Afghanistan      Asia  1972  36.088 13079460  739.9811
+##  6 Afghanistan      Asia  1977  38.438 14880372  786.1134
+##  7 Afghanistan      Asia  1982  39.854 12881816  978.0114
+##  8 Afghanistan      Asia  1987  40.822 13867957  852.3959
+##  9 Afghanistan      Asia  1992  41.674 16317921  649.3414
 ## 10 Afghanistan      Asia  1997  41.763 22227415  635.3414
 ## # ... with 1,694 more rows</code></pre>
 <p><strong>Pay close attention</strong> to when we evaluate statements but let the output just print to screen:</p>
@@ -650,18 +649,18 @@ us &lt;-<span class="st"> </span>my_gap %&gt;%<span class="st"> </span><span cla
 <p><code>mutate()</code> is a function that defines and inserts new variables into a tibble. You can refer to existing variables by name.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_gap %&gt;%
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">gdp =</span> pop *<span class="st"> </span>gdpPercap)</code></pre></div>
-<pre><code>## # A tibble: 1,704 × 7
+<pre><code>## # A tibble: 1,704 x 7
 ##        country continent  year lifeExp      pop gdpPercap         gdp
 ##         &lt;fctr&gt;    &lt;fctr&gt; &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;       &lt;dbl&gt;
-## 1  Afghanistan      Asia  1952  28.801  8425333  779.4453  6567086330
-## 2  Afghanistan      Asia  1957  30.332  9240934  820.8530  7585448670
-## 3  Afghanistan      Asia  1962  31.997 10267083  853.1007  8758855797
-## 4  Afghanistan      Asia  1967  34.020 11537966  836.1971  9648014150
-## 5  Afghanistan      Asia  1972  36.088 13079460  739.9811  9678553274
-## 6  Afghanistan      Asia  1977  38.438 14880372  786.1134 11697659231
-## 7  Afghanistan      Asia  1982  39.854 12881816  978.0114 12598563401
-## 8  Afghanistan      Asia  1987  40.822 13867957  852.3959 11820990309
-## 9  Afghanistan      Asia  1992  41.674 16317921  649.3414 10595901589
+##  1 Afghanistan      Asia  1952  28.801  8425333  779.4453  6567086330
+##  2 Afghanistan      Asia  1957  30.332  9240934  820.8530  7585448670
+##  3 Afghanistan      Asia  1962  31.997 10267083  853.1007  8758855797
+##  4 Afghanistan      Asia  1967  34.020 11537966  836.1971  9648014150
+##  5 Afghanistan      Asia  1972  36.088 13079460  739.9811  9678553274
+##  6 Afghanistan      Asia  1977  38.438 14880372  786.1134 11697659231
+##  7 Afghanistan      Asia  1982  39.854 12881816  978.0114 12598563401
+##  8 Afghanistan      Asia  1987  40.822 13867957  852.3959 11820990309
+##  9 Afghanistan      Asia  1992  41.674 16317921  649.3414 10595901589
 ## 10 Afghanistan      Asia  1997  41.763 22227415  635.3414 14121995875
 ## # ... with 1,694 more rows</code></pre>
 <p>Hmmmm … those GDP numbers are almost uselessly large and abstract. Consider the <a href="http://fivethirtyeight.com/datalab/xkcd-randall-munroe-qanda-what-if/">advice of Randall Munroe of xkcd</a>:</p>
@@ -685,18 +684,18 @@ us &lt;-<span class="st"> </span>my_gap %&gt;%<span class="st"> </span><span cla
 <span class="st">  </span><span class="kw">filter</span>(country ==<span class="st"> &quot;Canada&quot;</span>) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">select</span>(year, <span class="dt">BasegdpPercap=</span>gdpPercap)
 ctib</code></pre></div>
-<pre><code>## # A tibble: 12 × 2
+<pre><code>## # A tibble: 12 x 2
 ##     year BasegdpPercap
 ##    &lt;int&gt;         &lt;dbl&gt;
-## 1   1952      11367.16
-## 2   1957      12489.95
-## 3   1962      13462.49
-## 4   1967      16076.59
-## 5   1972      18970.57
-## 6   1977      22090.88
-## 7   1982      22898.79
-## 8   1987      26626.52
-## 9   1992      26342.88
+##  1  1952      11367.16
+##  2  1957      12489.95
+##  3  1962      13462.49
+##  4  1967      16076.59
+##  5  1972      18970.57
+##  6  1977      22090.88
+##  7  1982      22898.79
+##  8  1987      26626.52
+##  9  1992      26342.88
 ## 10  1997      28954.93
 ## 11  2002      33328.97
 ## 12  2007      36319.24</code></pre>
@@ -705,18 +704,18 @@ ctib</code></pre></div>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">gdpPercapRel =</span> gdpPercap /<span class="st"> </span>BasegdpPercap,
          <span class="dt">BasegdpPercap =</span> <span class="ot">NULL</span>)
 my_gap</code></pre></div>
-<pre><code>## # A tibble: 1,704 × 7
+<pre><code>## # A tibble: 1,704 x 7
 ##        country continent  year lifeExp      pop gdpPercap gdpPercapRel
 ##         &lt;fctr&gt;    &lt;fctr&gt; &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;        &lt;dbl&gt;
-## 1  Afghanistan      Asia  1952  28.801  8425333  779.4453   0.06856992
-## 2  Afghanistan      Asia  1957  30.332  9240934  820.8530   0.06572108
-## 3  Afghanistan      Asia  1962  31.997 10267083  853.1007   0.06336874
-## 4  Afghanistan      Asia  1967  34.020 11537966  836.1971   0.05201335
-## 5  Afghanistan      Asia  1972  36.088 13079460  739.9811   0.03900679
-## 6  Afghanistan      Asia  1977  38.438 14880372  786.1134   0.03558542
-## 7  Afghanistan      Asia  1982  39.854 12881816  978.0114   0.04271018
-## 8  Afghanistan      Asia  1987  40.822 13867957  852.3959   0.03201305
-## 9  Afghanistan      Asia  1992  41.674 16317921  649.3414   0.02464959
+##  1 Afghanistan      Asia  1952  28.801  8425333  779.4453   0.06856992
+##  2 Afghanistan      Asia  1957  30.332  9240934  820.8530   0.06572108
+##  3 Afghanistan      Asia  1962  31.997 10267083  853.1007   0.06336874
+##  4 Afghanistan      Asia  1967  34.020 11537966  836.1971   0.05201335
+##  5 Afghanistan      Asia  1972  36.088 13079460  739.9811   0.03900679
+##  6 Afghanistan      Asia  1977  38.438 14880372  786.1134   0.03558542
+##  7 Afghanistan      Asia  1982  39.854 12881816  978.0114   0.04271018
+##  8 Afghanistan      Asia  1987  40.822 13867957  852.3959   0.03201305
+##  9 Afghanistan      Asia  1992  41.674 16317921  649.3414   0.02464959
 ## 10 Afghanistan      Asia  1997  41.763 22227415  635.3414   0.02194243
 ## # ... with 1,694 more rows</code></pre>
 <p>Note that, <code>mutate()</code> builds new variables sequentially so you can reference earlier ones (like <code>tmp</code>) when defining later ones (like <code>gdpPercapRel</code>). Also, you can get rid of a variable by setting it to <code>NULL</code>.</p>
@@ -724,25 +723,25 @@ my_gap</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_gap %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">filter</span>(country ==<span class="st"> &quot;Canada&quot;</span>) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">select</span>(country, year, gdpPercapRel)</code></pre></div>
-<pre><code>## # A tibble: 12 × 3
+<pre><code>## # A tibble: 12 x 3
 ##    country  year gdpPercapRel
 ##     &lt;fctr&gt; &lt;int&gt;        &lt;dbl&gt;
-## 1   Canada  1952            1
-## 2   Canada  1957            1
-## 3   Canada  1962            1
-## 4   Canada  1967            1
-## 5   Canada  1972            1
-## 6   Canada  1977            1
-## 7   Canada  1982            1
-## 8   Canada  1987            1
-## 9   Canada  1992            1
+##  1  Canada  1952            1
+##  2  Canada  1957            1
+##  3  Canada  1962            1
+##  4  Canada  1967            1
+##  5  Canada  1972            1
+##  6  Canada  1977            1
+##  7  Canada  1982            1
+##  8  Canada  1987            1
+##  9  Canada  1992            1
 ## 10  Canada  1997            1
 ## 11  Canada  2002            1
 ## 12  Canada  2007            1</code></pre>
 <p>I perceive Canada to be a “high GDP” country, so I predict that the distribution of <code>gdpPercapRel</code> is located below 1, possibly even well below. Check your intuition!</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(my_gap$gdpPercapRel)</code></pre></div>
 <pre><code>##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
-## 0.007236 0.061650 0.171500 0.326700 0.446600 9.535000</code></pre>
+## 0.007236 0.061648 0.171521 0.326659 0.446564 9.534690</code></pre>
 <p>The relative GDP per capita numbers are, in general, well below 1. We see that most of the countries covered by this dataset have substantially lower GDP per capita, relative to Canada, across the entire time period.</p>
 <p>Remember: Trust No One. Including (especially?) yourself. Always try to find a way to check that you’ve done what meant to. Prepare to be horrified.</p>
 </div>
@@ -751,54 +750,54 @@ my_gap</code></pre></div>
 <p><code>arrange()</code> reorders the rows in a data frame. Imagine you wanted this data ordered by year then country, as opposed to by country then year.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_gap %&gt;%
 <span class="st">  </span><span class="kw">arrange</span>(year, country)</code></pre></div>
-<pre><code>## # A tibble: 1,704 × 7
+<pre><code>## # A tibble: 1,704 x 7
 ##        country continent  year lifeExp      pop  gdpPercap gdpPercapRel
 ##         &lt;fctr&gt;    &lt;fctr&gt; &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;      &lt;dbl&gt;        &lt;dbl&gt;
-## 1  Afghanistan      Asia  1952  28.801  8425333   779.4453   0.06856992
-## 2      Albania    Europe  1952  55.230  1282697  1601.0561   0.14084925
-## 3      Algeria    Africa  1952  43.077  9279525  2449.0082   0.21544589
-## 4       Angola    Africa  1952  30.015  4232095  3520.6103   0.30971764
-## 5    Argentina  Americas  1952  62.485 17876956  5911.3151   0.52003442
-## 6    Australia   Oceania  1952  69.120  8691212 10039.5956   0.88321046
-## 7      Austria    Europe  1952  66.800  6927772  6137.0765   0.53989527
-## 8      Bahrain      Asia  1952  50.939   120447  9867.0848   0.86803421
-## 9   Bangladesh      Asia  1952  37.484 46886859   684.2442   0.06019482
+##  1 Afghanistan      Asia  1952  28.801  8425333   779.4453   0.06856992
+##  2     Albania    Europe  1952  55.230  1282697  1601.0561   0.14084925
+##  3     Algeria    Africa  1952  43.077  9279525  2449.0082   0.21544589
+##  4      Angola    Africa  1952  30.015  4232095  3520.6103   0.30971764
+##  5   Argentina  Americas  1952  62.485 17876956  5911.3151   0.52003442
+##  6   Australia   Oceania  1952  69.120  8691212 10039.5956   0.88321046
+##  7     Austria    Europe  1952  66.800  6927772  6137.0765   0.53989527
+##  8     Bahrain      Asia  1952  50.939   120447  9867.0848   0.86803421
+##  9  Bangladesh      Asia  1952  37.484 46886859   684.2442   0.06019482
 ## 10     Belgium    Europe  1952  68.000  8730405  8343.1051   0.73396559
 ## # ... with 1,694 more rows</code></pre>
 <p>Or maybe you want just the data from 2007, sorted on life expectancy?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_gap %&gt;%
 <span class="st">  </span><span class="kw">filter</span>(year ==<span class="st"> </span><span class="dv">2007</span>) %&gt;%
 <span class="st">  </span><span class="kw">arrange</span>(lifeExp)</code></pre></div>
-<pre><code>## # A tibble: 142 × 7
+<pre><code>## # A tibble: 142 x 7
 ##                     country continent  year lifeExp      pop gdpPercap
 ##                      &lt;fctr&gt;    &lt;fctr&gt; &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
-## 1                 Swaziland    Africa  2007  39.613  1133066 4513.4806
-## 2                Mozambique    Africa  2007  42.082 19951656  823.6856
-## 3                    Zambia    Africa  2007  42.384 11746035 1271.2116
-## 4              Sierra Leone    Africa  2007  42.568  6144562  862.5408
-## 5                   Lesotho    Africa  2007  42.592  2012649 1569.3314
-## 6                    Angola    Africa  2007  42.731 12420476 4797.2313
-## 7                  Zimbabwe    Africa  2007  43.487 12311143  469.7093
-## 8               Afghanistan      Asia  2007  43.828 31889923  974.5803
-## 9  Central African Republic    Africa  2007  44.741  4369038  706.0165
+##  1                Swaziland    Africa  2007  39.613  1133066 4513.4806
+##  2               Mozambique    Africa  2007  42.082 19951656  823.6856
+##  3                   Zambia    Africa  2007  42.384 11746035 1271.2116
+##  4             Sierra Leone    Africa  2007  42.568  6144562  862.5408
+##  5                  Lesotho    Africa  2007  42.592  2012649 1569.3314
+##  6                   Angola    Africa  2007  42.731 12420476 4797.2313
+##  7                 Zimbabwe    Africa  2007  43.487 12311143  469.7093
+##  8              Afghanistan      Asia  2007  43.828 31889923  974.5803
+##  9 Central African Republic    Africa  2007  44.741  4369038  706.0165
 ## 10                  Liberia    Africa  2007  45.678  3193942  414.5073
 ## # ... with 132 more rows, and 1 more variables: gdpPercapRel &lt;dbl&gt;</code></pre>
 <p>Oh, you’d like to sort on life expectancy in <strong>desc</strong>ending order? Then use <code>desc()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_gap %&gt;%
 <span class="st">  </span><span class="kw">filter</span>(year ==<span class="st"> </span><span class="dv">2007</span>) %&gt;%
 <span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(lifeExp))</code></pre></div>
-<pre><code>## # A tibble: 142 × 7
+<pre><code>## # A tibble: 142 x 7
 ##             country continent  year lifeExp       pop gdpPercap
 ##              &lt;fctr&gt;    &lt;fctr&gt; &lt;int&gt;   &lt;dbl&gt;     &lt;int&gt;     &lt;dbl&gt;
-## 1             Japan      Asia  2007  82.603 127467972  31656.07
-## 2  Hong Kong, China      Asia  2007  82.208   6980412  39724.98
-## 3           Iceland    Europe  2007  81.757    301931  36180.79
-## 4       Switzerland    Europe  2007  81.701   7554661  37506.42
-## 5         Australia   Oceania  2007  81.235  20434176  34435.37
-## 6             Spain    Europe  2007  80.941  40448191  28821.06
-## 7            Sweden    Europe  2007  80.884   9031088  33859.75
-## 8            Israel      Asia  2007  80.745   6426679  25523.28
-## 9            France    Europe  2007  80.657  61083916  30470.02
+##  1            Japan      Asia  2007  82.603 127467972  31656.07
+##  2 Hong Kong, China      Asia  2007  82.208   6980412  39724.98
+##  3          Iceland    Europe  2007  81.757    301931  36180.79
+##  4      Switzerland    Europe  2007  81.701   7554661  37506.42
+##  5        Australia   Oceania  2007  81.235  20434176  34435.37
+##  6            Spain    Europe  2007  80.941  40448191  28821.06
+##  7           Sweden    Europe  2007  80.884   9031088  33859.75
+##  8           Israel      Asia  2007  80.745   6426679  25523.28
+##  9           France    Europe  2007  80.657  61083916  30470.02
 ## 10           Canada  Americas  2007  80.653  33390141  36319.24
 ## # ... with 132 more rows, and 1 more variables: gdpPercapRel &lt;dbl&gt;</code></pre>
 <p>I advise that your analyses NEVER rely on rows or variables being in a specific order. But it’s still true that human beings write the code and the interactive development process can be much nicer if you reorder the rows of your data as you go along. Also, once you are preparing tables for human eyeballs, it is imperative that you step up and take control of row order.</p>
@@ -810,18 +809,18 @@ my_gap</code></pre></div>
 <span class="st">  </span><span class="kw">rename</span>(<span class="dt">life_exp =</span> lifeExp,
          <span class="dt">gdp_percap =</span> gdpPercap,
          <span class="dt">gdp_percap_rel =</span> gdpPercapRel)</code></pre></div>
-<pre><code>## # A tibble: 1,704 × 7
+<pre><code>## # A tibble: 1,704 x 7
 ##        country continent  year life_exp      pop gdp_percap gdp_percap_rel
 ##         &lt;fctr&gt;    &lt;fctr&gt; &lt;int&gt;    &lt;dbl&gt;    &lt;int&gt;      &lt;dbl&gt;          &lt;dbl&gt;
-## 1  Afghanistan      Asia  1952   28.801  8425333   779.4453     0.06856992
-## 2  Afghanistan      Asia  1957   30.332  9240934   820.8530     0.06572108
-## 3  Afghanistan      Asia  1962   31.997 10267083   853.1007     0.06336874
-## 4  Afghanistan      Asia  1967   34.020 11537966   836.1971     0.05201335
-## 5  Afghanistan      Asia  1972   36.088 13079460   739.9811     0.03900679
-## 6  Afghanistan      Asia  1977   38.438 14880372   786.1134     0.03558542
-## 7  Afghanistan      Asia  1982   39.854 12881816   978.0114     0.04271018
-## 8  Afghanistan      Asia  1987   40.822 13867957   852.3959     0.03201305
-## 9  Afghanistan      Asia  1992   41.674 16317921   649.3414     0.02464959
+##  1 Afghanistan      Asia  1952   28.801  8425333   779.4453     0.06856992
+##  2 Afghanistan      Asia  1957   30.332  9240934   820.8530     0.06572108
+##  3 Afghanistan      Asia  1962   31.997 10267083   853.1007     0.06336874
+##  4 Afghanistan      Asia  1967   34.020 11537966   836.1971     0.05201335
+##  5 Afghanistan      Asia  1972   36.088 13079460   739.9811     0.03900679
+##  6 Afghanistan      Asia  1977   38.438 14880372   786.1134     0.03558542
+##  7 Afghanistan      Asia  1982   39.854 12881816   978.0114     0.04271018
+##  8 Afghanistan      Asia  1987   40.822 13867957   852.3959     0.03201305
+##  9 Afghanistan      Asia  1992   41.674 16317921   649.3414     0.02464959
 ## 10 Afghanistan      Asia  1997   41.763 22227415   635.3414     0.02194243
 ## # ... with 1,694 more rows</code></pre>
 <p>I did NOT assign the post-rename object back to <code>my_gap</code> because that would make the chunks in this tutorial harder to copy/paste and run out of order. In real life, I would probably assign this back to <code>my_gap</code>, in a data preparation script, and proceed with the new variable names.</p>
@@ -837,7 +836,7 @@ my_gap</code></pre></div>
 <span class="st">  </span><span class="kw">filter</span>(country ==<span class="st"> &quot;Burundi&quot;</span>, year &gt;<span class="st"> </span><span class="dv">1996</span>) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">select</span>(<span class="dt">yr =</span> year, lifeExp, gdpPercap) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">select</span>(gdpPercap, <span class="kw">everything</span>())</code></pre></div>
-<pre><code>## # A tibble: 3 × 3
+<pre><code>## # A tibble: 3 x 3
 ##   gdpPercap    yr lifeExp
 ##       &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt;
 ## 1  463.1151  1997  45.326
@@ -863,7 +862,7 @@ my_gap</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_gap %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(continent) %&gt;%
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">n =</span> <span class="kw">n</span>())</code></pre></div>
-<pre><code>## # A tibble: 5 × 2
+<pre><code>## # A tibble: 5 x 2
 ##   continent     n
 ##      &lt;fctr&gt; &lt;int&gt;
 ## 1    Africa   624
@@ -885,7 +884,7 @@ my_gap</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_gap %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(continent) %&gt;%
 <span class="st">  </span><span class="kw">tally</span>()</code></pre></div>
-<pre><code>## # A tibble: 5 × 2
+<pre><code>## # A tibble: 5 x 2
 ##   continent     n
 ##      &lt;fctr&gt; &lt;int&gt;
 ## 1    Africa   624
@@ -896,7 +895,7 @@ my_gap</code></pre></div>
 <p>The <code>count()</code> function is an even more convenient function that does both grouping and counting.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_gap %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">count</span>(continent)</code></pre></div>
-<pre><code>## # A tibble: 5 × 2
+<pre><code>## # A tibble: 5 x 2
 ##   continent     n
 ##      &lt;fctr&gt; &lt;int&gt;
 ## 1    Africa   624
@@ -909,7 +908,7 @@ my_gap</code></pre></div>
 <span class="st">  </span><span class="kw">group_by</span>(continent) %&gt;%
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">n =</span> <span class="kw">n</span>(),
             <span class="dt">n_countries =</span> <span class="kw">n_distinct</span>(country))</code></pre></div>
-<pre><code>## # A tibble: 5 × 3
+<pre><code>## # A tibble: 5 x 3
 ##   continent     n n_countries
 ##      &lt;fctr&gt; &lt;int&gt;       &lt;int&gt;
 ## 1    Africa   624          52
@@ -925,7 +924,7 @@ my_gap</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_gap %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(continent) %&gt;%
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">avg_lifeExp =</span> <span class="kw">mean</span>(lifeExp))</code></pre></div>
-<pre><code>## # A tibble: 5 × 2
+<pre><code>## # A tibble: 5 x 2
 ##   continent avg_lifeExp
 ##      &lt;fctr&gt;       &lt;dbl&gt;
 ## 1    Africa    48.86533
@@ -938,20 +937,22 @@ my_gap</code></pre></div>
 <span class="st">  </span><span class="kw">filter</span>(year %in%<span class="st"> </span><span class="kw">c</span>(<span class="dv">1952</span>, <span class="dv">2007</span>)) %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(continent, year) %&gt;%
 <span class="st">  </span><span class="kw">summarise_each</span>(<span class="kw">funs</span>(mean, median), lifeExp, gdpPercap)</code></pre></div>
-<pre><code>## Source: local data frame [10 x 6]
-## Groups: continent [?]
-## 
+<pre><code>## `summarise_each()` is deprecated.
+## Use `summarise_all()`, `summarise_at()` or `summarise_if()` instead.
+## To map `funs` over a selection of variables, use `summarise_at()`</code></pre>
+<pre><code>## # A tibble: 10 x 6
+## # Groups:   continent [?]
 ##    continent  year lifeExp_mean gdpPercap_mean lifeExp_median
 ##       &lt;fctr&gt; &lt;int&gt;        &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;
-## 1     Africa  1952     39.13550       1252.572        38.8330
-## 2     Africa  2007     54.80604       3089.033        52.9265
-## 3   Americas  1952     53.27984       4079.063        54.7450
-## 4   Americas  2007     73.60812      11003.032        72.8990
-## 5       Asia  1952     46.31439       5195.484        44.8690
-## 6       Asia  2007     70.72848      12473.027        72.3960
-## 7     Europe  1952     64.40850       5661.057        65.9000
-## 8     Europe  2007     77.64860      25054.482        78.6085
-## 9    Oceania  1952     69.25500      10298.086        69.2550
+##  1    Africa  1952     39.13550       1252.572        38.8330
+##  2    Africa  2007     54.80604       3089.033        52.9265
+##  3  Americas  1952     53.27984       4079.063        54.7450
+##  4  Americas  2007     73.60812      11003.032        72.8990
+##  5      Asia  1952     46.31439       5195.484        44.8690
+##  6      Asia  2007     70.72848      12473.027        72.3960
+##  7    Europe  1952     64.40850       5661.057        65.9000
+##  8    Europe  2007     77.64860      25054.482        78.6085
+##  9   Oceania  1952     69.25500      10298.086        69.2550
 ## 10   Oceania  2007     80.71950      29810.188        80.7195
 ## # ... with 1 more variables: gdpPercap_median &lt;dbl&gt;</code></pre>
 <p>Let’s focus just on Asia. What are the minimum and maximum life expectancies seen by year?</p>
@@ -959,18 +960,18 @@ my_gap</code></pre></div>
 <span class="st">  </span><span class="kw">filter</span>(continent ==<span class="st"> &quot;Asia&quot;</span>) %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(year) %&gt;%
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">min_lifeExp =</span> <span class="kw">min</span>(lifeExp), <span class="dt">max_lifeExp =</span> <span class="kw">max</span>(lifeExp))</code></pre></div>
-<pre><code>## # A tibble: 12 × 3
+<pre><code>## # A tibble: 12 x 3
 ##     year min_lifeExp max_lifeExp
 ##    &lt;int&gt;       &lt;dbl&gt;       &lt;dbl&gt;
-## 1   1952      28.801      65.390
-## 2   1957      30.332      67.840
-## 3   1962      31.997      69.390
-## 4   1967      34.020      71.430
-## 5   1972      36.088      73.420
-## 6   1977      31.220      75.380
-## 7   1982      39.854      77.110
-## 8   1987      40.822      78.670
-## 9   1992      41.674      79.360
+##  1  1952      28.801      65.390
+##  2  1957      30.332      67.840
+##  3  1962      31.997      69.390
+##  4  1967      34.020      71.430
+##  5  1972      36.088      73.420
+##  6  1977      31.220      75.380
+##  7  1982      39.854      77.110
+##  8  1987      40.822      78.670
+##  9  1992      41.674      79.360
 ## 10  1997      41.763      80.690
 ## 11  2002      42.129      82.000
 ## 12  2007      43.828      82.603</code></pre>
@@ -988,20 +989,19 @@ my_gap</code></pre></div>
 <span class="st">  </span><span class="kw">select</span>(country, year, lifeExp) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">lifeExp_gain =</span> lifeExp -<span class="st"> </span><span class="kw">first</span>(lifeExp)) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">filter</span>(year &lt;<span class="st"> </span><span class="dv">1963</span>)</code></pre></div>
-<pre><code>## Source: local data frame [426 x 4]
-## Groups: country [142]
-## 
+<pre><code>## # A tibble: 426 x 4
+## # Groups:   country [142]
 ##        country  year lifeExp lifeExp_gain
 ##         &lt;fctr&gt; &lt;int&gt;   &lt;dbl&gt;        &lt;dbl&gt;
-## 1  Afghanistan  1952  28.801        0.000
-## 2  Afghanistan  1957  30.332        1.531
-## 3  Afghanistan  1962  31.997        3.196
-## 4      Albania  1952  55.230        0.000
-## 5      Albania  1957  59.280        4.050
-## 6      Albania  1962  64.820        9.590
-## 7      Algeria  1952  43.077        0.000
-## 8      Algeria  1957  45.685        2.608
-## 9      Algeria  1962  48.303        5.226
+##  1 Afghanistan  1952  28.801        0.000
+##  2 Afghanistan  1957  30.332        1.531
+##  3 Afghanistan  1962  31.997        3.196
+##  4     Albania  1952  55.230        0.000
+##  5     Albania  1957  59.280        4.050
+##  6     Albania  1962  64.820        9.590
+##  7     Algeria  1952  43.077        0.000
+##  8     Algeria  1957  45.685        2.608
+##  9     Algeria  1962  48.303        5.226
 ## 10      Angola  1952  30.015        0.000
 ## # ... with 416 more rows</code></pre>
 <p>Within country, we take the difference between life expectancy in year <span class="math inline">\(i\)</span> and life expectancy in 1952. Therefore we always see zeroes for 1952 and, for most countries, a sequence of positive and increasing numbers.</p>
@@ -1017,20 +1017,19 @@ my_gap</code></pre></div>
 <span class="st">  </span><span class="kw">filter</span>(<span class="kw">min_rank</span>(<span class="kw">desc</span>(lifeExp)) &lt;<span class="st"> </span><span class="dv">2</span> |<span class="st"> </span><span class="kw">min_rank</span>(lifeExp) &lt;<span class="st"> </span><span class="dv">2</span>) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">arrange</span>(year) %&gt;%
 <span class="st">  </span><span class="kw">print</span>(<span class="dt">n =</span> <span class="ot">Inf</span>)</code></pre></div>
-<pre><code>## Source: local data frame [24 x 3]
-## Groups: year [12]
-## 
+<pre><code>## # A tibble: 24 x 3
+## # Groups:   year [12]
 ##     year     country lifeExp
 ##    &lt;int&gt;      &lt;fctr&gt;   &lt;dbl&gt;
-## 1   1952 Afghanistan  28.801
-## 2   1952      Israel  65.390
-## 3   1957 Afghanistan  30.332
-## 4   1957      Israel  67.840
-## 5   1962 Afghanistan  31.997
-## 6   1962      Israel  69.390
-## 7   1967 Afghanistan  34.020
-## 8   1967       Japan  71.430
-## 9   1972 Afghanistan  36.088
+##  1  1952 Afghanistan  28.801
+##  2  1952      Israel  65.390
+##  3  1957 Afghanistan  30.332
+##  4  1957      Israel  67.840
+##  5  1962 Afghanistan  31.997
+##  6  1962      Israel  69.390
+##  7  1967 Afghanistan  34.020
+##  8  1967       Japan  71.430
+##  9  1972 Afghanistan  36.088
 ## 10  1972       Japan  73.420
 ## 11  1977    Cambodia  31.220
 ## 12  1977       Japan  75.380
@@ -1053,20 +1052,19 @@ my_gap</code></pre></div>
 <span class="st">  </span><span class="kw">select</span>(year, country, lifeExp) %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(year)
 asia</code></pre></div>
-<pre><code>## Source: local data frame [396 x 3]
-## Groups: year [12]
-## 
+<pre><code>## # A tibble: 396 x 3
+## # Groups:   year [12]
 ##     year     country lifeExp
 ##    &lt;int&gt;      &lt;fctr&gt;   &lt;dbl&gt;
-## 1   1952 Afghanistan  28.801
-## 2   1957 Afghanistan  30.332
-## 3   1962 Afghanistan  31.997
-## 4   1967 Afghanistan  34.020
-## 5   1972 Afghanistan  36.088
-## 6   1977 Afghanistan  38.438
-## 7   1982 Afghanistan  39.854
-## 8   1987 Afghanistan  40.822
-## 9   1992 Afghanistan  41.674
+##  1  1952 Afghanistan  28.801
+##  2  1957 Afghanistan  30.332
+##  3  1962 Afghanistan  31.997
+##  4  1967 Afghanistan  34.020
+##  5  1972 Afghanistan  36.088
+##  6  1977 Afghanistan  38.438
+##  7  1982 Afghanistan  39.854
+##  8  1987 Afghanistan  40.822
+##  9  1992 Afghanistan  41.674
 ## 10  1997 Afghanistan  41.763
 ## # ... with 386 more rows</code></pre>
 <p>Now we apply a window function – <code>min_rank()</code>. Since <code>asia</code> is grouped by year, <code>min_rank()</code> operates within mini-datasets, each for a specific year. Applied to the variable <code>lifeExp</code>, <code>min_rank()</code> returns the rank of each country’s observed life expectancy. FYI, the <code>min</code> part just specifies how ties are broken. Here is an explicit peek at these within-year life expectancy ranks, in both the (default) ascending and descending order.</p>
@@ -1075,9 +1073,8 @@ asia</code></pre></div>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">le_rank =</span> <span class="kw">min_rank</span>(lifeExp),
          <span class="dt">le_desc_rank =</span> <span class="kw">min_rank</span>(<span class="kw">desc</span>(lifeExp))) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">filter</span>(country %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Afghanistan&quot;</span>, <span class="st">&quot;Japan&quot;</span>, <span class="st">&quot;Thailand&quot;</span>), year &gt;<span class="st"> </span><span class="dv">1995</span>)</code></pre></div>
-<pre><code>## Source: local data frame [9 x 5]
-## Groups: year [3]
-## 
+<pre><code>## # A tibble: 9 x 5
+## # Groups:   year [3]
 ##    year     country lifeExp le_rank le_desc_rank
 ##   &lt;int&gt;      &lt;fctr&gt;   &lt;dbl&gt;   &lt;int&gt;        &lt;int&gt;
 ## 1  1997 Afghanistan  41.763       1           33
@@ -1101,20 +1098,19 @@ asia</code></pre></div>
 <span class="st">  </span><span class="kw">group_by</span>(year) %&gt;%
 <span class="st">  </span><span class="co">#top_n(1, wt = lifeExp)        ## gets the min</span>
 <span class="st">  </span><span class="kw">top_n</span>(<span class="dv">1</span>, <span class="dt">wt =</span> <span class="kw">desc</span>(lifeExp)) ## gets the max</code></pre></div>
-<pre><code>## Source: local data frame [12 x 3]
-## Groups: year [12]
-## 
+<pre><code>## # A tibble: 12 x 3
+## # Groups:   year [12]
 ##     year     country lifeExp
 ##    &lt;int&gt;      &lt;fctr&gt;   &lt;dbl&gt;
-## 1   1952 Afghanistan  28.801
-## 2   1957 Afghanistan  30.332
-## 3   1962 Afghanistan  31.997
-## 4   1967 Afghanistan  34.020
-## 5   1972 Afghanistan  36.088
-## 6   1977    Cambodia  31.220
-## 7   1982 Afghanistan  39.854
-## 8   1987 Afghanistan  40.822
-## 9   1992 Afghanistan  41.674
+##  1  1952 Afghanistan  28.801
+##  2  1957 Afghanistan  30.332
+##  3  1962 Afghanistan  31.997
+##  4  1967 Afghanistan  34.020
+##  5  1972 Afghanistan  36.088
+##  6  1977    Cambodia  31.220
+##  7  1982 Afghanistan  39.854
+##  8  1987 Afghanistan  40.822
+##  9  1992 Afghanistan  41.674
 ## 10  1997 Afghanistan  41.763
 ## 11  2002 Afghanistan  42.129
 ## 12  2007 Afghanistan  43.828</code></pre>
@@ -1135,9 +1131,8 @@ asia</code></pre></div>
 <span class="st">  </span>## within continent, retain the row with the lowest worst_le_delta
 <span class="st">  </span><span class="kw">top_n</span>(-<span class="dv">1</span>, <span class="dt">wt =</span> worst_le_delta) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">arrange</span>(worst_le_delta)</code></pre></div>
-<pre><code>## Source: local data frame [5 x 3]
-## Groups: continent [5]
-## 
+<pre><code>## # A tibble: 5 x 3
+## # Groups:   continent [5]
 ##   continent     country worst_le_delta
 ##      &lt;fctr&gt;      &lt;fctr&gt;          &lt;dbl&gt;
 ## 1    Africa      Rwanda        -20.421
@@ -1186,7 +1181,7 @@ publishers &lt;-<span class="st"> </span><span class="kw">read_csv</span>(publis
 </blockquote>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(ijsp &lt;-<span class="st"> </span><span class="kw">inner_join</span>(superheroes, publishers))</code></pre></div>
 <pre><code>## Joining, by = &quot;publisher&quot;</code></pre>
-<pre><code>## # A tibble: 6 × 5
+<pre><code>## # A tibble: 6 x 5
 ##       name alignment gender publisher yr_founded
 ##      &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;      &lt;int&gt;
 ## 1  Magneto       bad   male    Marvel       1939
@@ -1348,15 +1343,15 @@ publishers &lt;-<span class="st"> </span><span class="kw">read_csv</span>(publis
 </blockquote>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(sjsp &lt;-<span class="st"> </span><span class="kw">semi_join</span>(superheroes, publishers))</code></pre></div>
 <pre><code>## Joining, by = &quot;publisher&quot;</code></pre>
-<pre><code>## # A tibble: 6 × 4
+<pre><code>## # A tibble: 6 x 4
 ##       name alignment gender publisher
 ##      &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;
-## 1   Batman      good   male        DC
-## 2    Joker       bad   male        DC
-## 3 Catwoman       bad female        DC
-## 4  Magneto       bad   male    Marvel
-## 5    Storm      good female    Marvel
-## 6 Mystique       bad female    Marvel</code></pre>
+## 1  Magneto       bad   male    Marvel
+## 2    Storm      good female    Marvel
+## 3 Mystique       bad female    Marvel
+## 4   Batman      good   male        DC
+## 5    Joker       bad   male        DC
+## 6 Catwoman       bad female        DC</code></pre>
 <p>We get a similar result as with <code>inner_join()</code> but the join result contains only the variables originally found in <code>x = superheroes</code>. But note the row order has changed.</p>
 <table border="1">
 <tr>
@@ -1455,40 +1450,40 @@ publishers &lt;-<span class="st"> </span><span class="kw">read_csv</span>(publis
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Batman</td>
-<td align="left">good</td>
-<td align="left">male</td>
-<td align="left">DC</td>
-</tr>
-<tr class="even">
-<td align="left">Joker</td>
-<td align="left">bad</td>
-<td align="left">male</td>
-<td align="left">DC</td>
-</tr>
-<tr class="odd">
-<td align="left">Catwoman</td>
-<td align="left">bad</td>
-<td align="left">female</td>
-<td align="left">DC</td>
-</tr>
-<tr class="even">
 <td align="left">Magneto</td>
 <td align="left">bad</td>
 <td align="left">male</td>
 <td align="left">Marvel</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">Storm</td>
 <td align="left">good</td>
 <td align="left">female</td>
 <td align="left">Marvel</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">Mystique</td>
 <td align="left">bad</td>
 <td align="left">female</td>
 <td align="left">Marvel</td>
+</tr>
+<tr class="even">
+<td align="left">Batman</td>
+<td align="left">good</td>
+<td align="left">male</td>
+<td align="left">DC</td>
+</tr>
+<tr class="odd">
+<td align="left">Joker</td>
+<td align="left">bad</td>
+<td align="left">male</td>
+<td align="left">DC</td>
+</tr>
+<tr class="even">
+<td align="left">Catwoman</td>
+<td align="left">bad</td>
+<td align="left">female</td>
+<td align="left">DC</td>
 </tr>
 </tbody>
 </table>
@@ -1503,7 +1498,7 @@ publishers &lt;-<span class="st"> </span><span class="kw">read_csv</span>(publis
 </blockquote>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(ljsp &lt;-<span class="st"> </span><span class="kw">left_join</span>(superheroes, publishers))</code></pre></div>
 <pre><code>## Joining, by = &quot;publisher&quot;</code></pre>
-<pre><code>## # A tibble: 7 × 5
+<pre><code>## # A tibble: 7 x 5
 ##       name alignment gender         publisher yr_founded
 ##      &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;             &lt;chr&gt;      &lt;int&gt;
 ## 1  Magneto       bad   male            Marvel       1939
@@ -1673,7 +1668,7 @@ publishers &lt;-<span class="st"> </span><span class="kw">read_csv</span>(publis
 </blockquote>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(ajsp &lt;-<span class="st"> </span><span class="kw">anti_join</span>(superheroes, publishers))</code></pre></div>
 <pre><code>## Joining, by = &quot;publisher&quot;</code></pre>
-<pre><code>## # A tibble: 1 × 4
+<pre><code>## # A tibble: 1 x 4
 ##      name alignment gender         publisher
 ##     &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;             &lt;chr&gt;
 ## 1 Hellboy      good   male Dark Horse Comics</code></pre>
@@ -1793,7 +1788,7 @@ publishers &lt;-<span class="st"> </span><span class="kw">read_csv</span>(publis
 </blockquote>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(ijps &lt;-<span class="st"> </span><span class="kw">inner_join</span>(publishers, superheroes))</code></pre></div>
 <pre><code>## Joining, by = &quot;publisher&quot;</code></pre>
-<pre><code>## # A tibble: 6 × 5
+<pre><code>## # A tibble: 6 x 5
 ##   publisher yr_founded     name alignment gender
 ##       &lt;chr&gt;      &lt;int&gt;    &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;
 ## 1        DC       1934   Batman      good   male
@@ -1955,11 +1950,11 @@ publishers &lt;-<span class="st"> </span><span class="kw">read_csv</span>(publis
 </blockquote>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(sjps &lt;-<span class="st"> </span><span class="kw">semi_join</span>(<span class="dt">x =</span> publishers, <span class="dt">y =</span> superheroes))</code></pre></div>
 <pre><code>## Joining, by = &quot;publisher&quot;</code></pre>
-<pre><code>## # A tibble: 2 × 2
+<pre><code>## # A tibble: 2 x 2
 ##   publisher yr_founded
 ##       &lt;chr&gt;      &lt;int&gt;
-## 1    Marvel       1939
-## 2        DC       1934</code></pre>
+## 1        DC       1934
+## 2    Marvel       1939</code></pre>
 <p>Now the effects of switching the <code>x</code> and <code>y</code> roles is more clear. The result resembles <code>x = publishers</code>, but the publisher Image is lost, because there are no observations where <code>publisher == &quot;Image&quot;</code> in <code>y = superheroes</code>.</p>
 <table border="1">
 <tr>
@@ -2056,12 +2051,12 @@ publishers &lt;-<span class="st"> </span><span class="kw">read_csv</span>(publis
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Marvel</td>
-<td align="right">1939</td>
-</tr>
-<tr class="even">
 <td align="left">DC</td>
 <td align="right">1934</td>
+</tr>
+<tr class="even">
+<td align="left">Marvel</td>
+<td align="right">1939</td>
 </tr>
 </tbody>
 </table>
@@ -2076,7 +2071,7 @@ publishers &lt;-<span class="st"> </span><span class="kw">read_csv</span>(publis
 </blockquote>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(ljps &lt;-<span class="st"> </span><span class="kw">left_join</span>(publishers, superheroes))</code></pre></div>
 <pre><code>## Joining, by = &quot;publisher&quot;</code></pre>
-<pre><code>## # A tibble: 7 × 5
+<pre><code>## # A tibble: 7 x 5
 ##   publisher yr_founded     name alignment gender
 ##       &lt;chr&gt;      &lt;int&gt;    &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;
 ## 1        DC       1934   Batman      good   male
@@ -2246,7 +2241,7 @@ publishers &lt;-<span class="st"> </span><span class="kw">read_csv</span>(publis
 </blockquote>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(ajps &lt;-<span class="st"> </span><span class="kw">anti_join</span>(publishers, superheroes))</code></pre></div>
 <pre><code>## Joining, by = &quot;publisher&quot;</code></pre>
-<pre><code>## # A tibble: 1 × 2
+<pre><code>## # A tibble: 1 x 2
 ##   publisher yr_founded
 ##       &lt;chr&gt;      &lt;int&gt;
 ## 1     Image       1992</code></pre>
@@ -2363,7 +2358,7 @@ publishers &lt;-<span class="st"> </span><span class="kw">read_csv</span>(publis
 </blockquote>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(fjsp &lt;-<span class="st"> </span><span class="kw">full_join</span>(superheroes, publishers))</code></pre></div>
 <pre><code>## Joining, by = &quot;publisher&quot;</code></pre>
-<pre><code>## # A tibble: 8 × 5
+<pre><code>## # A tibble: 8 x 5
 ##       name alignment gender         publisher yr_founded
 ##      &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;             &lt;chr&gt;      &lt;int&gt;
 ## 1  Magneto       bad   male            Marvel       1939
@@ -2556,8 +2551,9 @@ publishers &lt;-<span class="st"> </span><span class="kw">read_csv</span>(publis
         </div>
       </div>
 <a href="tidy.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="visualize.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
-
+<a href="visualize.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
 <script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>
 <script src="book_assets/gitbook-2.6.7/js/lunr.js"></script>
 <script src="book_assets/gitbook-2.6.7/js/plugin-search.js"></script>
@@ -2600,7 +2596,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(script.src))
       script.src  = script.src.replace(/^https?:/, '');
     document.getElementsByTagName("head")[0].appendChild(script);

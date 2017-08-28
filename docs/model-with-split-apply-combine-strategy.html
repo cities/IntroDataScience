@@ -6,9 +6,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Introduction to Data Science for Transportation Researchers, Planners, and Engineers</title>
-  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="Introduction to Data Science for Transportation Researchers, Planners, and Engineers">
-  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
 
   <meta property="og:title" content="Introduction to Data Science for Transportation Researchers, Planners, and Engineers" />
   <meta property="og:type" content="book" />
@@ -26,7 +25,7 @@
 <meta name="author" content="Liming Wang">
 
 
-<meta name="date" content="2017-03-16">
+<meta name="date" content="2017-08-28">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -35,7 +34,6 @@
   
 <link rel="prev" href="visualize.html">
 <link rel="next" href="rmarkdown.html">
-
 <script src="book_assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="book_assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -92,6 +90,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </head>
 
 <body>
+
 
 
   <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
@@ -429,14 +428,14 @@ oceania_ttest &lt;-<span class="st"> </span>gapminder %&gt;%
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gapminder %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(continent) %&gt;%
 <span class="st">  </span><span class="kw">summarize_each</span>(<span class="kw">funs</span>(min, max), lifeExp)</code></pre></div>
-<pre><code>## # A tibble: 5 × 3
-##   continent    min    max
-##      &lt;fctr&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-## 1    Africa 23.599 76.442
-## 2  Americas 37.579 80.653
-## 3      Asia 28.801 82.603
-## 4    Europe 43.585 81.757
-## 5   Oceania 69.120 81.235</code></pre>
+<pre><code>## # A tibble: 5 x 3
+##   continent lifeExp_min lifeExp_max
+##      &lt;fctr&gt;       &lt;dbl&gt;       &lt;dbl&gt;
+## 1    Africa      23.599      76.442
+## 2  Americas      37.579      80.653
+## 3      Asia      28.801      82.603
+## 4    Europe      43.585      81.757
+## 5   Oceania      69.120      81.235</code></pre>
 </div>
 <div id="general-approach-nesting" class="section level3">
 <h3><span class="header-section-number">9.2.4</span> General approach: nesting</h3>
@@ -445,19 +444,19 @@ oceania_ttest &lt;-<span class="st"> </span>gapminder %&gt;%
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(gap_nested &lt;-<span class="st"> </span>gapminder %&gt;%<span class="st"> </span>
 <span class="st">   </span><span class="kw">group_by</span>(continent, country) %&gt;%<span class="st"> </span>
 <span class="st">   </span><span class="kw">nest</span>())</code></pre></div>
-<pre><code>## # A tibble: 142 × 3
+<pre><code>## # A tibble: 142 x 3
 ##    continent     country              data
 ##       &lt;fctr&gt;      &lt;fctr&gt;            &lt;list&gt;
-## 1       Asia Afghanistan &lt;tibble [12 × 4]&gt;
-## 2     Europe     Albania &lt;tibble [12 × 4]&gt;
-## 3     Africa     Algeria &lt;tibble [12 × 4]&gt;
-## 4     Africa      Angola &lt;tibble [12 × 4]&gt;
-## 5   Americas   Argentina &lt;tibble [12 × 4]&gt;
-## 6    Oceania   Australia &lt;tibble [12 × 4]&gt;
-## 7     Europe     Austria &lt;tibble [12 × 4]&gt;
-## 8       Asia     Bahrain &lt;tibble [12 × 4]&gt;
-## 9       Asia  Bangladesh &lt;tibble [12 × 4]&gt;
-## 10    Europe     Belgium &lt;tibble [12 × 4]&gt;
+##  1      Asia Afghanistan &lt;tibble [12 x 4]&gt;
+##  2    Europe     Albania &lt;tibble [12 x 4]&gt;
+##  3    Africa     Algeria &lt;tibble [12 x 4]&gt;
+##  4    Africa      Angola &lt;tibble [12 x 4]&gt;
+##  5  Americas   Argentina &lt;tibble [12 x 4]&gt;
+##  6   Oceania   Australia &lt;tibble [12 x 4]&gt;
+##  7    Europe     Austria &lt;tibble [12 x 4]&gt;
+##  8      Asia     Bahrain &lt;tibble [12 x 4]&gt;
+##  9      Asia  Bangladesh &lt;tibble [12 x 4]&gt;
+## 10    Europe     Belgium &lt;tibble [12 x 4]&gt;
 ## # ... with 132 more rows</code></pre>
 <p>What do you notice?</p>
 <ul>
@@ -467,18 +466,18 @@ oceania_ttest &lt;-<span class="st"> </span>gapminder %&gt;%
 </ul>
 <p>How on earth do you inspect it?!? In RStudio, <code>gap_nested %&gt;% View()</code> is often helpful (moderately so in this case). It’s often nicer to inspect a single element like so:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gap_nested[[<span class="dv">1</span>, <span class="st">&quot;data&quot;</span>]]</code></pre></div>
-<pre><code>## # A tibble: 12 × 4
+<pre><code>## # A tibble: 12 x 4
 ##     year lifeExp      pop gdpPercap
 ##    &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
-## 1   1952  28.801  8425333  779.4453
-## 2   1957  30.332  9240934  820.8530
-## 3   1962  31.997 10267083  853.1007
-## 4   1967  34.020 11537966  836.1971
-## 5   1972  36.088 13079460  739.9811
-## 6   1977  38.438 14880372  786.1134
-## 7   1982  39.854 12881816  978.0114
-## 8   1987  40.822 13867957  852.3959
-## 9   1992  41.674 16317921  649.3414
+##  1  1952  28.801  8425333  779.4453
+##  2  1957  30.332  9240934  820.8530
+##  3  1962  31.997 10267083  853.1007
+##  4  1967  34.020 11537966  836.1971
+##  5  1972  36.088 13079460  739.9811
+##  6  1977  38.438 14880372  786.1134
+##  7  1982  39.854 12881816  978.0114
+##  8  1987  40.822 13867957  852.3959
+##  9  1992  41.674 16317921  649.3414
 ## 10  1997  41.763 22227415  635.3414
 ## 11  2002  42.129 25268405  726.7341
 ## 12  2007  43.828 31889923  974.5803</code></pre>
@@ -535,19 +534,19 @@ fits</code></pre></div>
 <p>So, how do we run, i.e. scale this up to all countries? And where do we put these fitted models? We’ll use <code>purrr::map()</code> inside <code>mutate()</code>, meaning we store the models inside <code>gap_nested</code> in another list-column.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(gap_nested &lt;-<span class="st"> </span>gap_nested %&gt;%<span class="st"> </span>
 <span class="st">   </span><span class="kw">mutate</span>(<span class="dt">fit =</span> purrr::<span class="kw">map</span>(data, le_vs_yr)))</code></pre></div>
-<pre><code>## # A tibble: 142 × 4
+<pre><code>## # A tibble: 142 x 4
 ##    continent     country              data      fit
 ##       &lt;fctr&gt;      &lt;fctr&gt;            &lt;list&gt;   &lt;list&gt;
-## 1       Asia Afghanistan &lt;tibble [12 × 4]&gt; &lt;S3: lm&gt;
-## 2     Europe     Albania &lt;tibble [12 × 4]&gt; &lt;S3: lm&gt;
-## 3     Africa     Algeria &lt;tibble [12 × 4]&gt; &lt;S3: lm&gt;
-## 4     Africa      Angola &lt;tibble [12 × 4]&gt; &lt;S3: lm&gt;
-## 5   Americas   Argentina &lt;tibble [12 × 4]&gt; &lt;S3: lm&gt;
-## 6    Oceania   Australia &lt;tibble [12 × 4]&gt; &lt;S3: lm&gt;
-## 7     Europe     Austria &lt;tibble [12 × 4]&gt; &lt;S3: lm&gt;
-## 8       Asia     Bahrain &lt;tibble [12 × 4]&gt; &lt;S3: lm&gt;
-## 9       Asia  Bangladesh &lt;tibble [12 × 4]&gt; &lt;S3: lm&gt;
-## 10    Europe     Belgium &lt;tibble [12 × 4]&gt; &lt;S3: lm&gt;
+##  1      Asia Afghanistan &lt;tibble [12 x 4]&gt; &lt;S3: lm&gt;
+##  2    Europe     Albania &lt;tibble [12 x 4]&gt; &lt;S3: lm&gt;
+##  3    Africa     Algeria &lt;tibble [12 x 4]&gt; &lt;S3: lm&gt;
+##  4    Africa      Angola &lt;tibble [12 x 4]&gt; &lt;S3: lm&gt;
+##  5  Americas   Argentina &lt;tibble [12 x 4]&gt; &lt;S3: lm&gt;
+##  6   Oceania   Australia &lt;tibble [12 x 4]&gt; &lt;S3: lm&gt;
+##  7    Europe     Austria &lt;tibble [12 x 4]&gt; &lt;S3: lm&gt;
+##  8      Asia     Bahrain &lt;tibble [12 x 4]&gt; &lt;S3: lm&gt;
+##  9      Asia  Bangladesh &lt;tibble [12 x 4]&gt; &lt;S3: lm&gt;
+## 10    Europe     Belgium &lt;tibble [12 x 4]&gt; &lt;S3: lm&gt;
 ## # ... with 132 more rows</code></pre>
 <p>We have a new list-column <code>fit</code> that is even more intimidating than the previous, <code>data</code>. The <code>fit</code> variable holds 142 fitted linear models. What shall we do with that?</p>
 </div>
@@ -575,36 +574,36 @@ fits</code></pre></div>
 <p>Apply <code>tidy()</code> to the model for each country with the same <code>purrr::map()</code> inside <code>mutate()</code> strategy as above.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(gap_nested &lt;-<span class="st"> </span>gap_nested %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">tidy =</span> purrr::<span class="kw">map</span>(fit, tidy)))</code></pre></div>
-<pre><code>## # A tibble: 142 × 5
+<pre><code>## # A tibble: 142 x 5
 ##    continent     country              data      fit                 tidy
 ##       &lt;fctr&gt;      &lt;fctr&gt;            &lt;list&gt;   &lt;list&gt;               &lt;list&gt;
-## 1       Asia Afghanistan &lt;tibble [12 × 4]&gt; &lt;S3: lm&gt; &lt;data.frame [2 × 5]&gt;
-## 2     Europe     Albania &lt;tibble [12 × 4]&gt; &lt;S3: lm&gt; &lt;data.frame [2 × 5]&gt;
-## 3     Africa     Algeria &lt;tibble [12 × 4]&gt; &lt;S3: lm&gt; &lt;data.frame [2 × 5]&gt;
-## 4     Africa      Angola &lt;tibble [12 × 4]&gt; &lt;S3: lm&gt; &lt;data.frame [2 × 5]&gt;
-## 5   Americas   Argentina &lt;tibble [12 × 4]&gt; &lt;S3: lm&gt; &lt;data.frame [2 × 5]&gt;
-## 6    Oceania   Australia &lt;tibble [12 × 4]&gt; &lt;S3: lm&gt; &lt;data.frame [2 × 5]&gt;
-## 7     Europe     Austria &lt;tibble [12 × 4]&gt; &lt;S3: lm&gt; &lt;data.frame [2 × 5]&gt;
-## 8       Asia     Bahrain &lt;tibble [12 × 4]&gt; &lt;S3: lm&gt; &lt;data.frame [2 × 5]&gt;
-## 9       Asia  Bangladesh &lt;tibble [12 × 4]&gt; &lt;S3: lm&gt; &lt;data.frame [2 × 5]&gt;
-## 10    Europe     Belgium &lt;tibble [12 × 4]&gt; &lt;S3: lm&gt; &lt;data.frame [2 × 5]&gt;
+##  1      Asia Afghanistan &lt;tibble [12 x 4]&gt; &lt;S3: lm&gt; &lt;data.frame [2 x 5]&gt;
+##  2    Europe     Albania &lt;tibble [12 x 4]&gt; &lt;S3: lm&gt; &lt;data.frame [2 x 5]&gt;
+##  3    Africa     Algeria &lt;tibble [12 x 4]&gt; &lt;S3: lm&gt; &lt;data.frame [2 x 5]&gt;
+##  4    Africa      Angola &lt;tibble [12 x 4]&gt; &lt;S3: lm&gt; &lt;data.frame [2 x 5]&gt;
+##  5  Americas   Argentina &lt;tibble [12 x 4]&gt; &lt;S3: lm&gt; &lt;data.frame [2 x 5]&gt;
+##  6   Oceania   Australia &lt;tibble [12 x 4]&gt; &lt;S3: lm&gt; &lt;data.frame [2 x 5]&gt;
+##  7    Europe     Austria &lt;tibble [12 x 4]&gt; &lt;S3: lm&gt; &lt;data.frame [2 x 5]&gt;
+##  8      Asia     Bahrain &lt;tibble [12 x 4]&gt; &lt;S3: lm&gt; &lt;data.frame [2 x 5]&gt;
+##  9      Asia  Bangladesh &lt;tibble [12 x 4]&gt; &lt;S3: lm&gt; &lt;data.frame [2 x 5]&gt;
+## 10    Europe     Belgium &lt;tibble [12 x 4]&gt; &lt;S3: lm&gt; &lt;data.frame [2 x 5]&gt;
 ## # ... with 132 more rows</code></pre>
 <p>The last step is now to simplify, preferably back to a normal tibble. We do this by retaining variables that are amenable to simplification and using <code>unnest()</code>, thus completing the circle.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(gap_coefs &lt;-<span class="st"> </span>gap_nested %&gt;%<span class="st"> </span>
 <span class="st">   </span><span class="kw">select</span>(continent, country, tidy) %&gt;%<span class="st"> </span>
 <span class="st">   </span><span class="kw">unnest</span>(tidy))</code></pre></div>
-<pre><code>## # A tibble: 284 × 7
+<pre><code>## # A tibble: 284 x 7
 ##    continent     country           term   estimate   std.error  statistic
 ##       &lt;fctr&gt;      &lt;fctr&gt;          &lt;chr&gt;      &lt;dbl&gt;       &lt;dbl&gt;      &lt;dbl&gt;
-## 1       Asia Afghanistan    (Intercept) 29.3566375 0.698981278  41.999176
-## 2       Asia Afghanistan I(year - 1950)  0.2753287 0.020450934  13.462890
-## 3     Europe     Albania    (Intercept) 58.5597618 1.133575812  51.659325
-## 4     Europe     Albania I(year - 1950)  0.3346832 0.033166387  10.091036
-## 5     Africa     Algeria    (Intercept) 42.2364149 0.756269040  55.848399
-## 6     Africa     Algeria I(year - 1950)  0.5692797 0.022127070  25.727749
-## 7     Africa      Angola    (Intercept) 31.7079741 0.804287463  39.423683
-## 8     Africa      Angola I(year - 1950)  0.2093399 0.023532003   8.895964
-## 9   Americas   Argentina    (Intercept) 62.2250191 0.167091314 372.401279
+##  1      Asia Afghanistan    (Intercept) 29.3566375 0.698981278  41.999176
+##  2      Asia Afghanistan I(year - 1950)  0.2753287 0.020450934  13.462890
+##  3    Europe     Albania    (Intercept) 58.5597618 1.133575812  51.659325
+##  4    Europe     Albania I(year - 1950)  0.3346832 0.033166387  10.091036
+##  5    Africa     Algeria    (Intercept) 42.2364149 0.756269040  55.848399
+##  6    Africa     Algeria I(year - 1950)  0.5692797 0.022127070  25.727749
+##  7    Africa      Angola    (Intercept) 31.7079741 0.804287463  39.423683
+##  8    Africa      Angola I(year - 1950)  0.2093399 0.023532003   8.895964
+##  9  Americas   Argentina    (Intercept) 62.2250191 0.167091314 372.401279
 ## 10  Americas   Argentina I(year - 1950)  0.2317084 0.004888791  47.395847
 ## # ... with 274 more rows, and 1 more variables: p.value &lt;dbl&gt;</code></pre>
 </div>
@@ -634,36 +633,36 @@ gap_coefs &lt;-<span class="st"> </span>gap_nested %&gt;%<span class="st"> </spa
 <span class="st">   </span><span class="kw">mutate</span>(<span class="dt">term =</span> <span class="kw">recode</span>(term,
                         <span class="st">`</span><span class="dt">(Intercept)</span><span class="st">`</span> =<span class="st"> &quot;intercept&quot;</span>,
                         <span class="st">`</span><span class="dt">I(year - 1950)</span><span class="st">`</span> =<span class="st"> &quot;slope&quot;</span>)))</code></pre></div>
-<pre><code>## # A tibble: 284 × 7
+<pre><code>## # A tibble: 284 x 7
 ##    continent     country      term   estimate   std.error  statistic
 ##       &lt;fctr&gt;      &lt;fctr&gt;     &lt;chr&gt;      &lt;dbl&gt;       &lt;dbl&gt;      &lt;dbl&gt;
-## 1       Asia Afghanistan intercept 29.3566375 0.698981278  41.999176
-## 2       Asia Afghanistan     slope  0.2753287 0.020450934  13.462890
-## 3     Europe     Albania intercept 58.5597618 1.133575812  51.659325
-## 4     Europe     Albania     slope  0.3346832 0.033166387  10.091036
-## 5     Africa     Algeria intercept 42.2364149 0.756269040  55.848399
-## 6     Africa     Algeria     slope  0.5692797 0.022127070  25.727749
-## 7     Africa      Angola intercept 31.7079741 0.804287463  39.423683
-## 8     Africa      Angola     slope  0.2093399 0.023532003   8.895964
-## 9   Americas   Argentina intercept 62.2250191 0.167091314 372.401279
+##  1      Asia Afghanistan intercept 29.3566375 0.698981278  41.999176
+##  2      Asia Afghanistan     slope  0.2753287 0.020450934  13.462890
+##  3    Europe     Albania intercept 58.5597618 1.133575812  51.659325
+##  4    Europe     Albania     slope  0.3346832 0.033166387  10.091036
+##  5    Africa     Algeria intercept 42.2364149 0.756269040  55.848399
+##  6    Africa     Algeria     slope  0.5692797 0.022127070  25.727749
+##  7    Africa      Angola intercept 31.7079741 0.804287463  39.423683
+##  8    Africa      Angola     slope  0.2093399 0.023532003   8.895964
+##  9  Americas   Argentina intercept 62.2250191 0.167091314 372.401279
 ## 10  Americas   Argentina     slope  0.2317084 0.004888791  47.395847
 ## # ... with 274 more rows, and 1 more variables: p.value &lt;dbl&gt;</code></pre>
 <p>Due to the way we parametrized the model, the intercepts correspond to expected life expectancy in 1950. These numbers should be plausible as human life expectancies. The slopes correspond to change in expected life expectancy from one year to the next. We expect positive numbers to dominate, but they’ll probably less than one. A reshaped version of the estimates, <code>gap_ests</code>, is handy for numerical summarization and visualization.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(gap_ests &lt;-<span class="st"> </span>gap_coefs %&gt;%<span class="st"> </span>
 <span class="st">   </span><span class="kw">select</span>(continent:estimate) %&gt;%<span class="st"> </span>
 <span class="st">   </span><span class="kw">spread</span>(<span class="dt">key =</span> term, <span class="dt">value =</span> estimate))</code></pre></div>
-<pre><code>## # A tibble: 142 × 4
+<pre><code>## # A tibble: 142 x 4
 ##    continent                  country intercept      slope
-## *     &lt;fctr&gt;                   &lt;fctr&gt;     &lt;dbl&gt;      &lt;dbl&gt;
-## 1     Africa                  Algeria  42.23641 0.56927972
-## 2     Africa                   Angola  31.70797 0.20933986
-## 3     Africa                    Benin  38.92005 0.33423287
-## 4     Africa                 Botswana  52.80778 0.06066853
-## 5     Africa             Burkina Faso  33.95674 0.36397483
-## 6     Africa                  Burundi  40.27037 0.15413427
-## 7     Africa                 Cameroon  40.74917 0.25014685
-## 8     Africa Central African Republic  38.44170 0.18390559
-## 9     Africa                     Chad  39.30288 0.25324406
+##  *    &lt;fctr&gt;                   &lt;fctr&gt;     &lt;dbl&gt;      &lt;dbl&gt;
+##  1    Africa                  Algeria  42.23641 0.56927972
+##  2    Africa                   Angola  31.70797 0.20933986
+##  3    Africa                    Benin  38.92005 0.33423287
+##  4    Africa                 Botswana  52.80778 0.06066853
+##  5    Africa             Burkina Faso  33.95674 0.36397483
+##  6    Africa                  Burundi  40.27037 0.15413427
+##  7    Africa                 Cameroon  40.74917 0.25014685
+##  8    Africa Central African Republic  38.44170 0.18390559
+##  9    Africa                     Chad  39.30288 0.25324406
 ## 10    Africa                  Comoros  39.09522 0.45039091
 ## # ... with 132 more rows</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gap_ests %&gt;%<span class="st"> </span>
@@ -694,8 +693,9 @@ gap_coefs &lt;-<span class="st"> </span>gap_nested %&gt;%<span class="st"> </spa
         </div>
       </div>
 <a href="visualize.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="rmarkdown.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
-
+<a href="rmarkdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
 <script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>
 <script src="book_assets/gitbook-2.6.7/js/lunr.js"></script>
 <script src="book_assets/gitbook-2.6.7/js/plugin-search.js"></script>
@@ -738,7 +738,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(script.src))
       script.src  = script.src.replace(/^https?:/, '');
     document.getElementsByTagName("head")[0].appendChild(script);

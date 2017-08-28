@@ -30,7 +30,7 @@ table1
 ```
 
 ```
-## # A tibble: 6 × 4
+## # A tibble: 6 x 4
 ##       country  year  cases population
 ##         <chr> <int>  <int>      <int>
 ## 1 Afghanistan  1999    745   19987071
@@ -46,18 +46,18 @@ table2
 ```
 
 ```
-## # A tibble: 12 × 4
+## # A tibble: 12 x 4
 ##        country  year       type      count
 ##          <chr> <int>      <chr>      <int>
-## 1  Afghanistan  1999      cases        745
-## 2  Afghanistan  1999 population   19987071
-## 3  Afghanistan  2000      cases       2666
-## 4  Afghanistan  2000 population   20595360
-## 5       Brazil  1999      cases      37737
-## 6       Brazil  1999 population  172006362
-## 7       Brazil  2000      cases      80488
-## 8       Brazil  2000 population  174504898
-## 9        China  1999      cases     212258
+##  1 Afghanistan  1999      cases        745
+##  2 Afghanistan  1999 population   19987071
+##  3 Afghanistan  2000      cases       2666
+##  4 Afghanistan  2000 population   20595360
+##  5      Brazil  1999      cases      37737
+##  6      Brazil  1999 population  172006362
+##  7      Brazil  2000      cases      80488
+##  8      Brazil  2000 population  174504898
+##  9       China  1999      cases     212258
 ## 10       China  1999 population 1272915272
 ## 11       China  2000      cases     213766
 ## 12       China  2000 population 1280428583
@@ -68,7 +68,7 @@ table3
 ```
 
 ```
-## # A tibble: 6 × 3
+## # A tibble: 6 x 3
 ##       country  year              rate
 ## *       <chr> <int>             <chr>
 ## 1 Afghanistan  1999      745/19987071
@@ -85,7 +85,7 @@ table4a  # cases
 ```
 
 ```
-## # A tibble: 3 × 3
+## # A tibble: 3 x 3
 ##       country `1999` `2000`
 ## *       <chr>  <int>  <int>
 ## 1 Afghanistan    745   2666
@@ -98,7 +98,7 @@ table4b  # population
 ```
 
 ```
-## # A tibble: 3 × 3
+## # A tibble: 3 x 3
 ##       country     `1999`     `2000`
 ## *       <chr>      <int>      <int>
 ## 1 Afghanistan   19987071   20595360
@@ -128,18 +128,6 @@ Why ensure that your data is tidy? There are two main advantages:
 1. There’s a general advantage to picking one consistent way of storing data. If you have a consistent data structure, it’s easier to learn the tools that work with it because they have an underlying uniformity.
 
 2. There’s a specific advantage to placing variables in columns because it allows R’s vectorised nature to shine. As you learned in mutate and summary functions, most built-in R functions work with vectors of values. That makes transforming tidy data feel particularly natural.
-
-Why ensure that your data is tidy? There are two main advantages:
-
-1.  There's a general advantage to picking one consistent way of storing
-    data. If you have a consistent data structure, it's easier to learn the
-    tools that work with it because they have an underlying uniformity.
-    
-1.  There's a specific advantage to placing variables in columns because
-    it allows R's vectorised nature to shine. As you learned in
-    [mutate](#mutate-funs) and [summary functions](#summary-funs), most 
-    built-in R functions work with vectors of values. That makes transforming 
-    tidy data feel particularly natural.
 
 dplyr, ggplot2, and all the other packages in the tidyverse are designed to work with tidy data. Here are a couple of small examples showing how you might work with `table1`.
 
@@ -172,7 +160,7 @@ table4a
 ```
 
 ```
-## # A tibble: 3 × 3
+## # A tibble: 3 x 3
 ##       country `1999` `2000`
 ## *       <chr>  <int>  <int>
 ## 1 Afghanistan    745   2666
@@ -200,7 +188,7 @@ table4a %>%
 ```
 
 ```
-## # A tibble: 6 × 3
+## # A tibble: 6 x 3
 ##       country  year  cases
 ##         <chr> <chr>  <int>
 ## 1 Afghanistan  1999    745
@@ -215,7 +203,7 @@ The columns to gather are specified with `dplyr::select()` style notation. Here 
 
 <div class="figure">
 <img src="fig/tidy-9.png" alt="Gathering `table4` into a tidy form." width="100%" />
-<p class="caption">Gathering `table4` into a tidy form.</p>
+<p class="caption">(\#fig:tidy-gather)Gathering `table4` into a tidy form.</p>
 </div>
 
 In the final result, the gathered columns are dropped, and we get new `key` and `value` columns. Otherwise, the relationships between the original variables are preserved. Visually, this is shown in Figure \@ref(fig:tidy-gather). We can use `gather()` to tidy `table4b` in a similar fashion. The only difference is the variable stored in the cell values:
@@ -227,7 +215,7 @@ table4b %>%
 ```
 
 ```
-## # A tibble: 6 × 3
+## # A tibble: 6 x 3
 ##       country  year population
 ##         <chr> <chr>      <int>
 ## 1 Afghanistan  1999   19987071
@@ -254,7 +242,7 @@ left_join(tidy4a, tidy4b)
 ```
 
 ```
-## # A tibble: 6 × 4
+## # A tibble: 6 x 4
 ##       country  year  cases population
 ##         <chr> <chr>  <int>      <int>
 ## 1 Afghanistan  1999    745   19987071
@@ -275,18 +263,18 @@ table2
 ```
 
 ```
-## # A tibble: 12 × 4
+## # A tibble: 12 x 4
 ##        country  year       type      count
 ##          <chr> <int>      <chr>      <int>
-## 1  Afghanistan  1999      cases        745
-## 2  Afghanistan  1999 population   19987071
-## 3  Afghanistan  2000      cases       2666
-## 4  Afghanistan  2000 population   20595360
-## 5       Brazil  1999      cases      37737
-## 6       Brazil  1999 population  172006362
-## 7       Brazil  2000      cases      80488
-## 8       Brazil  2000 population  174504898
-## 9        China  1999      cases     212258
+##  1 Afghanistan  1999      cases        745
+##  2 Afghanistan  1999 population   19987071
+##  3 Afghanistan  2000      cases       2666
+##  4 Afghanistan  2000 population   20595360
+##  5      Brazil  1999      cases      37737
+##  6      Brazil  1999 population  172006362
+##  7      Brazil  2000      cases      80488
+##  8      Brazil  2000 population  174504898
+##  9       China  1999      cases     212258
 ## 10       China  1999 population 1272915272
 ## 11       China  2000      cases     213766
 ## 12       China  2000 population 1280428583
@@ -308,7 +296,7 @@ spread(table2, key = type, value = count)
 ```
 
 ```
-## # A tibble: 6 × 4
+## # A tibble: 6 x 4
 ##       country  year  cases population
 ## *       <chr> <int>  <int>      <int>
 ## 1 Afghanistan  1999    745   19987071
@@ -321,7 +309,7 @@ spread(table2, key = type, value = count)
 
 <div class="figure">
 <img src="fig/tidy-8.png" alt="Spreading `table2` makes it tidy" width="100%" />
-<p class="caption">Spreading `table2` makes it tidy</p>
+<p class="caption">(\#fig:tidy-spread)Spreading `table2` makes it tidy</p>
 </div>
 
 As you might have guessed from the common `key` and `value` arguments, `spread()` and `gather()` are complements. `gather()` makes wide tables narrower and longer; `spread()` makes long tables shorter and wider.
@@ -357,7 +345,7 @@ As you might have guessed from the common `key` and `value` arguments, `spread()
     ```
     
     ```
-    ## Error in combine_vars(vars, ind_list): Position must be between 0 and n
+    ## Error in inds_combine(.vars, ind_list): Position must be between 0 and n
     ```
 
 1.  Why does spreading this tibble fail? How could you add a new column to fix
@@ -402,7 +390,7 @@ table3
 ```
 
 ```
-## # A tibble: 6 × 3
+## # A tibble: 6 x 3
 ##       country  year              rate
 ## *       <chr> <int>             <chr>
 ## 1 Afghanistan  1999      745/19987071
@@ -422,7 +410,7 @@ table3 %>%
 ```
 
 ```
-## # A tibble: 6 × 4
+## # A tibble: 6 x 4
 ##       country  year  cases population
 ## *       <chr> <int>  <chr>      <chr>
 ## 1 Afghanistan  1999    745   19987071
@@ -435,7 +423,7 @@ table3 %>%
 
 <div class="figure">
 <img src="fig/tidy-17.png" alt="Separating `table3` makes it tidy" width="75%" />
-<p class="caption">Separating `table3` makes it tidy</p>
+<p class="caption">(\#fig:tidy-separate)Separating `table3` makes it tidy</p>
 </div>
 
 By default, `separate()` will split values wherever it sees a non-alphanumeric character (i.e. a character that isn't a number or letter). For example, in the code above, `separate()` split the values of `rate` at the forward slash characters. If you wish to use a specific character to separate a column, you can pass the character to the `sep` argument of `separate()`. For example, we could rewrite the code above as:
@@ -457,7 +445,7 @@ table3 %>%
 ```
 
 ```
-## # A tibble: 6 × 4
+## # A tibble: 6 x 4
 ##       country  year  cases population
 ## *       <chr> <int>  <int>      <int>
 ## 1 Afghanistan  1999    745   19987071
@@ -479,7 +467,7 @@ table3 %>%
 ```
 
 ```
-## # A tibble: 6 × 4
+## # A tibble: 6 x 4
 ##       country century  year              rate
 ## *       <chr>   <chr> <chr>             <chr>
 ## 1 Afghanistan      19    99      745/19987071
@@ -496,7 +484,7 @@ table3 %>%
 
 <div class="figure">
 <img src="fig/tidy-18.png" alt="Uniting `table5` makes it tidy" width="75%" />
-<p class="caption">Uniting `table5` makes it tidy</p>
+<p class="caption">(\#fig:tidy-unite)Uniting `table5` makes it tidy</p>
 </div>
 
 We can use `unite()` to rejoin the *century* and *year* columns that we created in the last example. That data is saved as `tidyr::table5`. `unite()` takes a data frame, the name of the new variable to create, and a set of columns to combine, again specified in `dplyr::select()` style:
@@ -508,7 +496,7 @@ table5 %>%
 ```
 
 ```
-## # A tibble: 6 × 3
+## # A tibble: 6 x 3
 ##       country   new              rate
 ## *       <chr> <chr>             <chr>
 ## 1 Afghanistan 19_99      745/19987071
@@ -528,7 +516,7 @@ table5 %>%
 ```
 
 ```
-## # A tibble: 6 × 3
+## # A tibble: 6 x 3
 ##       country   new              rate
 ## *       <chr> <chr>             <chr>
 ## 1 Afghanistan  1999      745/19987071

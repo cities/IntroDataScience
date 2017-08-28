@@ -6,9 +6,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Introduction to Data Science for Transportation Researchers, Planners, and Engineers</title>
-  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="Introduction to Data Science for Transportation Researchers, Planners, and Engineers">
-  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
 
   <meta property="og:title" content="Introduction to Data Science for Transportation Researchers, Planners, and Engineers" />
   <meta property="og:type" content="book" />
@@ -26,7 +25,7 @@
 <meta name="author" content="Liming Wang">
 
 
-<meta name="date" content="2017-03-16">
+<meta name="date" content="2017-08-28">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -35,7 +34,6 @@
   
 <link rel="prev" href="version-control-with-git.html">
 <link rel="next" href="tidy.html">
-
 <script src="book_assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="book_assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -92,6 +90,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </head>
 
 <body>
+
 
 
   <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
@@ -401,19 +400,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   <span class="dt">d =</span> <span class="kw">runif</span>(<span class="fl">1e3</span>),
   <span class="dt">e =</span> <span class="kw">sample</span>(letters, <span class="fl">1e3</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)
 )</code></pre></div>
-<pre><code>## # A tibble: 1,000 × 5
-##                      a          b     c          d     e
-##                 &lt;dttm&gt;     &lt;date&gt; &lt;int&gt;      &lt;dbl&gt; &lt;chr&gt;
-## 1  2017-03-16 15:56:28 2017-03-21     1 0.79600240     c
-## 2  2017-03-16 17:02:16 2017-04-07     2 0.77071492     q
-## 3  2017-03-17 09:04:08 2017-04-09     3 0.11800331     y
-## 4  2017-03-16 19:26:51 2017-04-09     4 0.31613074     v
-## 5  2017-03-16 13:53:39 2017-04-03     5 0.46805264     h
-## 6  2017-03-16 20:32:02 2017-04-14     6 0.33546791     d
-## 7  2017-03-17 06:11:20 2017-04-12     7 0.04347986     i
-## 8  2017-03-16 16:18:06 2017-03-31     8 0.58487183     e
-## 9  2017-03-17 12:05:08 2017-04-07     9 0.48123184     r
-## 10 2017-03-16 17:20:04 2017-04-14    10 0.40137525     d
+<pre><code>## # A tibble: 1,000 x 5
+##                      a          b     c         d     e
+##                 &lt;dttm&gt;     &lt;date&gt; &lt;int&gt;     &lt;dbl&gt; &lt;chr&gt;
+##  1 2017-08-28 13:08:41 2017-08-31     1 0.6251640     g
+##  2 2017-08-29 06:36:53 2017-09-06     2 0.3261939     q
+##  3 2017-08-29 05:36:42 2017-09-05     3 0.7160176     t
+##  4 2017-08-29 07:43:20 2017-09-02     4 0.6669030     u
+##  5 2017-08-28 13:54:07 2017-08-29     5 0.9129557     v
+##  6 2017-08-28 22:09:18 2017-08-28     6 0.7092543     s
+##  7 2017-08-28 20:19:16 2017-08-30     7 0.5153225     f
+##  8 2017-08-29 06:59:50 2017-09-04     8 0.8647844     k
+##  9 2017-08-28 15:44:25 2017-09-25     9 0.9054146     k
+## 10 2017-08-28 14:36:07 2017-09-21    10 0.8165747     d
 ## # ... with 990 more rows</code></pre>
 <p><code>lubridate</code> is a R package for date and time. You need to install the package if you want to replicate the above code on your own computer.</p>
 <p>Tibbles are designed so that you don’t accidentally overwhelm your console when you print large data frames. But sometimes you need more output than the default display. There are a few options that can help.</p>
@@ -438,12 +437,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <span class="co"># Extract by name</span>
 df$x</code></pre></div>
-<pre><code>## [1] 0.6505865 0.9445197 0.9130936 0.5781009 0.5546825</code></pre>
+<pre><code>## [1] 0.49129756 0.76710001 0.55597415 0.07279459 0.46310168</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df[[<span class="st">&quot;x&quot;</span>]]</code></pre></div>
-<pre><code>## [1] 0.6505865 0.9445197 0.9130936 0.5781009 0.5546825</code></pre>
+<pre><code>## [1] 0.49129756 0.76710001 0.55597415 0.07279459 0.46310168</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Extract by column position</span>
 df[[<span class="dv">1</span>]]</code></pre></div>
-<pre><code>## [1] 0.6505865 0.9445197 0.9130936 0.5781009 0.5546825</code></pre>
+<pre><code>## [1] 0.49129756 0.76710001 0.55597415 0.07279459 0.46310168</code></pre>
 <!-- To use these in a pipe, you'll need to use the special placeholder `.`: -->
 <!-- ```{r} -->
 <!-- df %>% .$x -->
@@ -494,18 +493,18 @@ df[[<span class="dv">1</span>]]</code></pre></div>
 ##   race = col_character()
 ## )</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">heights</code></pre></div>
-<pre><code>## # A tibble: 1,192 × 6
+<pre><code>## # A tibble: 1,192 x 6
 ##     earn   height    sex    ed   age     race
 ##    &lt;dbl&gt;    &lt;dbl&gt;  &lt;chr&gt; &lt;int&gt; &lt;int&gt;    &lt;chr&gt;
-## 1  50000 74.42444   male    16    45    white
-## 2  60000 65.53754 female    16    58    white
-## 3  30000 63.62920 female    16    29    white
-## 4  50000 63.10856 female    16    91    other
-## 5  51000 63.40248 female    17    39    white
-## 6   9000 64.39951 female    15    26    white
-## 7  29000 61.65633 female    12    49    white
-## 8  32000 72.69854   male    17    46    white
-## 9   2000 72.03947   male    15    21 hispanic
+##  1 50000 74.42444   male    16    45    white
+##  2 60000 65.53754 female    16    58    white
+##  3 30000 63.62920 female    16    29    white
+##  4 50000 63.10856 female    16    91    other
+##  5 51000 63.40248 female    17    39    white
+##  6  9000 64.39951 female    15    26    white
+##  7 29000 61.65633 female    12    49    white
+##  8 32000 72.69854   male    17    46    white
+##  9  2000 72.03947   male    15    21 hispanic
 ## 10 27000 72.23493   male    12    26    white
 ## # ... with 1,182 more rows</code></pre>
 <p>When you run <code>read_csv()</code> it prints out a column specification that gives the name and type of each column. That’s an important part of readr, which we’ll come back to in [parsing a file].</p>
@@ -513,7 +512,7 @@ df[[<span class="dv">1</span>]]</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">read_csv</span>(<span class="st">&quot;a,b,c</span>
 <span class="st">1,2,3</span>
 <span class="st">4,5,6&quot;</span>)</code></pre></div>
-<pre><code>## # A tibble: 2 × 3
+<pre><code>## # A tibble: 2 x 3
 ##       a     b     c
 ##   &lt;int&gt; &lt;int&gt; &lt;int&gt;
 ## 1     1     2     3
@@ -525,20 +524,20 @@ df[[<span class="dv">1</span>]]</code></pre></div>
 <span class="st">  The second line of metadata</span>
 <span class="st">  x,y,z</span>
 <span class="st">  1,2,3&quot;</span>, <span class="dt">skip =</span> <span class="dv">2</span>)</code></pre></div>
-<pre><code>## # A tibble: 1 × 3
+<pre><code>## # A tibble: 1 x 3
 ##       x     y     z
 ##   &lt;int&gt; &lt;int&gt; &lt;int&gt;
 ## 1     1     2     3</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">read_csv</span>(<span class="st">&quot;# A comment I want to skip</span>
 <span class="st">  x,y,z</span>
 <span class="st">  1,2,3&quot;</span>, <span class="dt">comment =</span> <span class="st">&quot;#&quot;</span>)</code></pre></div>
-<pre><code>## # A tibble: 1 × 3
+<pre><code>## # A tibble: 1 x 3
 ##       x     y     z
 ##   &lt;int&gt; &lt;int&gt; &lt;int&gt;
 ## 1     1     2     3</code></pre></li>
 <li><p>The data might not have column names. You can use <code>col_names = FALSE</code> to tell <code>read_csv()</code> not to treat the first row as headings, and instead label them sequentially from <code>X1</code> to <code>Xn</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">read_csv</span>(<span class="st">&quot;1,2,3</span><span class="ch">\n</span><span class="st">4,5,6&quot;</span>, <span class="dt">col_names =</span> <span class="ot">FALSE</span>)</code></pre></div>
-<pre><code>## # A tibble: 2 × 3
+<pre><code>## # A tibble: 2 x 3
 ##      X1    X2    X3
 ##   &lt;int&gt; &lt;int&gt; &lt;int&gt;
 ## 1     1     2     3
@@ -546,7 +545,7 @@ df[[<span class="dv">1</span>]]</code></pre></div>
 <p>(<code>&quot;\n&quot;</code> is a convenient shortcut for adding a new line. You’ll learn more about it and other types of string escape in [string basics].)</p>
 <p>Alternatively you can pass <code>col_names</code> a character vector which will be used as the column names:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">read_csv</span>(<span class="st">&quot;1,2,3</span><span class="ch">\n</span><span class="st">4,5,6&quot;</span>, <span class="dt">col_names =</span> <span class="kw">c</span>(<span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>, <span class="st">&quot;z&quot;</span>))</code></pre></div>
-<pre><code>## # A tibble: 2 × 3
+<pre><code>## # A tibble: 2 x 3
 ##       x     y     z
 ##   &lt;int&gt; &lt;int&gt; &lt;int&gt;
 ## 1     1     2     3
@@ -554,7 +553,7 @@ df[[<span class="dv">1</span>]]</code></pre></div>
 </ol>
 <p>Another option that commonly needs tweaking is <code>na</code>: this specifies the value (or values) that are used to represent missing values in your file:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">read_csv</span>(<span class="st">&quot;a,b,c</span><span class="ch">\n</span><span class="st">1,2,.&quot;</span>, <span class="dt">na =</span> <span class="st">&quot;.&quot;</span>)</code></pre></div>
-<pre><code>## # A tibble: 1 × 3
+<pre><code>## # A tibble: 1 x 3
 ##       a     b     c
 ##   &lt;int&gt; &lt;int&gt; &lt;chr&gt;
 ## 1     1     2  &lt;NA&gt;</code></pre>
@@ -599,34 +598,34 @@ df[[<span class="dv">1</span>]]</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write_csv</span>(heights, <span class="st">&quot;results/heights.csv&quot;</span>)</code></pre></div>
 <p>Note that the type information is lost when you save to csv:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">heights</code></pre></div>
-<pre><code>## # A tibble: 1,192 × 6
+<pre><code>## # A tibble: 1,192 x 6
 ##     earn   height    sex    ed   age     race
 ##    &lt;dbl&gt;    &lt;dbl&gt;  &lt;chr&gt; &lt;int&gt; &lt;int&gt;    &lt;chr&gt;
-## 1  50000 74.42444   male    16    45    white
-## 2  60000 65.53754 female    16    58    white
-## 3  30000 63.62920 female    16    29    white
-## 4  50000 63.10856 female    16    91    other
-## 5  51000 63.40248 female    17    39    white
-## 6   9000 64.39951 female    15    26    white
-## 7  29000 61.65633 female    12    49    white
-## 8  32000 72.69854   male    17    46    white
-## 9   2000 72.03947   male    15    21 hispanic
+##  1 50000 74.42444   male    16    45    white
+##  2 60000 65.53754 female    16    58    white
+##  3 30000 63.62920 female    16    29    white
+##  4 50000 63.10856 female    16    91    other
+##  5 51000 63.40248 female    17    39    white
+##  6  9000 64.39951 female    15    26    white
+##  7 29000 61.65633 female    12    49    white
+##  8 32000 72.69854   male    17    46    white
+##  9  2000 72.03947   male    15    21 hispanic
 ## 10 27000 72.23493   male    12    26    white
 ## # ... with 1,182 more rows</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write_csv</span>(heights, <span class="st">&quot;results/heights-2.csv&quot;</span>)
 <span class="kw">read_csv</span>(<span class="st">&quot;results/heights-2.csv&quot;</span>)</code></pre></div>
-<pre><code>## # A tibble: 1,192 × 6
+<pre><code>## # A tibble: 1,192 x 6
 ##     earn   height    sex    ed   age     race
 ##    &lt;dbl&gt;    &lt;dbl&gt;  &lt;chr&gt; &lt;int&gt; &lt;int&gt;    &lt;chr&gt;
-## 1  50000 74.42444   male    16    45    white
-## 2  60000 65.53754 female    16    58    white
-## 3  30000 63.62920 female    16    29    white
-## 4  50000 63.10856 female    16    91    other
-## 5  51000 63.40248 female    17    39    white
-## 6   9000 64.39951 female    15    26    white
-## 7  29000 61.65633 female    12    49    white
-## 8  32000 72.69854   male    17    46    white
-## 9   2000 72.03947   male    15    21 hispanic
+##  1 50000 74.42444   male    16    45    white
+##  2 60000 65.53754 female    16    58    white
+##  3 30000 63.62920 female    16    29    white
+##  4 50000 63.10856 female    16    91    other
+##  5 51000 63.40248 female    17    39    white
+##  6  9000 64.39951 female    15    26    white
+##  7 29000 61.65633 female    12    49    white
+##  8 32000 72.69854   male    17    46    white
+##  9  2000 72.03947   male    15    21 hispanic
 ## 10 27000 72.23493   male    12    26    white
 ## # ... with 1,182 more rows</code></pre>
 <p>This makes CSVs a little unreliable for caching interim results—you need to recreate the column specification every time you load in. There are two alternatives:</p>
@@ -634,18 +633,18 @@ df[[<span class="dv">1</span>]]</code></pre></div>
 <li><p><code>write_rds()</code> and <code>read_rds()</code> are uniform wrappers around the base functions <code>readRDS()</code> and <code>saveRDS()</code>. These store data in R’s custom binary format called RDS:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write_rds</span>(heights, <span class="st">&quot;results/heights.rds&quot;</span>)
 <span class="kw">read_rds</span>(<span class="st">&quot;results/heights.rds&quot;</span>)</code></pre></div>
-<pre><code>## # A tibble: 1,192 × 6
+<pre><code>## # A tibble: 1,192 x 6
 ##     earn   height    sex    ed   age     race
 ##    &lt;dbl&gt;    &lt;dbl&gt;  &lt;chr&gt; &lt;int&gt; &lt;int&gt;    &lt;chr&gt;
-## 1  50000 74.42444   male    16    45    white
-## 2  60000 65.53754 female    16    58    white
-## 3  30000 63.62920 female    16    29    white
-## 4  50000 63.10856 female    16    91    other
-## 5  51000 63.40248 female    17    39    white
-## 6   9000 64.39951 female    15    26    white
-## 7  29000 61.65633 female    12    49    white
-## 8  32000 72.69854   male    17    46    white
-## 9   2000 72.03947   male    15    21 hispanic
+##  1 50000 74.42444   male    16    45    white
+##  2 60000 65.53754 female    16    58    white
+##  3 30000 63.62920 female    16    29    white
+##  4 50000 63.10856 female    16    91    other
+##  5 51000 63.40248 female    17    39    white
+##  6  9000 64.39951 female    15    26    white
+##  7 29000 61.65633 female    12    49    white
+##  8 32000 72.69854   male    17    46    white
+##  9  2000 72.03947   male    15    21 hispanic
 ## 10 27000 72.23493   male    12    26    white
 ## # ... with 1,182 more rows</code></pre></li>
 <li><p>The feather package implements a fast binary file format that can be shared across programming languages:</p>
@@ -673,8 +672,9 @@ df[[<span class="dv">1</span>]]</code></pre></div>
         </div>
       </div>
 <a href="version-control-with-git.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="tidy.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
-
+<a href="tidy.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
 <script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>
 <script src="book_assets/gitbook-2.6.7/js/lunr.js"></script>
 <script src="book_assets/gitbook-2.6.7/js/plugin-search.js"></script>
@@ -717,7 +717,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(script.src))
       script.src  = script.src.replace(/^https?:/, '');
     document.getElementsByTagName("head")[0].appendChild(script);

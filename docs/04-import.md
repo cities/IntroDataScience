@@ -48,19 +48,19 @@ tibble(
 ```
 
 ```
-## # A tibble: 1,000 × 5
-##                      a          b     c          d     e
-##                 <dttm>     <date> <int>      <dbl> <chr>
-## 1  2017-03-16 15:56:28 2017-03-21     1 0.79600240     c
-## 2  2017-03-16 17:02:16 2017-04-07     2 0.77071492     q
-## 3  2017-03-17 09:04:08 2017-04-09     3 0.11800331     y
-## 4  2017-03-16 19:26:51 2017-04-09     4 0.31613074     v
-## 5  2017-03-16 13:53:39 2017-04-03     5 0.46805264     h
-## 6  2017-03-16 20:32:02 2017-04-14     6 0.33546791     d
-## 7  2017-03-17 06:11:20 2017-04-12     7 0.04347986     i
-## 8  2017-03-16 16:18:06 2017-03-31     8 0.58487183     e
-## 9  2017-03-17 12:05:08 2017-04-07     9 0.48123184     r
-## 10 2017-03-16 17:20:04 2017-04-14    10 0.40137525     d
+## # A tibble: 1,000 x 5
+##                      a          b     c         d     e
+##                 <dttm>     <date> <int>     <dbl> <chr>
+##  1 2017-08-28 13:08:41 2017-08-31     1 0.6251640     g
+##  2 2017-08-29 06:36:53 2017-09-06     2 0.3261939     q
+##  3 2017-08-29 05:36:42 2017-09-05     3 0.7160176     t
+##  4 2017-08-29 07:43:20 2017-09-02     4 0.6669030     u
+##  5 2017-08-28 13:54:07 2017-08-29     5 0.9129557     v
+##  6 2017-08-28 22:09:18 2017-08-28     6 0.7092543     s
+##  7 2017-08-28 20:19:16 2017-08-30     7 0.5153225     f
+##  8 2017-08-29 06:59:50 2017-09-04     8 0.8647844     k
+##  9 2017-08-28 15:44:25 2017-09-25     9 0.9054146     k
+## 10 2017-08-28 14:36:07 2017-09-21    10 0.8165747     d
 ## # ... with 990 more rows
 ```
 
@@ -109,7 +109,7 @@ df$x
 ```
 
 ```
-## [1] 0.6505865 0.9445197 0.9130936 0.5781009 0.5546825
+## [1] 0.49129756 0.76710001 0.55597415 0.07279459 0.46310168
 ```
 
 ```r
@@ -117,7 +117,7 @@ df[["x"]]
 ```
 
 ```
-## [1] 0.6505865 0.9445197 0.9130936 0.5781009 0.5546825
+## [1] 0.49129756 0.76710001 0.55597415 0.07279459 0.46310168
 ```
 
 ```r
@@ -126,7 +126,7 @@ df[[1]]
 ```
 
 ```
-## [1] 0.6505865 0.9445197 0.9130936 0.5781009 0.5546825
+## [1] 0.49129756 0.76710001 0.55597415 0.07279459 0.46310168
 ```
 
 <!-- To use these in a pipe, you'll need to use the special placeholder `.`: -->
@@ -220,18 +220,18 @@ heights
 ```
 
 ```
-## # A tibble: 1,192 × 6
+## # A tibble: 1,192 x 6
 ##     earn   height    sex    ed   age     race
 ##    <dbl>    <dbl>  <chr> <int> <int>    <chr>
-## 1  50000 74.42444   male    16    45    white
-## 2  60000 65.53754 female    16    58    white
-## 3  30000 63.62920 female    16    29    white
-## 4  50000 63.10856 female    16    91    other
-## 5  51000 63.40248 female    17    39    white
-## 6   9000 64.39951 female    15    26    white
-## 7  29000 61.65633 female    12    49    white
-## 8  32000 72.69854   male    17    46    white
-## 9   2000 72.03947   male    15    21 hispanic
+##  1 50000 74.42444   male    16    45    white
+##  2 60000 65.53754 female    16    58    white
+##  3 30000 63.62920 female    16    29    white
+##  4 50000 63.10856 female    16    91    other
+##  5 51000 63.40248 female    17    39    white
+##  6  9000 64.39951 female    15    26    white
+##  7 29000 61.65633 female    12    49    white
+##  8 32000 72.69854   male    17    46    white
+##  9  2000 72.03947   male    15    21 hispanic
 ## 10 27000 72.23493   male    12    26    white
 ## # ... with 1,182 more rows
 ```
@@ -248,7 +248,7 @@ read_csv("a,b,c
 ```
 
 ```
-## # A tibble: 2 × 3
+## # A tibble: 2 x 3
 ##       a     b     c
 ##   <int> <int> <int>
 ## 1     1     2     3
@@ -270,7 +270,7 @@ In both cases `read_csv()` uses the first line of the data for the column names,
     ```
     
     ```
-    ## # A tibble: 1 × 3
+    ## # A tibble: 1 x 3
     ##       x     y     z
     ##   <int> <int> <int>
     ## 1     1     2     3
@@ -283,7 +283,7 @@ In both cases `read_csv()` uses the first line of the data for the column names,
     ```
     
     ```
-    ## # A tibble: 1 × 3
+    ## # A tibble: 1 x 3
     ##       x     y     z
     ##   <int> <int> <int>
     ## 1     1     2     3
@@ -299,7 +299,7 @@ In both cases `read_csv()` uses the first line of the data for the column names,
     ```
     
     ```
-    ## # A tibble: 2 × 3
+    ## # A tibble: 2 x 3
     ##      X1    X2    X3
     ##   <int> <int> <int>
     ## 1     1     2     3
@@ -318,7 +318,7 @@ In both cases `read_csv()` uses the first line of the data for the column names,
     ```
     
     ```
-    ## # A tibble: 2 × 3
+    ## # A tibble: 2 x 3
     ##       x     y     z
     ##   <int> <int> <int>
     ## 1     1     2     3
@@ -333,7 +333,7 @@ read_csv("a,b,c\n1,2,.", na = ".")
 ```
 
 ```
-## # A tibble: 1 × 3
+## # A tibble: 1 x 3
 ##       a     b     c
 ##   <int> <int> <chr>
 ## 1     1     2  <NA>
@@ -423,18 +423,18 @@ heights
 ```
 
 ```
-## # A tibble: 1,192 × 6
+## # A tibble: 1,192 x 6
 ##     earn   height    sex    ed   age     race
 ##    <dbl>    <dbl>  <chr> <int> <int>    <chr>
-## 1  50000 74.42444   male    16    45    white
-## 2  60000 65.53754 female    16    58    white
-## 3  30000 63.62920 female    16    29    white
-## 4  50000 63.10856 female    16    91    other
-## 5  51000 63.40248 female    17    39    white
-## 6   9000 64.39951 female    15    26    white
-## 7  29000 61.65633 female    12    49    white
-## 8  32000 72.69854   male    17    46    white
-## 9   2000 72.03947   male    15    21 hispanic
+##  1 50000 74.42444   male    16    45    white
+##  2 60000 65.53754 female    16    58    white
+##  3 30000 63.62920 female    16    29    white
+##  4 50000 63.10856 female    16    91    other
+##  5 51000 63.40248 female    17    39    white
+##  6  9000 64.39951 female    15    26    white
+##  7 29000 61.65633 female    12    49    white
+##  8 32000 72.69854   male    17    46    white
+##  9  2000 72.03947   male    15    21 hispanic
 ## 10 27000 72.23493   male    12    26    white
 ## # ... with 1,182 more rows
 ```
@@ -445,18 +445,18 @@ read_csv("results/heights-2.csv")
 ```
 
 ```
-## # A tibble: 1,192 × 6
+## # A tibble: 1,192 x 6
 ##     earn   height    sex    ed   age     race
 ##    <dbl>    <dbl>  <chr> <int> <int>    <chr>
-## 1  50000 74.42444   male    16    45    white
-## 2  60000 65.53754 female    16    58    white
-## 3  30000 63.62920 female    16    29    white
-## 4  50000 63.10856 female    16    91    other
-## 5  51000 63.40248 female    17    39    white
-## 6   9000 64.39951 female    15    26    white
-## 7  29000 61.65633 female    12    49    white
-## 8  32000 72.69854   male    17    46    white
-## 9   2000 72.03947   male    15    21 hispanic
+##  1 50000 74.42444   male    16    45    white
+##  2 60000 65.53754 female    16    58    white
+##  3 30000 63.62920 female    16    29    white
+##  4 50000 63.10856 female    16    91    other
+##  5 51000 63.40248 female    17    39    white
+##  6  9000 64.39951 female    15    26    white
+##  7 29000 61.65633 female    12    49    white
+##  8 32000 72.69854   male    17    46    white
+##  9  2000 72.03947   male    15    21 hispanic
 ## 10 27000 72.23493   male    12    26    white
 ## # ... with 1,182 more rows
 ```
@@ -474,18 +474,18 @@ This makes CSVs a little unreliable for caching interim results---you need to re
     ```
     
     ```
-    ## # A tibble: 1,192 × 6
+    ## # A tibble: 1,192 x 6
     ##     earn   height    sex    ed   age     race
     ##    <dbl>    <dbl>  <chr> <int> <int>    <chr>
-    ## 1  50000 74.42444   male    16    45    white
-    ## 2  60000 65.53754 female    16    58    white
-    ## 3  30000 63.62920 female    16    29    white
-    ## 4  50000 63.10856 female    16    91    other
-    ## 5  51000 63.40248 female    17    39    white
-    ## 6   9000 64.39951 female    15    26    white
-    ## 7  29000 61.65633 female    12    49    white
-    ## 8  32000 72.69854   male    17    46    white
-    ## 9   2000 72.03947   male    15    21 hispanic
+    ##  1 50000 74.42444   male    16    45    white
+    ##  2 60000 65.53754 female    16    58    white
+    ##  3 30000 63.62920 female    16    29    white
+    ##  4 50000 63.10856 female    16    91    other
+    ##  5 51000 63.40248 female    17    39    white
+    ##  6  9000 64.39951 female    15    26    white
+    ##  7 29000 61.65633 female    12    49    white
+    ##  8 32000 72.69854   male    17    46    white
+    ##  9  2000 72.03947   male    15    21 hispanic
     ## 10 27000 72.23493   male    12    26    white
     ## # ... with 1,182 more rows
     ```
