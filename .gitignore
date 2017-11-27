@@ -54,3 +54,5 @@ TEST
 _main_files
 _bookdown_files
 docs/BAK
+docs/_main.docx
+*.rds
