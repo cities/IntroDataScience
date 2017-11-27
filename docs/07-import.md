@@ -1,10 +1,8 @@
-
-
-# Import
+# Data importing
 
 ## Readings
 
-1. [R4DS] Chapter 10, 11
+1. R4DS [Chapter 10](http://r4ds.had.co.nz/tibbles.html), [Chapter 11](http://r4ds.had.co.nz/data-import.html)
 
 ## Tibbles vs. data.frame
 
@@ -22,12 +20,35 @@ Data frames -- unlike general arrays or, specifically, matrices in R -- can hold
 
 In [Programming with R] we use `data.frame` in base R as our main data structure. From now on we will start to use `tibble` and other functions in  [`tidyverse`](https://github.com/hadley/tidyverse) as much as possible. This will provide a special type of data frame called a "tibble" that has nice default printing behavior, among other benefits such as speed performance and better default behavior.
 
-First, install and load tidyverse packages if you haven't yet:
+First, install tidyverse packages if you haven't yet, you only need to do this once on your laptop:
 
 
 ```r
 install.packages("tidyverse")
+```
+
+Then load the tidyverse packages:
+
+```r
 library(tidyverse)
+```
+
+```
+## Loading tidyverse: ggplot2
+## Loading tidyverse: tibble
+## Loading tidyverse: tidyr
+## Loading tidyverse: readr
+## Loading tidyverse: purrr
+## Loading tidyverse: dplyr
+```
+
+```
+## Conflicts with tidy packages ----------------------------------------------
+```
+
+```
+## filter(): dplyr, stats
+## lag():    dplyr, stats
 ```
 
 There are two main differences in the usage of a tibble vs. a classic `data.frame`: printing and subsetting.
@@ -49,18 +70,18 @@ tibble(
 
 ```
 ## # A tibble: 1,000 x 5
-##                      a          b     c          d     e
-##                 <dttm>     <date> <int>      <dbl> <chr>
-##  1 2017-11-27 03:36:43 2017-11-29     1 0.45974954     k
-##  2 2017-11-27 18:21:43 2017-12-01     2 0.02470095     v
-##  3 2017-11-27 19:42:48 2017-11-26     3 0.30254975     j
-##  4 2017-11-27 18:31:04 2017-12-25     4 0.40509509     i
-##  5 2017-11-27 03:41:08 2017-11-29     5 0.53665002     c
-##  6 2017-11-27 19:47:56 2017-12-06     6 0.32244557     i
-##  7 2017-11-26 23:20:22 2017-11-26     7 0.78307251     e
-##  8 2017-11-27 17:18:42 2017-12-23     8 0.53158883     d
-##  9 2017-11-26 22:18:52 2017-11-26     9 0.06531483     k
-## 10 2017-11-27 10:42:00 2017-12-05    10 0.77263096     w
+##                      a          b     c         d     e
+##                 <dttm>     <date> <int>     <dbl> <chr>
+##  1 2017-11-27 09:25:08 2017-12-07     1 0.3691793     i
+##  2 2017-11-27 12:27:02 2017-12-11     2 0.8357064     w
+##  3 2017-11-26 23:42:29 2017-12-14     3 0.3489976     a
+##  4 2017-11-27 05:23:20 2017-12-16     4 0.2364787     h
+##  5 2017-11-26 23:10:14 2017-12-19     5 0.5347933     j
+##  6 2017-11-27 01:51:47 2017-12-10     6 0.1535821     k
+##  7 2017-11-27 11:00:27 2017-12-16     7 0.4882053     o
+##  8 2017-11-27 11:04:42 2017-12-07     8 0.2242546     e
+##  9 2017-11-27 16:19:40 2017-12-13     9 0.6103028     a
+## 10 2017-11-27 04:15:50 2017-12-08    10 0.6990164     a
 ## # ... with 990 more rows
 ```
 
@@ -109,7 +130,7 @@ df$x
 ```
 
 ```
-## [1] 0.8274358 0.7709025 0.0776012 0.6567509 0.7675101
+## [1] 0.87235111 0.73370038 0.05790868 0.19026375 0.47509619
 ```
 
 ```r
@@ -117,7 +138,7 @@ df[["x"]]
 ```
 
 ```
-## [1] 0.8274358 0.7709025 0.0776012 0.6567509 0.7675101
+## [1] 0.87235111 0.73370038 0.05790868 0.19026375 0.47509619
 ```
 
 ```r
@@ -126,7 +147,7 @@ df[[1]]
 ```
 
 ```
-## [1] 0.8274358 0.7709025 0.0776012 0.6567509 0.7675101
+## [1] 0.87235111 0.73370038 0.05790868 0.19026375 0.47509619
 ```
 
 <!-- To use these in a pipe, you'll need to use the special placeholder `.`: -->
@@ -238,24 +259,7 @@ heights
 
 When you run `read_csv()` it prints out a column specification that gives the name and type of each column. That's an important part of readr, which we'll come back to in [parsing a file].
 
-You can also supply an inline csv file. This is useful for experimenting with readr and for creating reproducible examples to share with others:
-
-
-```r
-read_csv("a,b,c
-1,2,3
-4,5,6")
-```
-
-```
-## # A tibble: 2 x 3
-##       a     b     c
-##   <int> <int> <int>
-## 1     1     2     3
-## 2     4     5     6
-```
-
-In both cases `read_csv()` uses the first line of the data for the column names, which is a very common convention. There are two cases where you might want to tweak this behaviour:
+`read_csv()` uses the first line of the data for the column names, which is a very common convention. There are two cases where you might want to tweak this behaviour:
 
 1.  Sometimes there are a few lines of metadata at the top of the file. You can
     use `skip = n` to skip the first `n` lines; or use `comment = "#"` to drop
@@ -341,171 +345,18 @@ read_csv("a,b,c\n1,2,.", na = ".")
 
 This is all you need to know to read ~75% of CSV files that you'll encounter in practice. You can also easily adapt what you've learned to read tab separated files with `read_tsv()` and fixed width files with `read_fwf()`. To read in more challenging files, you'll need to learn more about how readr parses each column, turning them into R vectors.
 
-### Compared to base R
+## Exercise
 
-If you've used R before, you might wonder why we're not using `read.csv()`. There are a few good reasons to favour readr functions over the base equivalents:
+[Link to the README file for the data](https://github.com/cities/datascience2017/blob/master/data/README.md)
 
-* They are typically much faster (~10x) than their base equivalents.
-  Long running jobs have a progress bar, so you can see what's happening. 
-  If you're looking for raw speed, try `data.table::fread()`. It doesn't fit 
-  quite so well into the tidyverse, but it can be quite a bit faster.
+1. What is the difference between a data.frame and tibble? How do you convert between them?
+1. Import the bike counts data for [Hawthorne](https://github.com/cities/datascience2017/raw/master/data/Hawthorne%20Bridge%20daily%20bike%20counts%202012-2016%20082117.xlsx) and [Tilikum](https://github.com/cities/datascience2017/raw/master/data/Tilikum%20Crossing%20daily%20bike%20counts%202015-16%20082117.xlsx) in Microsoft Excel format;
+1. Import the [Portland weather data in csv format](https://github.com/cities/datascience2017/raw/master/data/NCDC-CDO-PortlandOR.csv);
+1. [Challenge] Import the [Portland weather data in fixed width format](https://github.com/cities/datascience2017/raw/master/data/NCDC-CDO-USC00356750.txt);
+1. For those already familiar with R, create a R script that loads, cleans, and visualizes the bike counts data as well as temperature and precipitation data (using data from Weather Station `USC00356750`); <p>
+for those not yet familiar with R, think about how you would go about doing these tasks with the software you are most comfortable with.
 
-* They produce tibbles, they don't convert character vectors to factors,
-  use row names, or munge the column names. These are common sources of
-  frustration with the base R functions.
-
-* They are more reproducible. Base R functions inherit some behaviour from
-  your operating system and environment variables, so import code that works 
-  on your computer might not work on someone else's.
-
-* If you're interested in learning more on under the hood magics of how `readr` 
-  parses file, [this section](http://r4ds.had.co.nz/data-import.html#parsing-a-vector) 
-  in R for Data Science provides an overview.
-  
-### Exercises
-
-1.  What function would you use to read a file where fields were separated with  
-    "|"?
-    
-1.  Apart from `file`, `skip`, and `comment`, what other arguments do
-    `read_csv()` and `read_tsv()` have in common?
-    
-1.  What are the most important arguments to `read_fwf()`?
-   
-1.  Sometimes strings in a CSV file contain commas. To prevent them from
-    causing problems they need to be surrounded by a quoting character, like
-    `"` or `'`. By convention, `read_csv()` assumes that the quoting
-    character will be `"`, and if you want to change it you'll need to
-    use `read_delim()` instead. What arguments do you need to specify
-    to read the following text into a data frame?
-    
-    
-    ```r
-    "x,y\n1,'a,b'"
-    ```
-    
-1.  Identify what is wrong with each of the following inline CSV files. 
-    What happens when you run the code?
-    
-    
-    ```r
-    read_csv("a,b\n1,2,3\n4,5,6")
-    read_csv("a,b,c\n1,2\n1,2,3,4")
-    read_csv("a,b\n\"1")
-    read_csv("a,b\n1,2\na,b")
-    read_csv("a;b\n1;3")
-    ```
-
-
-## Writing to a file
-
-readr also comes with two useful functions for writing data back to disk: `write_csv()` and `write_tsv()`. Both functions increase the chances of the output file being read back in correctly by:
-
-* Always encoding strings in UTF-8.
-  
-* Saving dates and date-times in ISO8601 format so they are easily
-  parsed elsewhere.
-
-If you want to export a csv file to Excel, use `write_excel_csv()` --- this writes a special character (a "byte order mark") at the start of the file which tells Excel that you're using the UTF-8 encoding.
-
-The most important arguments are `x` (the data frame to save), and `path` (the location to save it). You can also specify how missing values are written with `na`, and if you want to `append` to an existing file.
-
-
-```r
-write_csv(heights, "results/heights.csv")
-```
-
-Note that the type information is lost when you save to csv:
-
-
-```r
-heights
-```
-
-```
-## # A tibble: 1,192 x 6
-##     earn   height    sex    ed   age     race
-##    <dbl>    <dbl>  <chr> <int> <int>    <chr>
-##  1 50000 74.42444   male    16    45    white
-##  2 60000 65.53754 female    16    58    white
-##  3 30000 63.62920 female    16    29    white
-##  4 50000 63.10856 female    16    91    other
-##  5 51000 63.40248 female    17    39    white
-##  6  9000 64.39951 female    15    26    white
-##  7 29000 61.65633 female    12    49    white
-##  8 32000 72.69854   male    17    46    white
-##  9  2000 72.03947   male    15    21 hispanic
-## 10 27000 72.23493   male    12    26    white
-## # ... with 1,182 more rows
-```
-
-```r
-write_csv(heights, "results/heights-2.csv")
-read_csv("results/heights-2.csv")
-```
-
-```
-## # A tibble: 1,192 x 6
-##     earn   height    sex    ed   age     race
-##    <dbl>    <dbl>  <chr> <int> <int>    <chr>
-##  1 50000 74.42444   male    16    45    white
-##  2 60000 65.53754 female    16    58    white
-##  3 30000 63.62920 female    16    29    white
-##  4 50000 63.10856 female    16    91    other
-##  5 51000 63.40248 female    17    39    white
-##  6  9000 64.39951 female    15    26    white
-##  7 29000 61.65633 female    12    49    white
-##  8 32000 72.69854   male    17    46    white
-##  9  2000 72.03947   male    15    21 hispanic
-## 10 27000 72.23493   male    12    26    white
-## # ... with 1,182 more rows
-```
-
-This makes CSVs a little unreliable for caching interim results---you need to recreate the column specification every time you load in. There are two alternatives:
-
-1.  `write_rds()` and `read_rds()` are uniform wrappers around the base 
-    functions `readRDS()` and `saveRDS()`. These store data in R's custom 
-    binary format called RDS:
-    
-    
-    ```r
-    write_rds(heights, "results/heights.rds")
-    read_rds("results/heights.rds")
-    ```
-    
-    ```
-    ## # A tibble: 1,192 x 6
-    ##     earn   height    sex    ed   age     race
-    ##    <dbl>    <dbl>  <chr> <int> <int>    <chr>
-    ##  1 50000 74.42444   male    16    45    white
-    ##  2 60000 65.53754 female    16    58    white
-    ##  3 30000 63.62920 female    16    29    white
-    ##  4 50000 63.10856 female    16    91    other
-    ##  5 51000 63.40248 female    17    39    white
-    ##  6  9000 64.39951 female    15    26    white
-    ##  7 29000 61.65633 female    12    49    white
-    ##  8 32000 72.69854   male    17    46    white
-    ##  9  2000 72.03947   male    15    21 hispanic
-    ## 10 27000 72.23493   male    12    26    white
-    ## # ... with 1,182 more rows
-    ```
-  
-1.  The feather package implements a fast binary file format that can
-    be shared across programming languages:
-    
-    
-    ```r
-    install.packages("feather")
-    library(feather)
-    write_feather(heights, "results/heights.feather")
-    read_feather("results/heights.feather")
-    ```
-
-Feather tends to be faster than RDS and is usable outside of R. RDS supports list-columns (which we will come back to in [Model]); feather currently does not.
-
-
-
-## Learn More
+## Learning More
 
 * [R Data Import Tutorial](https://www.datacamp.com/community/tutorials/r-data-import-tutorial) by Data Camp
 * [Importing Data](http://uc-r.github.io/import) and [Exporting Data](http://uc-r.github.io/exporting) by R Programming @ UC.

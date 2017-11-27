@@ -1,3 +1,6 @@
 repo: https://github.com/cities/datascience
 output_dir: docs
 new_session: yes
+bibliography: datascience.bib
+biblio-style: apalike
+link-citations: yes

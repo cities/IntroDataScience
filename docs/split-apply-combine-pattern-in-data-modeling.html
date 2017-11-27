@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="version-control-with-git.html">
-<link rel="next" href="create-r-package.html">
+<link rel="prev" href="data-visulization-with-ggplot2.html">
+<link rel="next" href="where-to-go-from-here.html">
 <script src="book_assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="book_assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -290,308 +290,368 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="import" class="section level1">
-<h1><span class="header-section-number">5</span> Import</h1>
-<div id="readings" class="section level2">
-<h2><span class="header-section-number">5.1</span> Readings</h2>
+<div id="split-apply-combine-pattern-in-data-modeling" class="section level1">
+<h1><span class="header-section-number">13</span> Split-Apply-Combine Pattern in Data Modeling</h1>
+<div id="readings-7" class="section level2">
+<h2><span class="header-section-number">13.1</span> Readings</h2>
 <ol style="list-style-type: decimal">
-<li>[R4DS] Chapter 10, 11</li>
+<li><a href="https://www.jstatsoft.org/article/view/v040i01/v40i01.pdf">Wickham, Hadley, 2011. The Split-Apply-Combine Strategy for Data Analysis, Journal of Statistical Software, Volume 40, Issue 1.</a></li>
+<li><a href="http://r4ds.had.co.nz/many-models.html">R4DS Many Models</a></li>
+</ol>
+<p>If you are not familiar with the basic workflow of fitting models with R, you should review two chapters:</p>
+<ol style="list-style-type: decimal">
+<li><a href="http://r4ds.had.co.nz/model-basics.html">R4DS Model basics</a></li>
+<li><a href="http://r4ds.had.co.nz/model-building.html">R4DS Model building</a></li>
 </ol>
 </div>
-<div id="tibbles-vs.data.frame" class="section level2">
-<h2><span class="header-section-number">5.2</span> Tibbles vs. data.frame</h2>
-<div id="data-frames-are-awesome" class="section level3">
-<h3><span class="header-section-number">5.2.1</span> Data frames are awesome</h3>
-<p>Whenever you have rectangular, spreadsheet-y data, your default data receptacle in R is a data frame. Do not depart from this without good reason. Data frames are awesome because…</p>
+<div id="split-apply-combine" class="section level2">
+<h2><span class="header-section-number">13.2</span> Split-Apply-Combine</h2>
+<p><img alt="Split-Apply-Combine" style="border-width:0" src="http://swcarpentry.github.io/r-novice-gapminder/fig/12-plyr-fig1.png" /></p>
+<p>A common analytical pattern is to:</p>
 <ul>
-<li>Data frames package related variables neatly together,
-<ul>
-<li>keeping them in sync vis-a-vis row order</li>
-<li>applying any filtering of observations uniformly.</li>
-</ul></li>
-<li>Most functions for inference, modelling, and graphing are happy to be passed a data frame via a <code>data =</code> argument. This has been true in base R for a long time.</li>
-<li>The set of packages known as the <a href="https://github.com/hadley/tidyverse"><code>tidyverse</code></a> takes this one step further and explicitly prioritizes the processing of data frames. This includes popular packages like <code>dplyr</code> and <code>ggplot2</code>. In fact the tidyverse prioritizes a special flavor of data frame, called a “tibble.”</li>
+<li>split data into pieces,</li>
+<li>apply some function to each piece,</li>
+<li>combine the results back together again.</li>
 </ul>
-<p>Data frames – unlike general arrays or, specifically, matrices in R – can hold variables of different flavors, such as character data (subject ID or name), quantitative data (white blood cell count), and categorical information (treated vs. untreated). If you use homogenous structures, like matrices, for data analysis, you are likely to make the terrible mistake of spreading a dataset out over multiple, unlinked objects. Why? Because you can’t put character data, such as subject name, into the numeric matrix that holds white blood cell count. This fragmentation is a Bad Idea.</p>
-<p>In [Programming with R] we use <code>data.frame</code> in base R as our main data structure. From now on we will start to use <code>tibble</code> and other functions in <a href="https://github.com/hadley/tidyverse"><code>tidyverse</code></a> as much as possible. This will provide a special type of data frame called a “tibble” that has nice default printing behavior, among other benefits such as speed performance and better default behavior.</p>
-<p>First, install and load tidyverse packages if you haven’t yet:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)
+<p>Generally avoid using loops when you need to do Split-Apply-Combine, consider these alternatives instead:</p>
+<ol style="list-style-type: decimal">
+<li>Entry level: <code>dplyr::group_by()</code></li>
+<li>General approach: nesting</li>
+<li><code>*aplly</code> functions and <code>plyr</code> package (non-tidyverse solution)</li>
+</ol>
+</div>
+<div id="lesson-5" class="section level2">
+<h2><span class="header-section-number">13.3</span> Lesson</h2>
+<p>Lesson below is adapted from <a href="http://stat545.com/block024_group-nest-split-map.html">UBC’s STAT 545 by Professor Jenny Bryan</a>.</p>
+<div id="think-before-you-create-excerpts-of-your-data" class="section level3">
+<h3><span class="header-section-number">13.3.1</span> Think before you create excerpts of your data …</h3>
+<p>If you feel the urge to store a little snippet of your data:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">snippet &lt;-<span class="st"> </span>my_big_dataset <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(some_variable <span class="op">==</span><span class="st"> </span>some_value)
+## or
+snippet &lt;-<span class="st"> </span><span class="kw">subset</span>(my_big_dataset, some_variable <span class="op">==</span><span class="st"> </span>some_value)</code></pre></div>
+<p>Stop and ask yourself …</p>
+<blockquote>
+<p>Do I want to create mini datasets for each level of some factor (or unique combination of several factors) … in order to compute or graph something? If YES, <strong>use proper data aggregation techniques</strong> or facetting in <code>ggplot2</code> – <strong>don’t subset the data</strong>. Or, more realistically, only subset the data as a temporary measure while you develop your elegant code for computing on or visualizing these data subsets.</p>
+</blockquote>
+<p>If NO, then maybe you really do need to store a copy of a subset of the data. But seriously consider whether one of these strategies that subset at “compute time” will get the job done:</p>
+<ul>
+<li><p>Pass an intact data frame and use the <code>subset =</code> argument of a command. Many functions have it!</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## regress life expectancy on year for Canada
+canada_fit &lt;-
+<span class="st">  </span><span class="kw">lm</span>(lifeExp <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> gapminder, <span class="dt">subset =</span> country <span class="op">==</span><span class="st"> &quot;Canada&quot;</span>)</code></pre></div></li>
+<li><p>Pipe filtered data into a command. A very general solution.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## compare gdpPercap in Australia vs New Zealand
+oceania_ttest &lt;-<span class="st"> </span>gapminder <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(continent <span class="op">==</span><span class="st"> &quot;Asia&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">t.test</span>(gdpPercap <span class="op">~</span><span class="st"> </span>country, <span class="dt">data =</span> .)</code></pre></div></li>
+</ul>
+<p>Creating copies and excerpts of your data clutters up your workspace, script, and mind, often leading to confusion and mistakes. It can be useful during development, but try to eliminate this as you polish your analysis.</p>
+</div>
+<div id="prerequisite-1" class="section level3">
+<h3><span class="header-section-number">13.3.2</span> Prerequisite</h3>
+<p>Load tidyverse and gapminder:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(gapminder)
 <span class="kw">library</span>(tidyverse)</code></pre></div>
-<p>There are two main differences in the usage of a tibble vs. a classic <code>data.frame</code>: printing and subsetting.</p>
 </div>
-<div id="printing" class="section level3">
-<h3><span class="header-section-number">5.2.2</span> Printing</h3>
-<p>Tibbles have a refined print method that shows only the first 10 rows, and all the columns that fit on screen. This makes it much easier to work with large data. In addition to its name, each column reports its type, a nice feature borrowed from <code>str()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tibble</span>(
-  <span class="dt">a =</span> lubridate<span class="op">::</span><span class="kw">now</span>() <span class="op">+</span><span class="st"> </span><span class="kw">runif</span>(<span class="fl">1e3</span>) <span class="op">*</span><span class="st"> </span><span class="dv">86400</span>,
-  <span class="dt">b =</span> lubridate<span class="op">::</span><span class="kw">today</span>() <span class="op">+</span><span class="st"> </span><span class="kw">runif</span>(<span class="fl">1e3</span>) <span class="op">*</span><span class="st"> </span><span class="dv">30</span>,
-  <span class="dt">c =</span> <span class="dv">1</span><span class="op">:</span><span class="fl">1e3</span>,
-  <span class="dt">d =</span> <span class="kw">runif</span>(<span class="fl">1e3</span>),
-  <span class="dt">e =</span> <span class="kw">sample</span>(letters, <span class="fl">1e3</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)
-)</code></pre></div>
-<pre><code>## # A tibble: 1,000 x 5
-##                      a          b     c          d     e
-##                 &lt;dttm&gt;     &lt;date&gt; &lt;int&gt;      &lt;dbl&gt; &lt;chr&gt;
-##  1 2017-11-27 03:36:43 2017-11-29     1 0.45974954     k
-##  2 2017-11-27 18:21:43 2017-12-01     2 0.02470095     v
-##  3 2017-11-27 19:42:48 2017-11-26     3 0.30254975     j
-##  4 2017-11-27 18:31:04 2017-12-25     4 0.40509509     i
-##  5 2017-11-27 03:41:08 2017-11-29     5 0.53665002     c
-##  6 2017-11-27 19:47:56 2017-12-06     6 0.32244557     i
-##  7 2017-11-26 23:20:22 2017-11-26     7 0.78307251     e
-##  8 2017-11-27 17:18:42 2017-12-23     8 0.53158883     d
-##  9 2017-11-26 22:18:52 2017-11-26     9 0.06531483     k
-## 10 2017-11-27 10:42:00 2017-12-05    10 0.77263096     w
-## # ... with 990 more rows</code></pre>
-<p><code>lubridate</code> is a R package for date and time. You need to install the package if you want to replicate the above code on your own computer.</p>
-<p>Tibbles are designed so that you don’t accidentally overwhelm your console when you print large data frames. But sometimes you need more output than the default display. There are a few options that can help.</p>
-<p>First, you can explicitly <code>print()</code> the data frame and control the number of rows (<code>n</code>) and the <code>width</code> of the display. <code>width = Inf</code> will display all columns:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(mtcars, <span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">width =</span> <span class="ot">Inf</span>)</code></pre></div>
-<p>You can also control the default print behaviour by setting options:</p>
+<div id="split-apply-combine-1" class="section level3">
+<h3><span class="header-section-number">13.3.3</span> Split Apply Combine</h3>
+<p>A common analytical pattern is to</p>
 <ul>
-<li><p><code>options(tibble.print_max = n, tibble.print_min = m)</code>: if more than <code>m</code> rows, print only <code>n</code> rows. Use <code>options(dplyr.print_min = Inf)</code> to always show all rows.</p></li>
-<li><p>Use <code>options(tibble.width = Inf)</code> to always print all columns, regardless of the width of the screen.</p></li>
+<li>split data into pieces,</li>
+<li>apply some function to each piece,</li>
+<li>combine the results back together again.</li>
 </ul>
-<p>You can see a complete list of options by looking at the package help with <code>package?tibble</code>.</p>
-<p>A final option is to use RStudio’s built-in data viewer to get a scrollable view of the complete dataset. This is also often useful at the end of a long chain of manipulations.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">View</span>(mtcars)</code></pre></div>
+<p>R has specialized tools for this that are much nicer than whatever DIY approach you might be contemplating. Especially if it involves <code>for()</code> loops. There’s nothing inherently wrong or evil about <code>for()</code> loops, but you will spend alot of time and characters on bookkeeping tasks. That can be a great way to pilot a computation, because it is so blessedly concrete. But consider revisiting your implementation with higher-level data aggregation tools once you’ve established proof-of-principle.</p>
+<p>In base R, these are the “apply” functions, such as <code>apply()</code>, <code>aggregate()</code>, <code>tapply()</code>, and <code>by()</code>. We prefer to use similar tools from the tidyverse, due to a more consistent interface, analysis-friendly output, and a more concise way to describe what to compute. This article by Hadley Wickham – <a href="http://www.jstatsoft.org/v40/i01/paper">The split-apply-combine strategy for data analysis</a> – provides a good high-level overview, but know that the tidyverse approaches outlined here now supercede the plyr package described there.</p>
 </div>
-<div id="subsetting" class="section level3">
-<h3><span class="header-section-number">5.2.3</span> Subsetting</h3>
-<p>So far all the tools you’ve learned have worked with complete data frames. If you want to pull out a single variable, you need some new tools, <code>$</code> and <code>[[</code>. <code>[[</code> can extract by name or column position; <code>$</code> only extracts by name but is a little less typing.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">tibble</span>(
-  <span class="dt">x =</span> <span class="kw">runif</span>(<span class="dv">5</span>),
-  <span class="dt">y =</span> <span class="kw">rnorm</span>(<span class="dv">5</span>)
-)
+<div id="entry-level-dplyrgroup_by" class="section level3">
+<h3><span class="header-section-number">13.3.4</span> Entry level: <code>dplyr::group_by()</code></h3>
+<p>The most lightweight solution is given by <code>dplyr::group_by()</code>. <code>group_by()</code> adds some extra grouping structure to a data frame, based on levels of one or more categorical variables, but leaves the data frame intact. Then you can do group-wise computations using various functions in the tidyverse that automatically honor these groups.</p>
+<p>The main function here is <code>summarize()</code>, which collapses each group into a single row in a new group-summarized data frame.</p>
+<p>When does this break down? If anything you want to compute for a group is more complicated than, say, a single number, you have outgrown <code>dplyr::summarize()</code>. Example: getting the range of life expectancies seen for each continent doesn’t work with the code below.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gapminder <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(continent) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">range =</span> <span class="kw">range</span>(lifeExp))</code></pre></div>
+<p>Now, in this case, we could reframe this in a <code>summarize()</code>-friendly form, but that doesn’t work in general.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gapminder <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(continent) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize_each</span>(<span class="kw">funs</span>(min, max), lifeExp)</code></pre></div>
+<pre><code>## `summarise_each()` is deprecated.
+## Use `summarise_all()`, `summarise_at()` or `summarise_if()` instead.
+## To map `funs` over a selection of variables, use `summarise_at()`</code></pre>
+<pre><code>## # A tibble: 5 x 3
+##   continent lifeExp_min lifeExp_max
+##      &lt;fctr&gt;       &lt;dbl&gt;       &lt;dbl&gt;
+## 1    Africa      23.599      76.442
+## 2  Americas      37.579      80.653
+## 3      Asia      28.801      82.603
+## 4    Europe      43.585      81.757
+## 5   Oceania      69.120      81.235</code></pre>
+</div>
+<div id="general-approach-nesting" class="section level3">
+<h3><span class="header-section-number">13.3.5</span> General approach: nesting</h3>
+<p>We use <strong>nesting</strong> as an extension of <strong>grouping</strong> in order to support more general group-wise computation. The collapse to a single row per group happens right away here, unlike the simple grouping above. When you nest data, the non-grouping variables are packaged into group-specific data frames that are held in a special variable called a list-column. You then apply your computation to the components of this list, i.e. the data frames. List-columns take a little getting used to, but the payoff is huge.</p>
+<p>Let’s get ready to fit a model for each country in the Gapminder dataset. First we group, as above, and then nest. We group by country and continent in order to keep those two variables “on the outside”.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(gap_nested &lt;-<span class="st"> </span>gapminder <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">   </span><span class="kw">group_by</span>(continent, country) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">   </span><span class="kw">nest</span>())</code></pre></div>
+<pre><code>## # A tibble: 142 x 3
+##    continent     country              data
+##       &lt;fctr&gt;      &lt;fctr&gt;            &lt;list&gt;
+##  1      Asia Afghanistan &lt;tibble [12 x 4]&gt;
+##  2    Europe     Albania &lt;tibble [12 x 4]&gt;
+##  3    Africa     Algeria &lt;tibble [12 x 4]&gt;
+##  4    Africa      Angola &lt;tibble [12 x 4]&gt;
+##  5  Americas   Argentina &lt;tibble [12 x 4]&gt;
+##  6   Oceania   Australia &lt;tibble [12 x 4]&gt;
+##  7    Europe     Austria &lt;tibble [12 x 4]&gt;
+##  8      Asia     Bahrain &lt;tibble [12 x 4]&gt;
+##  9      Asia  Bangladesh &lt;tibble [12 x 4]&gt;
+## 10    Europe     Belgium &lt;tibble [12 x 4]&gt;
+## # ... with 132 more rows</code></pre>
+<p>What do you notice?</p>
+<ul>
+<li>The immediate collapse to 142 rows, one per country.</li>
+<li>The familiar presence of <code>continent</code> and <code>country</code>.</li>
+<li>The unfamiliar look of the new <code>data</code> variable, which is … a list! It is a list-column of continent-specific tibbles.</li>
+</ul>
+<p>How on earth do you inspect it?!? In RStudio, <code>gap_nested %&gt;% View()</code> is often helpful (moderately so in this case). It’s often nicer to inspect a single element like so:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gap_nested[[<span class="dv">1</span>, <span class="st">&quot;data&quot;</span>]]</code></pre></div>
+<pre><code>## # A tibble: 12 x 4
+##     year lifeExp      pop gdpPercap
+##    &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+##  1  1952  28.801  8425333  779.4453
+##  2  1957  30.332  9240934  820.8530
+##  3  1962  31.997 10267083  853.1007
+##  4  1967  34.020 11537966  836.1971
+##  5  1972  36.088 13079460  739.9811
+##  6  1977  38.438 14880372  786.1134
+##  7  1982  39.854 12881816  978.0114
+##  8  1987  40.822 13867957  852.3959
+##  9  1992  41.674 16317921  649.3414
+## 10  1997  41.763 22227415  635.3414
+## 11  2002  42.129 25268405  726.7341
+## 12  2007  43.828 31889923  974.5803</code></pre>
+<p><a href="block004_basic-r-objects.html">Remember that</a> double square brackets can only be used to extract a single element and they are simplifying. An equivalent call is <code>gap_nested[[&quot;data&quot;]][[1]]</code> (which I find even more opaque) or <code>gap_nested$data[[1]]</code> (which is pretty nice). We’re looking at the first of 142 country-specific data frames, which happens to be for Afghanistan.</p>
+<p>The presence of list-columns is always a temporary, uncomfortable state.</p>
+</div>
+<div id="apply-a-function-purrrmap-and-mutate" class="section level3">
+<h3><span class="header-section-number">13.3.6</span> Apply a function <code>purrr::map()</code> and <code>mutate()</code></h3>
+<p>How do we now iterate over the elements of <code>gap_nested$data</code>? It is a list, so we use general approaches for applying a function to each element of a list. In base R, this means <code>lapply()</code>, but we will use the tidyverse function <code>purrr::map()</code>, which has a few advantages <a href="https://speakerdeck.com/jennybc/purrr-tutorial-intro-very-rough-draft">described elsewhere</a>.</p>
+<p>Walk before you run, i.e. do an example first!</p>
+<p>Let’s fit a model to the data from Afghanistan. The form of the right-hand side is so that our intercept has a nice interpretation.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(fit &lt;-<span class="st"> </span><span class="kw">lm</span>(lifeExp <span class="op">~</span><span class="st"> </span><span class="kw">I</span>(year <span class="op">-</span><span class="st"> </span><span class="dv">1950</span>), <span class="dt">data =</span> gap_nested[[<span class="dv">1</span>, <span class="st">&quot;data&quot;</span>]]))</code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = lifeExp ~ I(year - 1950), data = gap_nested[[1, 
+##     &quot;data&quot;]])
+## 
+## Coefficients:
+##    (Intercept)  I(year - 1950)  
+##        29.3566          0.2753</code></pre>
+<p>Let’s capture that logic in a function and informally test that it returns the same results for Afghanistan.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">le_vs_yr &lt;-<span class="st"> </span><span class="cf">function</span>(df) {
+  <span class="kw">lm</span>(lifeExp <span class="op">~</span><span class="st"> </span><span class="kw">I</span>(year <span class="op">-</span><span class="st"> </span><span class="dv">1950</span>), <span class="dt">data =</span> df)
+}
+<span class="kw">le_vs_yr</span>(gap_nested[[<span class="dv">1</span>, <span class="st">&quot;data&quot;</span>]])</code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = lifeExp ~ I(year - 1950), data = df)
+## 
+## Coefficients:
+##    (Intercept)  I(year - 1950)  
+##        29.3566          0.2753</code></pre>
+<p>After you walk, jog before you run. Use <code>purrr::map()</code> to apply the fitting function <code>le_vs_yr()</code> to the first two elements of <code>gap_nested$data</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fits &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw">map</span>(gap_nested<span class="op">$</span>data[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>], le_vs_yr)
+fits</code></pre></div>
+<pre><code>## [[1]]
+## 
+## Call:
+## lm(formula = lifeExp ~ I(year - 1950), data = df)
+## 
+## Coefficients:
+##    (Intercept)  I(year - 1950)  
+##        29.3566          0.2753  
+## 
+## 
+## [[2]]
+## 
+## Call:
+## lm(formula = lifeExp ~ I(year - 1950), data = df)
+## 
+## Coefficients:
+##    (Intercept)  I(year - 1950)  
+##        58.5598          0.3347</code></pre>
+<p>So, how do we run, i.e. scale this up to all countries? And where do we put these fitted models? We’ll use <code>purrr::map()</code> inside <code>mutate()</code>, meaning we store the models inside <code>gap_nested</code> in another list-column.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(gap_nested &lt;-<span class="st"> </span>gap_nested <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">   </span><span class="kw">mutate</span>(<span class="dt">fit =</span> purrr<span class="op">::</span><span class="kw">map</span>(data, le_vs_yr)))</code></pre></div>
+<pre><code>## # A tibble: 142 x 4
+##    continent     country              data      fit
+##       &lt;fctr&gt;      &lt;fctr&gt;            &lt;list&gt;   &lt;list&gt;
+##  1      Asia Afghanistan &lt;tibble [12 x 4]&gt; &lt;S3: lm&gt;
+##  2    Europe     Albania &lt;tibble [12 x 4]&gt; &lt;S3: lm&gt;
+##  3    Africa     Algeria &lt;tibble [12 x 4]&gt; &lt;S3: lm&gt;
+##  4    Africa      Angola &lt;tibble [12 x 4]&gt; &lt;S3: lm&gt;
+##  5  Americas   Argentina &lt;tibble [12 x 4]&gt; &lt;S3: lm&gt;
+##  6   Oceania   Australia &lt;tibble [12 x 4]&gt; &lt;S3: lm&gt;
+##  7    Europe     Austria &lt;tibble [12 x 4]&gt; &lt;S3: lm&gt;
+##  8      Asia     Bahrain &lt;tibble [12 x 4]&gt; &lt;S3: lm&gt;
+##  9      Asia  Bangladesh &lt;tibble [12 x 4]&gt; &lt;S3: lm&gt;
+## 10    Europe     Belgium &lt;tibble [12 x 4]&gt; &lt;S3: lm&gt;
+## # ... with 132 more rows</code></pre>
+<p>We have a new list-column <code>fit</code> that is even more intimidating than the previous, <code>data</code>. The <code>fit</code> variable holds 142 fitted linear models. What shall we do with that?</p>
+</div>
+<div id="always-have-an-exit-strategy" class="section level3">
+<h3><span class="header-section-number">13.3.7</span> Always have an exit strategy</h3>
+<p>The list-column state is an uncomfortable and temporary one. The goal is always to pull information out of these complicated objects and package as something simpler, usually a tibble. You always want a list-column exit strategy!</p>
+<p>We are not afraid to fit linear models in this example because there is a fantastic package called <a href="https://github.com/dgrtwo/broom">broom</a> from David Robinson that provides exactly this for <code>lm()</code> and many other functions.</p>
+<p>broom provides three key functions that take a <code>lm()</code> fit as input and give a useful tibble back:</p>
+<ul>
+<li><code>tidy()</code>: a tidy version of <code>summary()</code>, e.g. a table with one row per parameter estimate</li>
+<li><code>augment()</code>: the original data, augmented with columns such as fitted values and residuals</li>
+<li><code>glance()</code>: a one-row model summary</li>
+</ul>
+<p>All of these are much friendlier than a fitted <code>lm()</code> object and set us up for interesting downstream analyses and plots.</p>
+</div>
+<div id="simplify-and-combine" class="section level3">
+<h3><span class="header-section-number">13.3.8</span> Simplify and combine</h3>
+<p>Let’s look at the result of <code>broom::tidy()</code> for a single model. Walk before you run.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(broom)
+<span class="kw">tidy</span>(gap_nested<span class="op">$</span>fit[[<span class="dv">1</span>]])</code></pre></div>
+<pre><code>##             term   estimate  std.error statistic      p.value
+## 1    (Intercept) 29.3566375 0.69898128  41.99918 1.404235e-12
+## 2 I(year - 1950)  0.2753287 0.02045093  13.46289 9.835213e-08</code></pre>
+<p>We get a two row data frame, one with results for the intercept and one for the slope. This is much more approachable than fitted <code>lm</code> objects!</p>
+<p>Apply <code>tidy()</code> to the model for each country with the same <code>purrr::map()</code> inside <code>mutate()</code> strategy as above.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(gap_nested &lt;-<span class="st"> </span>gap_nested <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">tidy =</span> purrr<span class="op">::</span><span class="kw">map</span>(fit, tidy)))</code></pre></div>
+<pre><code>## # A tibble: 142 x 5
+##    continent     country              data      fit                 tidy
+##       &lt;fctr&gt;      &lt;fctr&gt;            &lt;list&gt;   &lt;list&gt;               &lt;list&gt;
+##  1      Asia Afghanistan &lt;tibble [12 x 4]&gt; &lt;S3: lm&gt; &lt;data.frame [2 x 5]&gt;
+##  2    Europe     Albania &lt;tibble [12 x 4]&gt; &lt;S3: lm&gt; &lt;data.frame [2 x 5]&gt;
+##  3    Africa     Algeria &lt;tibble [12 x 4]&gt; &lt;S3: lm&gt; &lt;data.frame [2 x 5]&gt;
+##  4    Africa      Angola &lt;tibble [12 x 4]&gt; &lt;S3: lm&gt; &lt;data.frame [2 x 5]&gt;
+##  5  Americas   Argentina &lt;tibble [12 x 4]&gt; &lt;S3: lm&gt; &lt;data.frame [2 x 5]&gt;
+##  6   Oceania   Australia &lt;tibble [12 x 4]&gt; &lt;S3: lm&gt; &lt;data.frame [2 x 5]&gt;
+##  7    Europe     Austria &lt;tibble [12 x 4]&gt; &lt;S3: lm&gt; &lt;data.frame [2 x 5]&gt;
+##  8      Asia     Bahrain &lt;tibble [12 x 4]&gt; &lt;S3: lm&gt; &lt;data.frame [2 x 5]&gt;
+##  9      Asia  Bangladesh &lt;tibble [12 x 4]&gt; &lt;S3: lm&gt; &lt;data.frame [2 x 5]&gt;
+## 10    Europe     Belgium &lt;tibble [12 x 4]&gt; &lt;S3: lm&gt; &lt;data.frame [2 x 5]&gt;
+## # ... with 132 more rows</code></pre>
+<p>The last step is now to simplify, preferably back to a normal tibble. We do this by retaining variables that are amenable to simplification and using <code>unnest()</code>, thus completing the circle.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(gap_coefs &lt;-<span class="st"> </span>gap_nested <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">   </span><span class="kw">select</span>(continent, country, tidy) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">   </span><span class="kw">unnest</span>(tidy))</code></pre></div>
+<pre><code>## # A tibble: 284 x 7
+##    continent     country           term   estimate   std.error  statistic
+##       &lt;fctr&gt;      &lt;fctr&gt;          &lt;chr&gt;      &lt;dbl&gt;       &lt;dbl&gt;      &lt;dbl&gt;
+##  1      Asia Afghanistan    (Intercept) 29.3566375 0.698981278  41.999176
+##  2      Asia Afghanistan I(year - 1950)  0.2753287 0.020450934  13.462890
+##  3    Europe     Albania    (Intercept) 58.5597618 1.133575812  51.659325
+##  4    Europe     Albania I(year - 1950)  0.3346832 0.033166387  10.091036
+##  5    Africa     Algeria    (Intercept) 42.2364149 0.756269040  55.848399
+##  6    Africa     Algeria I(year - 1950)  0.5692797 0.022127070  25.727749
+##  7    Africa      Angola    (Intercept) 31.7079741 0.804287463  39.423683
+##  8    Africa      Angola I(year - 1950)  0.2093399 0.023532003   8.895964
+##  9  Americas   Argentina    (Intercept) 62.2250191 0.167091314 372.401279
+## 10  Americas   Argentina I(year - 1950)  0.2317084 0.004888791  47.395847
+## # ... with 274 more rows, and 1 more variables: p.value &lt;dbl&gt;</code></pre>
+</div>
+<div id="recap" class="section level3">
+<h3><span class="header-section-number">13.3.9</span> Recap</h3>
+<p>The whole point of this was to get apply a computation to all the pieces of a dataset and glue the results back together. First, let’s review all of our work so far in one place. It’s remarkably compact.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gap_nested &lt;-<span class="st"> </span>gapminder <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(continent, country) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">nest</span>()
 
-<span class="co"># Extract by name</span>
-df<span class="op">$</span>x</code></pre></div>
-<pre><code>## [1] 0.8274358 0.7709025 0.0776012 0.6567509 0.7675101</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df[[<span class="st">&quot;x&quot;</span>]]</code></pre></div>
-<pre><code>## [1] 0.8274358 0.7709025 0.0776012 0.6567509 0.7675101</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Extract by column position</span>
-df[[<span class="dv">1</span>]]</code></pre></div>
-<pre><code>## [1] 0.8274358 0.7709025 0.0776012 0.6567509 0.7675101</code></pre>
-<!-- To use these in a pipe, you'll need to use the special placeholder `.`: -->
-<!-- ```{r} -->
-<!-- df %>% .$x -->
-<!-- df %>% .[["x"]] -->
-<!-- ``` -->
-<p>Compared to a <code>data.frame</code>, tibbles are more strict: they never do partial matching, and they will generate a warning if the column you are trying to access does not exist.</p>
+le_vs_yr &lt;-<span class="st"> </span><span class="cf">function</span>(df) {
+  <span class="kw">lm</span>(lifeExp <span class="op">~</span><span class="st"> </span><span class="kw">I</span>(year <span class="op">-</span><span class="st"> </span><span class="dv">1950</span>), <span class="dt">data =</span> df)
+}
+
+gap_coefs &lt;-<span class="st"> </span>gap_nested <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">fit =</span> purrr<span class="op">::</span><span class="kw">map</span>(data, le_vs_yr),
+         <span class="dt">tidy =</span> purrr<span class="op">::</span><span class="kw">map</span>(fit, tidy)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(continent, country, tidy) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">unnest</span>(tidy)</code></pre></div>
+<p>Reflect on how you would have obtained a data frame of country-specific intercepts and slopes from a regression of life expectancy on year. Did you know any approaches for solving this problem? If no, then rejoice that you now have one! If yes, does the approach outlined here seem simpler?</p>
+<p>List-columns take some getting used to, but they are a required component of the strategy laid out above for general-purpose split-apply-combine.</p>
 </div>
-<div id="converting" class="section level3">
-<h3><span class="header-section-number">5.2.4</span> Converting</h3>
-<p>Some older functions don’t work with tibbles. If you encounter one of these functions, use <code>as.data.frame()</code> to turn a tibble back to a <code>data.frame</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(<span class="kw">as.data.frame</span>(df))</code></pre></div>
-<pre><code>## [1] &quot;data.frame&quot;</code></pre>
-<p>Or use <code>as_tibble()</code> to convert a data.frame to tibble:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(<span class="kw">as_tibble</span>(mtcars))</code></pre></div>
-<pre><code>## [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</code></pre>
-<p>The main reason that some older functions don’t work with tibble is the <code>[</code> function. We don’t use <code>[</code> much in this book because <code>dplyr::filter()</code> and <code>dplyr::select()</code> allow you to solve the same problems with clearer code (but you will learn a little about it in <a href="#vector-subsetting">vector subsetting</a>). With base R data frames, <code>[</code> sometimes returns a data frame, and sometimes returns a vector. With tibbles, <code>[</code> always returns another tibble.</p>
+<div id="enjoy-the-payoff-of-your-work" class="section level3">
+<h3><span class="header-section-number">13.3.10</span> Enjoy the payoff of your work</h3>
+<p>Let’s celebrate by exploring the estimated slopes and intercepts a bit. First we recode the variable corresponding to “intercept” vs “slope”.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(gap_coefs &lt;-<span class="st"> </span>gap_coefs <span class="op">%&gt;%</span>
+<span class="st">   </span><span class="kw">mutate</span>(<span class="dt">term =</span> <span class="kw">recode</span>(term,
+                        <span class="st">`</span><span class="dt">(Intercept)</span><span class="st">`</span> =<span class="st"> &quot;intercept&quot;</span>,
+                        <span class="st">`</span><span class="dt">I(year - 1950)</span><span class="st">`</span> =<span class="st"> &quot;slope&quot;</span>)))</code></pre></div>
+<pre><code>## # A tibble: 284 x 7
+##    continent     country      term   estimate   std.error  statistic
+##       &lt;fctr&gt;      &lt;fctr&gt;     &lt;chr&gt;      &lt;dbl&gt;       &lt;dbl&gt;      &lt;dbl&gt;
+##  1      Asia Afghanistan intercept 29.3566375 0.698981278  41.999176
+##  2      Asia Afghanistan     slope  0.2753287 0.020450934  13.462890
+##  3    Europe     Albania intercept 58.5597618 1.133575812  51.659325
+##  4    Europe     Albania     slope  0.3346832 0.033166387  10.091036
+##  5    Africa     Algeria intercept 42.2364149 0.756269040  55.848399
+##  6    Africa     Algeria     slope  0.5692797 0.022127070  25.727749
+##  7    Africa      Angola intercept 31.7079741 0.804287463  39.423683
+##  8    Africa      Angola     slope  0.2093399 0.023532003   8.895964
+##  9  Americas   Argentina intercept 62.2250191 0.167091314 372.401279
+## 10  Americas   Argentina     slope  0.2317084 0.004888791  47.395847
+## # ... with 274 more rows, and 1 more variables: p.value &lt;dbl&gt;</code></pre>
+<p>Due to the way we parametrized the model, the intercepts correspond to expected life expectancy in 1950. These numbers should be plausible as human life expectancies. The slopes correspond to change in expected life expectancy from one year to the next. We expect positive numbers to dominate, but they’ll probably less than one. A reshaped version of the estimates, <code>gap_ests</code>, is handy for numerical summarization and visualization.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(gap_ests &lt;-<span class="st"> </span>gap_coefs <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">   </span><span class="kw">select</span>(continent<span class="op">:</span>estimate) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">   </span><span class="kw">spread</span>(<span class="dt">key =</span> term, <span class="dt">value =</span> estimate))</code></pre></div>
+<pre><code>## # A tibble: 142 x 4
+##    continent                  country intercept      slope
+##  *    &lt;fctr&gt;                   &lt;fctr&gt;     &lt;dbl&gt;      &lt;dbl&gt;
+##  1    Africa                  Algeria  42.23641 0.56927972
+##  2    Africa                   Angola  31.70797 0.20933986
+##  3    Africa                    Benin  38.92005 0.33423287
+##  4    Africa                 Botswana  52.80778 0.06066853
+##  5    Africa             Burkina Faso  33.95674 0.36397483
+##  6    Africa                  Burundi  40.27037 0.15413427
+##  7    Africa                 Cameroon  40.74917 0.25014685
+##  8    Africa Central African Republic  38.44170 0.18390559
+##  9    Africa                     Chad  39.30288 0.25324406
+## 10    Africa                  Comoros  39.09522 0.45039091
+## # ... with 132 more rows</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gap_ests <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(intercept, slope) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">summary</span>()</code></pre></div>
+<pre><code>##    intercept         slope         
+##  Min.   :27.24   Min.   :-0.09302  
+##  1st Qu.:39.36   1st Qu.: 0.20832  
+##  Median :47.42   Median : 0.32145  
+##  Mean   :49.86   Mean   : 0.32590  
+##  3rd Qu.:62.05   3rd Qu.: 0.44948  
+##  Max.   :71.95   Max.   : 0.77218</code></pre>
+<p>The numerical summaries look reasonable. We conclude with a look at the full distribution.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(gap_coefs, <span class="kw">aes</span>(<span class="dt">x =</span> estimate)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_density</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_rug</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>term, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>)</code></pre></div>
+<p><img src="11-split-apply-combine_files/figure-html/intercept-slope-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(gap_ests, <span class="kw">aes</span>(<span class="dt">x =</span> intercept, <span class="dt">y =</span> slope)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)</code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
+<p><img src="11-split-apply-combine_files/figure-html/intercept-slope-2.png" width="672" /></p>
 </div>
 </div>
-<div id="data-import" class="section level2">
-<h2><span class="header-section-number">5.3</span> Data Import</h2>
-<p>The most common data in data science is rectangular, spreadsheet-y data that works best to be loaded as a R data frame, and this section focus on import data into R as data frames. <code>tidyverse</code> provides the <a href="https://github.com/tidyverse/readr"><code>readr</code></a> package that reads comma-separated values (csv), tab delimited values (tsv), and fixed width files (fwf) as tibbles. Other R packages provide access to Excel spreadsheets, binary statistical data formats (SPSS, SAS, Stata), and relational databases:</p>
-<ul>
-<li><a href="https://github.com/tidyverse/readr">readr</a>, reads flat files (csv, tsv, fwf) into R</li>
-<li><a href="https://github.com/tidyverse/readxl">readxl</a>, reads excel files (.xls and .xlsx) into R</li>
-<li><a href="https://github.com/tidyverse/haven">heaven</a>, reads SPSS, Stata and SAS files into R</li>
-<li><a href="https://github.com/rstats-db">rstats-db</a>, R interface to databases</li>
-<li><a href="https://github.com/rstats-db/RMySQL">RMySQL</a></li>
-<li><a href="https://github.com/rstats-db/RSQLite">RSQLite</a></li>
-<li><a href="https://github.com/rstats-db/RPostgres">RPostgres</a></li>
-<li>…</li>
-</ul>
-<p>For this section, we primarily focus on importing data in flat files into data frames. <code>readr</code> provides these functions:</p>
-<ul>
-<li><p><code>read_csv()</code> reads comma delimited files, <code>read_csv2()</code> reads semicolon separated files (common in countries where <code>,</code> is used as the decimal place), <code>read_tsv()</code> reads tab delimited files, and <code>read_delim()</code> reads in files with any delimiter.</p></li>
-<li><p><code>read_fwf()</code> reads fixed width files. You can specify fields either by their widths with <code>fwf_widths()</code> or their position with <code>fwf_positions()</code>. <code>read_table()</code> reads a common variation of fixed width files where columns are separated by white space.</p></li>
-<li><p><code>read_log()</code> reads Apache style log files. (But also check out <a href="https://github.com/Ironholds/webreadr">webreadr</a> which is built on top of <code>read_log()</code> and provides many more helpful tools.)</p></li>
-</ul>
-<p>These functions all have similar syntax: once you’ve mastered one, you can use the others with ease. For the rest of this chapter we’ll focus on <code>read_csv()</code>. Not only are csv files one of the most common forms of data storage, but once you understand <code>read_csv()</code>, you can easily apply your knowledge to all the other functions in readr.</p>
-<p>The first argument to <code>read_csv()</code> is the most important: it’s the path to the file to read.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">heights &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/heights.csv&quot;</span>)</code></pre></div>
-<pre><code>## Parsed with column specification:
-## cols(
-##   earn = col_double(),
-##   height = col_double(),
-##   sex = col_character(),
-##   ed = col_integer(),
-##   age = col_integer(),
-##   race = col_character()
-## )</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">heights</code></pre></div>
-<pre><code>## # A tibble: 1,192 x 6
-##     earn   height    sex    ed   age     race
-##    &lt;dbl&gt;    &lt;dbl&gt;  &lt;chr&gt; &lt;int&gt; &lt;int&gt;    &lt;chr&gt;
-##  1 50000 74.42444   male    16    45    white
-##  2 60000 65.53754 female    16    58    white
-##  3 30000 63.62920 female    16    29    white
-##  4 50000 63.10856 female    16    91    other
-##  5 51000 63.40248 female    17    39    white
-##  6  9000 64.39951 female    15    26    white
-##  7 29000 61.65633 female    12    49    white
-##  8 32000 72.69854   male    17    46    white
-##  9  2000 72.03947   male    15    21 hispanic
-## 10 27000 72.23493   male    12    26    white
-## # ... with 1,182 more rows</code></pre>
-<p>When you run <code>read_csv()</code> it prints out a column specification that gives the name and type of each column. That’s an important part of readr, which we’ll come back to in [parsing a file].</p>
-<p>You can also supply an inline csv file. This is useful for experimenting with readr and for creating reproducible examples to share with others:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">read_csv</span>(<span class="st">&quot;a,b,c</span>
-<span class="st">1,2,3</span>
-<span class="st">4,5,6&quot;</span>)</code></pre></div>
-<pre><code>## # A tibble: 2 x 3
-##       a     b     c
-##   &lt;int&gt; &lt;int&gt; &lt;int&gt;
-## 1     1     2     3
-## 2     4     5     6</code></pre>
-<p>In both cases <code>read_csv()</code> uses the first line of the data for the column names, which is a very common convention. There are two cases where you might want to tweak this behaviour:</p>
+<div id="exercise-9" class="section level2">
+<h2><span class="header-section-number">13.4</span> Exercise</h2>
 <ol style="list-style-type: decimal">
-<li><p>Sometimes there are a few lines of metadata at the top of the file. You can use <code>skip = n</code> to skip the first <code>n</code> lines; or use <code>comment = &quot;#&quot;</code> to drop all lines that start with (e.g.) <code>#</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">read_csv</span>(<span class="st">&quot;The first line of metadata</span>
-<span class="st">  The second line of metadata</span>
-<span class="st">  x,y,z</span>
-<span class="st">  1,2,3&quot;</span>, <span class="dt">skip =</span> <span class="dv">2</span>)</code></pre></div>
-<pre><code>## # A tibble: 1 x 3
-##       x     y     z
-##   &lt;int&gt; &lt;int&gt; &lt;int&gt;
-## 1     1     2     3</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">read_csv</span>(<span class="st">&quot;# A comment I want to skip</span>
-<span class="st">  x,y,z</span>
-<span class="st">  1,2,3&quot;</span>, <span class="dt">comment =</span> <span class="st">&quot;#&quot;</span>)</code></pre></div>
-<pre><code>## # A tibble: 1 x 3
-##       x     y     z
-##   &lt;int&gt; &lt;int&gt; &lt;int&gt;
-## 1     1     2     3</code></pre></li>
-<li><p>The data might not have column names. You can use <code>col_names = FALSE</code> to tell <code>read_csv()</code> not to treat the first row as headings, and instead label them sequentially from <code>X1</code> to <code>Xn</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">read_csv</span>(<span class="st">&quot;1,2,3</span><span class="ch">\n</span><span class="st">4,5,6&quot;</span>, <span class="dt">col_names =</span> <span class="ot">FALSE</span>)</code></pre></div>
-<pre><code>## # A tibble: 2 x 3
-##      X1    X2    X3
-##   &lt;int&gt; &lt;int&gt; &lt;int&gt;
-## 1     1     2     3
-## 2     4     5     6</code></pre>
-<p>(<code>&quot;\n&quot;</code> is a convenient shortcut for adding a new line. You’ll learn more about it and other types of string escape in [string basics].)</p>
-<p>Alternatively you can pass <code>col_names</code> a character vector which will be used as the column names:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">read_csv</span>(<span class="st">&quot;1,2,3</span><span class="ch">\n</span><span class="st">4,5,6&quot;</span>, <span class="dt">col_names =</span> <span class="kw">c</span>(<span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>, <span class="st">&quot;z&quot;</span>))</code></pre></div>
-<pre><code>## # A tibble: 2 x 3
-##       x     y     z
-##   &lt;int&gt; &lt;int&gt; &lt;int&gt;
-## 1     1     2     3
-## 2     4     5     6</code></pre></li>
-</ol>
-<p>Another option that commonly needs tweaking is <code>na</code>: this specifies the value (or values) that are used to represent missing values in your file:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">read_csv</span>(<span class="st">&quot;a,b,c</span><span class="ch">\n</span><span class="st">1,2,.&quot;</span>, <span class="dt">na =</span> <span class="st">&quot;.&quot;</span>)</code></pre></div>
-<pre><code>## # A tibble: 1 x 3
-##       a     b     c
-##   &lt;int&gt; &lt;int&gt; &lt;chr&gt;
-## 1     1     2  &lt;NA&gt;</code></pre>
-<p>This is all you need to know to read ~75% of CSV files that you’ll encounter in practice. You can also easily adapt what you’ve learned to read tab separated files with <code>read_tsv()</code> and fixed width files with <code>read_fwf()</code>. To read in more challenging files, you’ll need to learn more about how readr parses each column, turning them into R vectors.</p>
-<div id="compared-to-base-r" class="section level3">
-<h3><span class="header-section-number">5.3.1</span> Compared to base R</h3>
-<p>If you’ve used R before, you might wonder why we’re not using <code>read.csv()</code>. There are a few good reasons to favour readr functions over the base equivalents:</p>
-<ul>
-<li><p>They are typically much faster (~10x) than their base equivalents. Long running jobs have a progress bar, so you can see what’s happening. If you’re looking for raw speed, try <code>data.table::fread()</code>. It doesn’t fit quite so well into the tidyverse, but it can be quite a bit faster.</p></li>
-<li><p>They produce tibbles, they don’t convert character vectors to factors, use row names, or munge the column names. These are common sources of frustration with the base R functions.</p></li>
-<li><p>They are more reproducible. Base R functions inherit some behaviour from your operating system and environment variables, so import code that works on your computer might not work on someone else’s.</p></li>
-<li><p>If you’re interested in learning more on under the hood magics of how <code>readr</code> parses file, <a href="http://r4ds.had.co.nz/data-import.html#parsing-a-vector">this section</a> in R for Data Science provides an overview.</p></li>
-</ul>
-</div>
-<div id="exercises" class="section level3">
-<h3><span class="header-section-number">5.3.2</span> Exercises</h3>
-<ol style="list-style-type: decimal">
-<li><p>What function would you use to read a file where fields were separated with<br />
-“|”?</p></li>
-<li><p>Apart from <code>file</code>, <code>skip</code>, and <code>comment</code>, what other arguments do <code>read_csv()</code> and <code>read_tsv()</code> have in common?</p></li>
-<li><p>What are the most important arguments to <code>read_fwf()</code>?</p></li>
-<li><p>Sometimes strings in a CSV file contain commas. To prevent them from causing problems they need to be surrounded by a quoting character, like <code>&quot;</code> or <code>'</code>. By convention, <code>read_csv()</code> assumes that the quoting character will be <code>&quot;</code>, and if you want to change it you’ll need to use <code>read_delim()</code> instead. What arguments do you need to specify to read the following text into a data frame?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="st">&quot;x,y</span><span class="ch">\n</span><span class="st">1,&#39;a,b&#39;&quot;</span></code></pre></div></li>
-<li><p>Identify what is wrong with each of the following inline CSV files. What happens when you run the code?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">read_csv</span>(<span class="st">&quot;a,b</span><span class="ch">\n</span><span class="st">1,2,3</span><span class="ch">\n</span><span class="st">4,5,6&quot;</span>)
-<span class="kw">read_csv</span>(<span class="st">&quot;a,b,c</span><span class="ch">\n</span><span class="st">1,2</span><span class="ch">\n</span><span class="st">1,2,3,4&quot;</span>)
-<span class="kw">read_csv</span>(<span class="st">&quot;a,b</span><span class="ch">\n\&quot;</span><span class="st">1&quot;</span>)
-<span class="kw">read_csv</span>(<span class="st">&quot;a,b</span><span class="ch">\n</span><span class="st">1,2</span><span class="ch">\n</span><span class="st">a,b&quot;</span>)
-<span class="kw">read_csv</span>(<span class="st">&quot;a;b</span><span class="ch">\n</span><span class="st">1;3&quot;</span>)</code></pre></div></li>
+<li>Fit linear regression models of the daily bike counts on percipitation and max temperature, first for both bridges together and then for each bridge separately using the split-apply-combine pattern;</li>
+<li>When using ggfortify to plot weekly variation, trend and noise separately, you need to plot each bridge separately (sample code <a href="https://raw.githubusercontent.com/cities/datascience2017/master/code/visualize_bikecounts.R">here</a>). Use the split-apply-combine to avoid having to repeat for each bridge.</li>
 </ol>
 </div>
-</div>
-<div id="writing-to-a-file" class="section level2">
-<h2><span class="header-section-number">5.4</span> Writing to a file</h2>
-<p>readr also comes with two useful functions for writing data back to disk: <code>write_csv()</code> and <code>write_tsv()</code>. Both functions increase the chances of the output file being read back in correctly by:</p>
-<ul>
-<li><p>Always encoding strings in UTF-8.</p></li>
-<li><p>Saving dates and date-times in ISO8601 format so they are easily parsed elsewhere.</p></li>
-</ul>
-<p>If you want to export a csv file to Excel, use <code>write_excel_csv()</code> — this writes a special character (a “byte order mark”) at the start of the file which tells Excel that you’re using the UTF-8 encoding.</p>
-<p>The most important arguments are <code>x</code> (the data frame to save), and <code>path</code> (the location to save it). You can also specify how missing values are written with <code>na</code>, and if you want to <code>append</code> to an existing file.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write_csv</span>(heights, <span class="st">&quot;results/heights.csv&quot;</span>)</code></pre></div>
-<p>Note that the type information is lost when you save to csv:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">heights</code></pre></div>
-<pre><code>## # A tibble: 1,192 x 6
-##     earn   height    sex    ed   age     race
-##    &lt;dbl&gt;    &lt;dbl&gt;  &lt;chr&gt; &lt;int&gt; &lt;int&gt;    &lt;chr&gt;
-##  1 50000 74.42444   male    16    45    white
-##  2 60000 65.53754 female    16    58    white
-##  3 30000 63.62920 female    16    29    white
-##  4 50000 63.10856 female    16    91    other
-##  5 51000 63.40248 female    17    39    white
-##  6  9000 64.39951 female    15    26    white
-##  7 29000 61.65633 female    12    49    white
-##  8 32000 72.69854   male    17    46    white
-##  9  2000 72.03947   male    15    21 hispanic
-## 10 27000 72.23493   male    12    26    white
-## # ... with 1,182 more rows</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write_csv</span>(heights, <span class="st">&quot;results/heights-2.csv&quot;</span>)
-<span class="kw">read_csv</span>(<span class="st">&quot;results/heights-2.csv&quot;</span>)</code></pre></div>
-<pre><code>## # A tibble: 1,192 x 6
-##     earn   height    sex    ed   age     race
-##    &lt;dbl&gt;    &lt;dbl&gt;  &lt;chr&gt; &lt;int&gt; &lt;int&gt;    &lt;chr&gt;
-##  1 50000 74.42444   male    16    45    white
-##  2 60000 65.53754 female    16    58    white
-##  3 30000 63.62920 female    16    29    white
-##  4 50000 63.10856 female    16    91    other
-##  5 51000 63.40248 female    17    39    white
-##  6  9000 64.39951 female    15    26    white
-##  7 29000 61.65633 female    12    49    white
-##  8 32000 72.69854   male    17    46    white
-##  9  2000 72.03947   male    15    21 hispanic
-## 10 27000 72.23493   male    12    26    white
-## # ... with 1,182 more rows</code></pre>
-<p>This makes CSVs a little unreliable for caching interim results—you need to recreate the column specification every time you load in. There are two alternatives:</p>
+<div id="resources" class="section level2">
+<h2><span class="header-section-number">13.5</span> Resources:</h2>
 <ol style="list-style-type: decimal">
-<li><p><code>write_rds()</code> and <code>read_rds()</code> are uniform wrappers around the base functions <code>readRDS()</code> and <code>saveRDS()</code>. These store data in R’s custom binary format called RDS:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write_rds</span>(heights, <span class="st">&quot;results/heights.rds&quot;</span>)
-<span class="kw">read_rds</span>(<span class="st">&quot;results/heights.rds&quot;</span>)</code></pre></div>
-<pre><code>## # A tibble: 1,192 x 6
-##     earn   height    sex    ed   age     race
-##    &lt;dbl&gt;    &lt;dbl&gt;  &lt;chr&gt; &lt;int&gt; &lt;int&gt;    &lt;chr&gt;
-##  1 50000 74.42444   male    16    45    white
-##  2 60000 65.53754 female    16    58    white
-##  3 30000 63.62920 female    16    29    white
-##  4 50000 63.10856 female    16    91    other
-##  5 51000 63.40248 female    17    39    white
-##  6  9000 64.39951 female    15    26    white
-##  7 29000 61.65633 female    12    49    white
-##  8 32000 72.69854   male    17    46    white
-##  9  2000 72.03947   male    15    21 hispanic
-## 10 27000 72.23493   male    12    26    white
-## # ... with 1,182 more rows</code></pre></li>
-<li><p>The feather package implements a fast binary file format that can be shared across programming languages:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;feather&quot;</span>)
-<span class="kw">library</span>(feather)
-<span class="kw">write_feather</span>(heights, <span class="st">&quot;results/heights.feather&quot;</span>)
-<span class="kw">read_feather</span>(<span class="st">&quot;results/heights.feather&quot;</span>)</code></pre></div></li>
+<li><a href="https://github.com/tidyverse/purrr">purrr package</a></li>
+<li><a href="https://jennybc.github.io/purrr-tutorial/">purrr tutorial</a></li>
+<li><a href="http://swcarpentry.github.io/r-novice-gapminder/12-plyr/">Software Carpentry lesson on Split-Apply-Combine</a></li>
 </ol>
-<p>Feather tends to be faster than RDS and is usable outside of R. RDS supports list-columns (which we will come back to in [Model]); feather currently does not.</p>
-</div>
-<div id="learn-more" class="section level2">
-<h2><span class="header-section-number">5.5</span> Learn More</h2>
-<ul>
-<li><a href="https://www.datacamp.com/community/tutorials/r-data-import-tutorial">R Data Import Tutorial</a> by Data Camp</li>
-<li><a href="http://uc-r.github.io/import">Importing Data</a> and <a href="http://uc-r.github.io/exporting">Exporting Data</a> by R Programming @ UC.</li>
-<li><a href="https://science.nature.nps.gov/im/datamgmt/statistics/r/fundamentals/index.cfm">Data Import &amp; Export in R</a> by National Park Services</li>
-<li><a href="http://stat545.com/cm111_webdata.html">Scrape web data with APIs</a></li>
-</ul>
 
 </div>
 </div>
@@ -600,8 +660,8 @@ df[[<span class="dv">1</span>]]</code></pre></div>
           </div>
         </div>
       </div>
-<a href="version-control-with-git.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="create-r-package.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="data-visulization-with-ggplot2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="where-to-go-from-here.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>

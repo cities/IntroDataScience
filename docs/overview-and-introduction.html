@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="version-control-with-git.html">
-<link rel="next" href="create-r-package.html">
+<link rel="prev" href="index.html">
+<link rel="next" href="r-coding-basics.html">
 <script src="book_assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="book_assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -290,307 +290,127 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="import" class="section level1">
-<h1><span class="header-section-number">5</span> Import</h1>
-<div id="readings" class="section level2">
-<h2><span class="header-section-number">5.1</span> Readings</h2>
+<div id="overview-and-introduction" class="section level1">
+<h1><span class="header-section-number">2</span> Overview and Introduction</h1>
+<div id="part-i-data-science-best-practices" class="section level2">
+<h2><span class="header-section-number">2.1</span> Part I: Data Science Best Practices</h2>
 <ol style="list-style-type: decimal">
-<li>[R4DS] Chapter 10, 11</li>
+<li><a href="01-part1-overview.html">Overview and Introduction</a></li>
+<li><a href="02-coding.html">R Coding Basics</a></li>
+<li><a href="03-git.html">Version Control with Git</a></li>
+<li><a href="04-package.html">Creating R Package</a></li>
+<li><a href="05-rmarkdown.html">Producing Reports With R Markdown</a></li>
+<li><a href="http://cities.github.io/datascience/resources.html">Part I Wrap up</a></li>
 </ol>
 </div>
-<div id="tibbles-vs.data.frame" class="section level2">
-<h2><span class="header-section-number">5.2</span> Tibbles vs. data.frame</h2>
-<div id="data-frames-are-awesome" class="section level3">
-<h3><span class="header-section-number">5.2.1</span> Data frames are awesome</h3>
-<p>Whenever you have rectangular, spreadsheet-y data, your default data receptacle in R is a data frame. Do not depart from this without good reason. Data frames are awesome because…</p>
+<div id="set-up-your-computer" class="section level2">
+<h2><span class="header-section-number">2.2</span> Set up your computer</h2>
+<div id="installation" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> Installation</h3>
 <ul>
-<li>Data frames package related variables neatly together,
+<li>Install R 3.4.1 from <a href="https://ftp.osuosl.org/pub/cran/" class="uri">https://ftp.osuosl.org/pub/cran/</a> . (Requires administrator privellege)</li>
+<li>Install RStudio Desktop free version from <a href="https://www.rstudio.com/products/rstudio/download/" class="uri">https://www.rstudio.com/products/rstudio/download/</a></li>
+<li>Git: Follow <a href="03-git.html#install-git">these steps</a> to install Git for Windows (or for the specific operating system on your laptop). (Requires administrator privellege)</li>
+</ul>
+</div>
+<div id="installation-verification" class="section level3">
+<h3><span class="header-section-number">2.2.2</span> Installation Verification</h3>
+<ol style="list-style-type: decimal">
+<li>Launch RStudio and you should see a program window like this:
+<center>
+<img src="http://swcarpentry.github.io/r-novice-gapminder/fig/01-rstudio.png">
+</center></li>
+<li>Click the <strong>File</strong> menu, select <strong>New Project…</strong>, then <strong>Version Control</strong> and <strong>Git</strong>;</li>
+<li>Copy &amp; paste this URL: <a href="https://github.com/cities/datascience2017.git" class="uri">https://github.com/cities/datascience2017.git</a> into the the Repository URL textbox;</li>
+<li>Click <strong>Create Project</strong>.</li>
+</ol>
+<p>If you see a popup box that says “Clone Repsitory” with a progress bar and then RStudio refreshes, then your installation is working.</p>
+</div>
+</div>
+<div id="why-r" class="section level2">
+<h2><span class="header-section-number">2.3</span> Why R</h2>
 <ul>
-<li>keeping them in sync vis-a-vis row order</li>
-<li>applying any filtering of observations uniformly.</li>
+<li><a href="https://www.r-project.org/about.html">Free, as in beer &amp; speech</a></li>
+<li>Large and growing community, with <a href="https://www.rdocumentation.org/trends">more than 13,000 packages and growing</a></li>
+<li>Powerful and flexible
+<ul>
+<li><a href="https://rdrr.io/cran/caret/man/models.html">A (incomplete) list of models implemented as R packages</a></li>
+<li><a href="http://www.r-graph-gallery.com/">Graphics Gallery</a></li>
+<li><a href="https://shiny.rstudio.com/gallery/">Interactive Web Apps: Interactive Plots, Dashboard, Widget …</a></li>
 </ul></li>
-<li>Most functions for inference, modelling, and graphing are happy to be passed a data frame via a <code>data =</code> argument. This has been true in base R for a long time.</li>
-<li>The set of packages known as the <a href="https://github.com/hadley/tidyverse"><code>tidyverse</code></a> takes this one step further and explicitly prioritizes the processing of data frames. This includes popular packages like <code>dplyr</code> and <code>ggplot2</code>. In fact the tidyverse prioritizes a special flavor of data frame, called a “tibble.”</li>
 </ul>
-<p>Data frames – unlike general arrays or, specifically, matrices in R – can hold variables of different flavors, such as character data (subject ID or name), quantitative data (white blood cell count), and categorical information (treated vs. untreated). If you use homogenous structures, like matrices, for data analysis, you are likely to make the terrible mistake of spreading a dataset out over multiple, unlinked objects. Why? Because you can’t put character data, such as subject name, into the numeric matrix that holds white blood cell count. This fragmentation is a Bad Idea.</p>
-<p>In [Programming with R] we use <code>data.frame</code> in base R as our main data structure. From now on we will start to use <code>tibble</code> and other functions in <a href="https://github.com/hadley/tidyverse"><code>tidyverse</code></a> as much as possible. This will provide a special type of data frame called a “tibble” that has nice default printing behavior, among other benefits such as speed performance and better default behavior.</p>
-<p>First, install and load tidyverse packages if you haven’t yet:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)
-<span class="kw">library</span>(tidyverse)</code></pre></div>
-<p>There are two main differences in the usage of a tibble vs. a classic <code>data.frame</code>: printing and subsetting.</p>
 </div>
-<div id="printing" class="section level3">
-<h3><span class="header-section-number">5.2.2</span> Printing</h3>
-<p>Tibbles have a refined print method that shows only the first 10 rows, and all the columns that fit on screen. This makes it much easier to work with large data. In addition to its name, each column reports its type, a nice feature borrowed from <code>str()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tibble</span>(
-  <span class="dt">a =</span> lubridate<span class="op">::</span><span class="kw">now</span>() <span class="op">+</span><span class="st"> </span><span class="kw">runif</span>(<span class="fl">1e3</span>) <span class="op">*</span><span class="st"> </span><span class="dv">86400</span>,
-  <span class="dt">b =</span> lubridate<span class="op">::</span><span class="kw">today</span>() <span class="op">+</span><span class="st"> </span><span class="kw">runif</span>(<span class="fl">1e3</span>) <span class="op">*</span><span class="st"> </span><span class="dv">30</span>,
-  <span class="dt">c =</span> <span class="dv">1</span><span class="op">:</span><span class="fl">1e3</span>,
-  <span class="dt">d =</span> <span class="kw">runif</span>(<span class="fl">1e3</span>),
-  <span class="dt">e =</span> <span class="kw">sample</span>(letters, <span class="fl">1e3</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)
-)</code></pre></div>
-<pre><code>## # A tibble: 1,000 x 5
-##                      a          b     c          d     e
-##                 &lt;dttm&gt;     &lt;date&gt; &lt;int&gt;      &lt;dbl&gt; &lt;chr&gt;
-##  1 2017-11-27 03:36:43 2017-11-29     1 0.45974954     k
-##  2 2017-11-27 18:21:43 2017-12-01     2 0.02470095     v
-##  3 2017-11-27 19:42:48 2017-11-26     3 0.30254975     j
-##  4 2017-11-27 18:31:04 2017-12-25     4 0.40509509     i
-##  5 2017-11-27 03:41:08 2017-11-29     5 0.53665002     c
-##  6 2017-11-27 19:47:56 2017-12-06     6 0.32244557     i
-##  7 2017-11-26 23:20:22 2017-11-26     7 0.78307251     e
-##  8 2017-11-27 17:18:42 2017-12-23     8 0.53158883     d
-##  9 2017-11-26 22:18:52 2017-11-26     9 0.06531483     k
-## 10 2017-11-27 10:42:00 2017-12-05    10 0.77263096     w
-## # ... with 990 more rows</code></pre>
-<p><code>lubridate</code> is a R package for date and time. You need to install the package if you want to replicate the above code on your own computer.</p>
-<p>Tibbles are designed so that you don’t accidentally overwhelm your console when you print large data frames. But sometimes you need more output than the default display. There are a few options that can help.</p>
-<p>First, you can explicitly <code>print()</code> the data frame and control the number of rows (<code>n</code>) and the <code>width</code> of the display. <code>width = Inf</code> will display all columns:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(mtcars, <span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">width =</span> <span class="ot">Inf</span>)</code></pre></div>
-<p>You can also control the default print behaviour by setting options:</p>
-<ul>
-<li><p><code>options(tibble.print_max = n, tibble.print_min = m)</code>: if more than <code>m</code> rows, print only <code>n</code> rows. Use <code>options(dplyr.print_min = Inf)</code> to always show all rows.</p></li>
-<li><p>Use <code>options(tibble.width = Inf)</code> to always print all columns, regardless of the width of the screen.</p></li>
-</ul>
-<p>You can see a complete list of options by looking at the package help with <code>package?tibble</code>.</p>
-<p>A final option is to use RStudio’s built-in data viewer to get a scrollable view of the complete dataset. This is also often useful at the end of a long chain of manipulations.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">View</span>(mtcars)</code></pre></div>
-</div>
-<div id="subsetting" class="section level3">
-<h3><span class="header-section-number">5.2.3</span> Subsetting</h3>
-<p>So far all the tools you’ve learned have worked with complete data frames. If you want to pull out a single variable, you need some new tools, <code>$</code> and <code>[[</code>. <code>[[</code> can extract by name or column position; <code>$</code> only extracts by name but is a little less typing.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">tibble</span>(
-  <span class="dt">x =</span> <span class="kw">runif</span>(<span class="dv">5</span>),
-  <span class="dt">y =</span> <span class="kw">rnorm</span>(<span class="dv">5</span>)
-)
-
-<span class="co"># Extract by name</span>
-df<span class="op">$</span>x</code></pre></div>
-<pre><code>## [1] 0.8274358 0.7709025 0.0776012 0.6567509 0.7675101</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df[[<span class="st">&quot;x&quot;</span>]]</code></pre></div>
-<pre><code>## [1] 0.8274358 0.7709025 0.0776012 0.6567509 0.7675101</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Extract by column position</span>
-df[[<span class="dv">1</span>]]</code></pre></div>
-<pre><code>## [1] 0.8274358 0.7709025 0.0776012 0.6567509 0.7675101</code></pre>
-<!-- To use these in a pipe, you'll need to use the special placeholder `.`: -->
-<!-- ```{r} -->
-<!-- df %>% .$x -->
-<!-- df %>% .[["x"]] -->
-<!-- ``` -->
-<p>Compared to a <code>data.frame</code>, tibbles are more strict: they never do partial matching, and they will generate a warning if the column you are trying to access does not exist.</p>
-</div>
-<div id="converting" class="section level3">
-<h3><span class="header-section-number">5.2.4</span> Converting</h3>
-<p>Some older functions don’t work with tibbles. If you encounter one of these functions, use <code>as.data.frame()</code> to turn a tibble back to a <code>data.frame</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(<span class="kw">as.data.frame</span>(df))</code></pre></div>
-<pre><code>## [1] &quot;data.frame&quot;</code></pre>
-<p>Or use <code>as_tibble()</code> to convert a data.frame to tibble:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(<span class="kw">as_tibble</span>(mtcars))</code></pre></div>
-<pre><code>## [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</code></pre>
-<p>The main reason that some older functions don’t work with tibble is the <code>[</code> function. We don’t use <code>[</code> much in this book because <code>dplyr::filter()</code> and <code>dplyr::select()</code> allow you to solve the same problems with clearer code (but you will learn a little about it in <a href="#vector-subsetting">vector subsetting</a>). With base R data frames, <code>[</code> sometimes returns a data frame, and sometimes returns a vector. With tibbles, <code>[</code> always returns another tibble.</p>
-</div>
-</div>
-<div id="data-import" class="section level2">
-<h2><span class="header-section-number">5.3</span> Data Import</h2>
-<p>The most common data in data science is rectangular, spreadsheet-y data that works best to be loaded as a R data frame, and this section focus on import data into R as data frames. <code>tidyverse</code> provides the <a href="https://github.com/tidyverse/readr"><code>readr</code></a> package that reads comma-separated values (csv), tab delimited values (tsv), and fixed width files (fwf) as tibbles. Other R packages provide access to Excel spreadsheets, binary statistical data formats (SPSS, SAS, Stata), and relational databases:</p>
-<ul>
-<li><a href="https://github.com/tidyverse/readr">readr</a>, reads flat files (csv, tsv, fwf) into R</li>
-<li><a href="https://github.com/tidyverse/readxl">readxl</a>, reads excel files (.xls and .xlsx) into R</li>
-<li><a href="https://github.com/tidyverse/haven">heaven</a>, reads SPSS, Stata and SAS files into R</li>
-<li><a href="https://github.com/rstats-db">rstats-db</a>, R interface to databases</li>
-<li><a href="https://github.com/rstats-db/RMySQL">RMySQL</a></li>
-<li><a href="https://github.com/rstats-db/RSQLite">RSQLite</a></li>
-<li><a href="https://github.com/rstats-db/RPostgres">RPostgres</a></li>
-<li>…</li>
-</ul>
-<p>For this section, we primarily focus on importing data in flat files into data frames. <code>readr</code> provides these functions:</p>
-<ul>
-<li><p><code>read_csv()</code> reads comma delimited files, <code>read_csv2()</code> reads semicolon separated files (common in countries where <code>,</code> is used as the decimal place), <code>read_tsv()</code> reads tab delimited files, and <code>read_delim()</code> reads in files with any delimiter.</p></li>
-<li><p><code>read_fwf()</code> reads fixed width files. You can specify fields either by their widths with <code>fwf_widths()</code> or their position with <code>fwf_positions()</code>. <code>read_table()</code> reads a common variation of fixed width files where columns are separated by white space.</p></li>
-<li><p><code>read_log()</code> reads Apache style log files. (But also check out <a href="https://github.com/Ironholds/webreadr">webreadr</a> which is built on top of <code>read_log()</code> and provides many more helpful tools.)</p></li>
-</ul>
-<p>These functions all have similar syntax: once you’ve mastered one, you can use the others with ease. For the rest of this chapter we’ll focus on <code>read_csv()</code>. Not only are csv files one of the most common forms of data storage, but once you understand <code>read_csv()</code>, you can easily apply your knowledge to all the other functions in readr.</p>
-<p>The first argument to <code>read_csv()</code> is the most important: it’s the path to the file to read.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">heights &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/heights.csv&quot;</span>)</code></pre></div>
-<pre><code>## Parsed with column specification:
-## cols(
-##   earn = col_double(),
-##   height = col_double(),
-##   sex = col_character(),
-##   ed = col_integer(),
-##   age = col_integer(),
-##   race = col_character()
-## )</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">heights</code></pre></div>
-<pre><code>## # A tibble: 1,192 x 6
-##     earn   height    sex    ed   age     race
-##    &lt;dbl&gt;    &lt;dbl&gt;  &lt;chr&gt; &lt;int&gt; &lt;int&gt;    &lt;chr&gt;
-##  1 50000 74.42444   male    16    45    white
-##  2 60000 65.53754 female    16    58    white
-##  3 30000 63.62920 female    16    29    white
-##  4 50000 63.10856 female    16    91    other
-##  5 51000 63.40248 female    17    39    white
-##  6  9000 64.39951 female    15    26    white
-##  7 29000 61.65633 female    12    49    white
-##  8 32000 72.69854   male    17    46    white
-##  9  2000 72.03947   male    15    21 hispanic
-## 10 27000 72.23493   male    12    26    white
-## # ... with 1,182 more rows</code></pre>
-<p>When you run <code>read_csv()</code> it prints out a column specification that gives the name and type of each column. That’s an important part of readr, which we’ll come back to in [parsing a file].</p>
-<p>You can also supply an inline csv file. This is useful for experimenting with readr and for creating reproducible examples to share with others:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">read_csv</span>(<span class="st">&quot;a,b,c</span>
-<span class="st">1,2,3</span>
-<span class="st">4,5,6&quot;</span>)</code></pre></div>
-<pre><code>## # A tibble: 2 x 3
-##       a     b     c
-##   &lt;int&gt; &lt;int&gt; &lt;int&gt;
-## 1     1     2     3
-## 2     4     5     6</code></pre>
-<p>In both cases <code>read_csv()</code> uses the first line of the data for the column names, which is a very common convention. There are two cases where you might want to tweak this behaviour:</p>
+<div id="introduction-to-r-and-rstudio" class="section level2">
+<h2><span class="header-section-number">2.4</span> Introduction to R and RStudio</h2>
 <ol style="list-style-type: decimal">
-<li><p>Sometimes there are a few lines of metadata at the top of the file. You can use <code>skip = n</code> to skip the first <code>n</code> lines; or use <code>comment = &quot;#&quot;</code> to drop all lines that start with (e.g.) <code>#</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">read_csv</span>(<span class="st">&quot;The first line of metadata</span>
-<span class="st">  The second line of metadata</span>
-<span class="st">  x,y,z</span>
-<span class="st">  1,2,3&quot;</span>, <span class="dt">skip =</span> <span class="dv">2</span>)</code></pre></div>
-<pre><code>## # A tibble: 1 x 3
-##       x     y     z
-##   &lt;int&gt; &lt;int&gt; &lt;int&gt;
-## 1     1     2     3</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">read_csv</span>(<span class="st">&quot;# A comment I want to skip</span>
-<span class="st">  x,y,z</span>
-<span class="st">  1,2,3&quot;</span>, <span class="dt">comment =</span> <span class="st">&quot;#&quot;</span>)</code></pre></div>
-<pre><code>## # A tibble: 1 x 3
-##       x     y     z
-##   &lt;int&gt; &lt;int&gt; &lt;int&gt;
-## 1     1     2     3</code></pre></li>
-<li><p>The data might not have column names. You can use <code>col_names = FALSE</code> to tell <code>read_csv()</code> not to treat the first row as headings, and instead label them sequentially from <code>X1</code> to <code>Xn</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">read_csv</span>(<span class="st">&quot;1,2,3</span><span class="ch">\n</span><span class="st">4,5,6&quot;</span>, <span class="dt">col_names =</span> <span class="ot">FALSE</span>)</code></pre></div>
-<pre><code>## # A tibble: 2 x 3
-##      X1    X2    X3
-##   &lt;int&gt; &lt;int&gt; &lt;int&gt;
-## 1     1     2     3
-## 2     4     5     6</code></pre>
-<p>(<code>&quot;\n&quot;</code> is a convenient shortcut for adding a new line. You’ll learn more about it and other types of string escape in [string basics].)</p>
-<p>Alternatively you can pass <code>col_names</code> a character vector which will be used as the column names:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">read_csv</span>(<span class="st">&quot;1,2,3</span><span class="ch">\n</span><span class="st">4,5,6&quot;</span>, <span class="dt">col_names =</span> <span class="kw">c</span>(<span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>, <span class="st">&quot;z&quot;</span>))</code></pre></div>
-<pre><code>## # A tibble: 2 x 3
-##       x     y     z
-##   &lt;int&gt; &lt;int&gt; &lt;int&gt;
-## 1     1     2     3
-## 2     4     5     6</code></pre></li>
+<li><a href="http://swcarpentry.github.io/r-novice-gapminder/01-rstudio-intro/">Introduction to R and RStudio</a></li>
+<li><a href="http://swcarpentry.github.io/r-novice-gapminder/03-seeking-help/">Seeking help</a></li>
 </ol>
-<p>Another option that commonly needs tweaking is <code>na</code>: this specifies the value (or values) that are used to represent missing values in your file:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">read_csv</span>(<span class="st">&quot;a,b,c</span><span class="ch">\n</span><span class="st">1,2,.&quot;</span>, <span class="dt">na =</span> <span class="st">&quot;.&quot;</span>)</code></pre></div>
-<pre><code>## # A tibble: 1 x 3
-##       a     b     c
-##   &lt;int&gt; &lt;int&gt; &lt;chr&gt;
-## 1     1     2  &lt;NA&gt;</code></pre>
-<p>This is all you need to know to read ~75% of CSV files that you’ll encounter in practice. You can also easily adapt what you’ve learned to read tab separated files with <code>read_tsv()</code> and fixed width files with <code>read_fwf()</code>. To read in more challenging files, you’ll need to learn more about how readr parses each column, turning them into R vectors.</p>
-<div id="compared-to-base-r" class="section level3">
-<h3><span class="header-section-number">5.3.1</span> Compared to base R</h3>
-<p>If you’ve used R before, you might wonder why we’re not using <code>read.csv()</code>. There are a few good reasons to favour readr functions over the base equivalents:</p>
+<div id="project-orgnization-in-rstudio" class="section level3">
+<h3><span class="header-section-number">2.4.1</span> Project orgnization in RStudio</h3>
+<p>R experts keep all the files associated with a project together — input data, R scripts, analytical results, figures. This is such a wise and common practice that RStudio has built-in support for this via projects. For example, a project can be a R package under development, or code, data and documents for a research project, or a book project (for example, Hadley use a RStudio project for the R for Data Science book at <a href="https://github.com/hadley/r4ds" class="uri">https://github.com/hadley/r4ds</a>).</p>
+<p>A RStudio project must contain a file with extension Rproj and can contain any files within the directory where the project file lives or its subdirectories. Typical types of files in a RStudio project include: - R Script - R Markdown, R notebook - R Presentation - Shiny Web App - Text file, C++, html, …</p>
+<p>Hadley recommends the following for RStudio projects workflow:</p>
 <ul>
-<li><p>They are typically much faster (~10x) than their base equivalents. Long running jobs have a progress bar, so you can see what’s happening. If you’re looking for raw speed, try <code>data.table::fread()</code>. It doesn’t fit quite so well into the tidyverse, but it can be quite a bit faster.</p></li>
-<li><p>They produce tibbles, they don’t convert character vectors to factors, use row names, or munge the column names. These are common sources of frustration with the base R functions.</p></li>
-<li><p>They are more reproducible. Base R functions inherit some behaviour from your operating system and environment variables, so import code that works on your computer might not work on someone else’s.</p></li>
-<li><p>If you’re interested in learning more on under the hood magics of how <code>readr</code> parses file, <a href="http://r4ds.had.co.nz/data-import.html#parsing-a-vector">this section</a> in R for Data Science provides an overview.</p></li>
+<li>Create an RStudio project for each data analyis project.</li>
+<li>Keep data files there and load them into R with data import.</li>
+<li>Keep scripts there; edit them, run them in bits or as a whole.</li>
+<li>Save your outputs (plots and cleaned data) there.</li>
+<li>Only ever use relative paths (relative to the root path of the project), not absolute paths.</li>
+</ul>
+<p>Everything you need is in one place, and cleanly separated from all the other projects that you are working on.</p>
+<p>I recommend organizing files in subdirectories by types, typically with at least these items: - project_name.Rproj, RStudio project file - README.md, a description file of the project - code, for R scripts - data, for data files - docs, for document/report files, such as R Markdown files</p>
+</div>
+</div>
+<div id="exercise" class="section level2">
+<h2><span class="header-section-number">2.5</span> Exercise</h2>
+<p>Create a RStudio project for this class on your laptop, set up directory structure as recommended above, download <a href="https://github.com/cities/datascience2017/tree/master/data">the bike counts data file</a> and save them in the data directory of your RStudio project.</p>
+</div>
+<div id="class-project" class="section level2">
+<h2><span class="header-section-number">2.6</span> Class project</h2>
+<p>For the class project, you are expected to create a R package with the following requirements and commit it to GitHub:</p>
+<ol style="list-style-type: decimal">
+<li>Contains at least one self-contained function;</li>
+<li>Completed with necessary documentation;</li>
+<li>Passes R package check and test(s);</li>
+<li>[Advanced] includes a vignette that demonstrates the usage of the package.</li>
+</ol>
+<p>You can take and/or re-organize code from your current work or start from scratch. Take the feasibility of completing in a week into consideration when selecting project ideas.</p>
+<p>If you don’t have a feasible project idea at the moment, consider writing a R package that reads and visualizes the bike counts on Hawthorne Bridge and Tilikum Crossing. Daily traffic counts data for these two bridges can be found <a href="https://github.com/cities/datascience2017/tree/master/data">here</a>. At the minimum, your package should be able to:</p>
+<ul>
+<li>Read the data in the excel files;</li>
+<li>Process (tidy) the data as necessary;</li>
+<li>Visualize bike counts on either or both bridges based on the data frame passed in;</li>
+<li>Plot daily bike counts for any specified period;</li>
+<li>[Advanced] Plot daily, weekly, or monthly bike counts based on an frequency argument;</li>
+<li>Pull weather data for Portland and study (visualize and/or model) the effect of weather on bike counts;</li>
+<li>[Advanced] Study (visualize and/or model) the effect of Tilikum Crossing (opened in September 2015) on bike counts on Hawthorne Bridge.</li>
 </ul>
 </div>
-<div id="exercises" class="section level3">
-<h3><span class="header-section-number">5.3.2</span> Exercises</h3>
-<ol style="list-style-type: decimal">
-<li><p>What function would you use to read a file where fields were separated with<br />
-“|”?</p></li>
-<li><p>Apart from <code>file</code>, <code>skip</code>, and <code>comment</code>, what other arguments do <code>read_csv()</code> and <code>read_tsv()</code> have in common?</p></li>
-<li><p>What are the most important arguments to <code>read_fwf()</code>?</p></li>
-<li><p>Sometimes strings in a CSV file contain commas. To prevent them from causing problems they need to be surrounded by a quoting character, like <code>&quot;</code> or <code>'</code>. By convention, <code>read_csv()</code> assumes that the quoting character will be <code>&quot;</code>, and if you want to change it you’ll need to use <code>read_delim()</code> instead. What arguments do you need to specify to read the following text into a data frame?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="st">&quot;x,y</span><span class="ch">\n</span><span class="st">1,&#39;a,b&#39;&quot;</span></code></pre></div></li>
-<li><p>Identify what is wrong with each of the following inline CSV files. What happens when you run the code?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">read_csv</span>(<span class="st">&quot;a,b</span><span class="ch">\n</span><span class="st">1,2,3</span><span class="ch">\n</span><span class="st">4,5,6&quot;</span>)
-<span class="kw">read_csv</span>(<span class="st">&quot;a,b,c</span><span class="ch">\n</span><span class="st">1,2</span><span class="ch">\n</span><span class="st">1,2,3,4&quot;</span>)
-<span class="kw">read_csv</span>(<span class="st">&quot;a,b</span><span class="ch">\n\&quot;</span><span class="st">1&quot;</span>)
-<span class="kw">read_csv</span>(<span class="st">&quot;a,b</span><span class="ch">\n</span><span class="st">1,2</span><span class="ch">\n</span><span class="st">a,b&quot;</span>)
-<span class="kw">read_csv</span>(<span class="st">&quot;a;b</span><span class="ch">\n</span><span class="st">1;3&quot;</span>)</code></pre></div></li>
-</ol>
-</div>
-</div>
-<div id="writing-to-a-file" class="section level2">
-<h2><span class="header-section-number">5.4</span> Writing to a file</h2>
-<p>readr also comes with two useful functions for writing data back to disk: <code>write_csv()</code> and <code>write_tsv()</code>. Both functions increase the chances of the output file being read back in correctly by:</p>
+<div id="learning-more" class="section level2">
+<h2><span class="header-section-number">2.7</span> Learning more</h2>
+<p>The above will get your basic setup ready but here are some links if you are interested in reading a bit further.</p>
 <ul>
-<li><p>Always encoding strings in UTF-8.</p></li>
-<li><p>Saving dates and date-times in ISO8601 format so they are easily parsed elsewhere.</p></li>
-</ul>
-<p>If you want to export a csv file to Excel, use <code>write_excel_csv()</code> — this writes a special character (a “byte order mark”) at the start of the file which tells Excel that you’re using the UTF-8 encoding.</p>
-<p>The most important arguments are <code>x</code> (the data frame to save), and <code>path</code> (the location to save it). You can also specify how missing values are written with <code>na</code>, and if you want to <code>append</code> to an existing file.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write_csv</span>(heights, <span class="st">&quot;results/heights.csv&quot;</span>)</code></pre></div>
-<p>Note that the type information is lost when you save to csv:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">heights</code></pre></div>
-<pre><code>## # A tibble: 1,192 x 6
-##     earn   height    sex    ed   age     race
-##    &lt;dbl&gt;    &lt;dbl&gt;  &lt;chr&gt; &lt;int&gt; &lt;int&gt;    &lt;chr&gt;
-##  1 50000 74.42444   male    16    45    white
-##  2 60000 65.53754 female    16    58    white
-##  3 30000 63.62920 female    16    29    white
-##  4 50000 63.10856 female    16    91    other
-##  5 51000 63.40248 female    17    39    white
-##  6  9000 64.39951 female    15    26    white
-##  7 29000 61.65633 female    12    49    white
-##  8 32000 72.69854   male    17    46    white
-##  9  2000 72.03947   male    15    21 hispanic
-## 10 27000 72.23493   male    12    26    white
-## # ... with 1,182 more rows</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write_csv</span>(heights, <span class="st">&quot;results/heights-2.csv&quot;</span>)
-<span class="kw">read_csv</span>(<span class="st">&quot;results/heights-2.csv&quot;</span>)</code></pre></div>
-<pre><code>## # A tibble: 1,192 x 6
-##     earn   height    sex    ed   age     race
-##    &lt;dbl&gt;    &lt;dbl&gt;  &lt;chr&gt; &lt;int&gt; &lt;int&gt;    &lt;chr&gt;
-##  1 50000 74.42444   male    16    45    white
-##  2 60000 65.53754 female    16    58    white
-##  3 30000 63.62920 female    16    29    white
-##  4 50000 63.10856 female    16    91    other
-##  5 51000 63.40248 female    17    39    white
-##  6  9000 64.39951 female    15    26    white
-##  7 29000 61.65633 female    12    49    white
-##  8 32000 72.69854   male    17    46    white
-##  9  2000 72.03947   male    15    21 hispanic
-## 10 27000 72.23493   male    12    26    white
-## # ... with 1,182 more rows</code></pre>
-<p>This makes CSVs a little unreliable for caching interim results—you need to recreate the column specification every time you load in. There are two alternatives:</p>
-<ol style="list-style-type: decimal">
-<li><p><code>write_rds()</code> and <code>read_rds()</code> are uniform wrappers around the base functions <code>readRDS()</code> and <code>saveRDS()</code>. These store data in R’s custom binary format called RDS:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write_rds</span>(heights, <span class="st">&quot;results/heights.rds&quot;</span>)
-<span class="kw">read_rds</span>(<span class="st">&quot;results/heights.rds&quot;</span>)</code></pre></div>
-<pre><code>## # A tibble: 1,192 x 6
-##     earn   height    sex    ed   age     race
-##    &lt;dbl&gt;    &lt;dbl&gt;  &lt;chr&gt; &lt;int&gt; &lt;int&gt;    &lt;chr&gt;
-##  1 50000 74.42444   male    16    45    white
-##  2 60000 65.53754 female    16    58    white
-##  3 30000 63.62920 female    16    29    white
-##  4 50000 63.10856 female    16    91    other
-##  5 51000 63.40248 female    17    39    white
-##  6  9000 64.39951 female    15    26    white
-##  7 29000 61.65633 female    12    49    white
-##  8 32000 72.69854   male    17    46    white
-##  9  2000 72.03947   male    15    21 hispanic
-## 10 27000 72.23493   male    12    26    white
-## # ... with 1,182 more rows</code></pre></li>
-<li><p>The feather package implements a fast binary file format that can be shared across programming languages:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;feather&quot;</span>)
-<span class="kw">library</span>(feather)
-<span class="kw">write_feather</span>(heights, <span class="st">&quot;results/heights.feather&quot;</span>)
-<span class="kw">read_feather</span>(<span class="st">&quot;results/heights.feather&quot;</span>)</code></pre></div></li>
-</ol>
-<p>Feather tends to be faster than RDS and is usable outside of R. RDS supports list-columns (which we will come back to in [Model]); feather currently does not.</p>
-</div>
-<div id="learn-more" class="section level2">
-<h2><span class="header-section-number">5.5</span> Learn More</h2>
+<li>RStudio Cheat Sheet
 <ul>
-<li><a href="https://www.datacamp.com/community/tutorials/r-data-import-tutorial">R Data Import Tutorial</a> by Data Camp</li>
-<li><a href="http://uc-r.github.io/import">Importing Data</a> and <a href="http://uc-r.github.io/exporting">Exporting Data</a> by R Programming @ UC.</li>
-<li><a href="https://science.nature.nps.gov/im/datamgmt/statistics/r/fundamentals/index.cfm">Data Import &amp; Export in R</a> by National Park Services</li>
-<li><a href="http://stat545.com/cm111_webdata.html">Scrape web data with APIs</a></li>
+<li><a href="https://www.rstudio.com/wp-content/uploads/2016/01/rstudio-IDE-cheatsheet.pdf" class="uri">https://www.rstudio.com/wp-content/uploads/2016/01/rstudio-IDE-cheatsheet.pdf</a></li>
+</ul></li>
+<li>RStudio’s leads for getting help with R
+<ul>
+<li><a href="https://support.rstudio.com/hc/en-us/articles/200717153-Getting-Help-with-R" class="uri">https://support.rstudio.com/hc/en-us/articles/200717153-Getting-Help-with-R</a></li>
+</ul></li>
+<li>R FAQ:
+<ul>
+<li><a href="http://cran.r-project.org/doc/FAQ/R-FAQ.html" class="uri">http://cran.r-project.org/doc/FAQ/R-FAQ.html</a></li>
+</ul></li>
+<li>R Installation and Administration
+<ul>
+<li><a href="http://cran.r-project.org/doc/manuals/R-admin.html" class="uri">http://cran.r-project.org/doc/manuals/R-admin.html</a></li>
+</ul></li>
+<li>More about add-on packages in the R Installation and Administration Manual
+<ul>
+<li><a href="https://cran.r-project.org/doc/manuals/R-admin.html#Add_002don-packages" class="uri">https://cran.r-project.org/doc/manuals/R-admin.html#Add_002don-packages</a></li>
+</ul></li>
 </ul>
 
 </div>
@@ -600,8 +420,8 @@ df[[<span class="dv">1</span>]]</code></pre></div>
           </div>
         </div>
       </div>
-<a href="version-control-with-git.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="create-r-package.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="r-coding-basics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>

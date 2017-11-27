@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Introduction to Data Science for Transportation Researchers, Planners, and Engineers</title>
+  <meta name="description" content="Introduction to Data Science for Transportation Researchers, Planners, and Engineers">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Introduction to Data Science for Transportation Researchers, Planners, and Engineers" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="cities/datascience" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Introduction to Data Science for Transportation Researchers, Planners, and Engineers" />
+  
+  
+  
+
+<meta name="author" content="Liming Wang">
+
+
+<meta name="date" content="2017-11-26">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="tidy-data.html">
+<link rel="next" href="data-visulization-with-ggplot2.html">
+<script src="book_assets/jquery-2.2.3/jquery.min.js"></script>
+<link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction to Data Science</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#syllabus"><i class="fa fa-check"></i><b>1.1</b> Syllabus</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#format-software-and-hardware"><i class="fa fa-check"></i><b>1.1.1</b> Format, Software and Hardware</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#prerequisite"><i class="fa fa-check"></i><b>1.1.2</b> Prerequisite</a></li>
+<li class="chapter" data-level="1.1.3" data-path="index.html"><a href="index.html#textbook-and-readings"><i class="fa fa-check"></i><b>1.1.3</b> Textbook and Readings</a></li>
+<li class="chapter" data-level="1.1.4" data-path="index.html"><a href="index.html#topics"><i class="fa fa-check"></i><b>1.1.4</b> Topics</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i><b>1.2</b> License</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i><b>1.3</b> Acknowledgements</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="overview-and-introduction.html"><a href="overview-and-introduction.html"><i class="fa fa-check"></i><b>2</b> Overview and Introduction</a><ul>
+<li class="chapter" data-level="2.1" data-path="overview-and-introduction.html"><a href="overview-and-introduction.html#part-i-data-science-best-practices"><i class="fa fa-check"></i><b>2.1</b> Part I: Data Science Best Practices</a></li>
+<li class="chapter" data-level="2.2" data-path="overview-and-introduction.html"><a href="overview-and-introduction.html#set-up-your-computer"><i class="fa fa-check"></i><b>2.2</b> Set up your computer</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="overview-and-introduction.html"><a href="overview-and-introduction.html#installation"><i class="fa fa-check"></i><b>2.2.1</b> Installation</a></li>
+<li class="chapter" data-level="2.2.2" data-path="overview-and-introduction.html"><a href="overview-and-introduction.html#installation-verification"><i class="fa fa-check"></i><b>2.2.2</b> Installation Verification</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="overview-and-introduction.html"><a href="overview-and-introduction.html#why-r"><i class="fa fa-check"></i><b>2.3</b> Why R</a></li>
+<li class="chapter" data-level="2.4" data-path="overview-and-introduction.html"><a href="overview-and-introduction.html#introduction-to-r-and-rstudio"><i class="fa fa-check"></i><b>2.4</b> Introduction to R and RStudio</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="overview-and-introduction.html"><a href="overview-and-introduction.html#project-orgnization-in-rstudio"><i class="fa fa-check"></i><b>2.4.1</b> Project orgnization in RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="overview-and-introduction.html"><a href="overview-and-introduction.html#exercise"><i class="fa fa-check"></i><b>2.5</b> Exercise</a></li>
+<li class="chapter" data-level="2.6" data-path="overview-and-introduction.html"><a href="overview-and-introduction.html#class-project"><i class="fa fa-check"></i><b>2.6</b> Class project</a></li>
+<li class="chapter" data-level="2.7" data-path="overview-and-introduction.html"><a href="overview-and-introduction.html#learning-more"><i class="fa fa-check"></i><b>2.7</b> Learning more</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="r-coding-basics.html"><a href="r-coding-basics.html"><i class="fa fa-check"></i><b>3</b> R Coding Basics</a><ul>
+<li class="chapter" data-level="3.1" data-path="r-coding-basics.html"><a href="r-coding-basics.html#best-practices-for-data-science"><i class="fa fa-check"></i><b>3.1</b> Best practices for data science</a></li>
+<li class="chapter" data-level="3.2" data-path="r-coding-basics.html"><a href="r-coding-basics.html#r-coding-basics-1"><i class="fa fa-check"></i><b>3.2</b> R coding basics</a></li>
+<li class="chapter" data-level="3.3" data-path="r-coding-basics.html"><a href="r-coding-basics.html#advanced-topics"><i class="fa fa-check"></i><b>3.3</b> Advanced Topics</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="r-coding-basics.html"><a href="r-coding-basics.html#code-style-guide"><i class="fa fa-check"></i><b>3.3.1</b> Code Style Guide</a></li>
+<li class="chapter" data-level="3.3.2" data-path="r-coding-basics.html"><a href="r-coding-basics.html#r-command-line-program"><i class="fa fa-check"></i><b>3.3.2</b> R Command-Line Program</a></li>
+<li class="chapter" data-level="3.3.3" data-path="r-coding-basics.html"><a href="r-coding-basics.html#debugging-with-rstudio"><i class="fa fa-check"></i><b>3.3.3</b> Debugging with RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="r-coding-basics.html"><a href="r-coding-basics.html#exercise-1"><i class="fa fa-check"></i><b>3.4</b> Exercise</a></li>
+<li class="chapter" data-level="3.5" data-path="r-coding-basics.html"><a href="r-coding-basics.html#learning-more-1"><i class="fa fa-check"></i><b>3.5</b> Learning more</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="version-control-with-git.html"><a href="version-control-with-git.html"><i class="fa fa-check"></i><b>4</b> Version Control with Git</a><ul>
+<li class="chapter" data-level="4.1" data-path="version-control-with-git.html"><a href="version-control-with-git.html#install-git"><i class="fa fa-check"></i><b>4.1</b> Install Git</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="version-control-with-git.html"><a href="version-control-with-git.html#for-windows"><i class="fa fa-check"></i><b>4.1.1</b> For windows</a></li>
+<li class="chapter" data-level="4.1.2" data-path="version-control-with-git.html"><a href="version-control-with-git.html#for-mac"><i class="fa fa-check"></i><b>4.1.2</b> For Mac</a></li>
+<li class="chapter" data-level="4.1.3" data-path="version-control-with-git.html"><a href="version-control-with-git.html#for-linux"><i class="fa fa-check"></i><b>4.1.3</b> For Linux</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="version-control-with-git.html"><a href="version-control-with-git.html#lesson"><i class="fa fa-check"></i><b>4.2</b> Lesson</a></li>
+<li class="chapter" data-level="4.3" data-path="version-control-with-git.html"><a href="version-control-with-git.html#exercise-2"><i class="fa fa-check"></i><b>4.3</b> Exercise</a></li>
+<li class="chapter" data-level="4.4" data-path="version-control-with-git.html"><a href="version-control-with-git.html#learning-more-2"><i class="fa fa-check"></i><b>4.4</b> Learning more</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>5</b> Import</a><ul>
+<li class="chapter" data-level="5.1" data-path="import.html"><a href="import.html#readings"><i class="fa fa-check"></i><b>5.1</b> Readings</a></li>
+<li class="chapter" data-level="5.2" data-path="import.html"><a href="import.html#tibbles-vs.data.frame"><i class="fa fa-check"></i><b>5.2</b> Tibbles vs. data.frame</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="import.html"><a href="import.html#data-frames-are-awesome"><i class="fa fa-check"></i><b>5.2.1</b> Data frames are awesome</a></li>
+<li class="chapter" data-level="5.2.2" data-path="import.html"><a href="import.html#printing"><i class="fa fa-check"></i><b>5.2.2</b> Printing</a></li>
+<li class="chapter" data-level="5.2.3" data-path="import.html"><a href="import.html#subsetting"><i class="fa fa-check"></i><b>5.2.3</b> Subsetting</a></li>
+<li class="chapter" data-level="5.2.4" data-path="import.html"><a href="import.html#converting"><i class="fa fa-check"></i><b>5.2.4</b> Converting</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="import.html"><a href="import.html#data-import"><i class="fa fa-check"></i><b>5.3</b> Data Import</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="import.html"><a href="import.html#compared-to-base-r"><i class="fa fa-check"></i><b>5.3.1</b> Compared to base R</a></li>
+<li class="chapter" data-level="5.3.2" data-path="import.html"><a href="import.html#exercises"><i class="fa fa-check"></i><b>5.3.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="import.html"><a href="import.html#writing-to-a-file"><i class="fa fa-check"></i><b>5.4</b> Writing to a file</a></li>
+<li class="chapter" data-level="5.5" data-path="import.html"><a href="import.html#learn-more"><i class="fa fa-check"></i><b>5.5</b> Learn More</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="create-r-package.html"><a href="create-r-package.html"><i class="fa fa-check"></i><b>6</b> Create R Package</a><ul>
+<li class="chapter" data-level="6.1" data-path="create-r-package.html"><a href="create-r-package.html#lesson-1"><i class="fa fa-check"></i><b>6.1</b> Lesson</a></li>
+<li class="chapter" data-level="6.2" data-path="create-r-package.html"><a href="create-r-package.html#r-package-checklist"><i class="fa fa-check"></i><b>6.2</b> R package checklist</a></li>
+<li class="chapter" data-level="6.3" data-path="create-r-package.html"><a href="create-r-package.html#exercise-3"><i class="fa fa-check"></i><b>6.3</b> Exercise</a></li>
+<li class="chapter" data-level="6.4" data-path="create-r-package.html"><a href="create-r-package.html#learning-more-3"><i class="fa fa-check"></i><b>6.4</b> Learning more</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>7</b> R Markdown</a><ul>
+<li class="chapter" data-level="7.1" data-path="r-markdown.html"><a href="r-markdown.html#readings-1"><i class="fa fa-check"></i><b>7.1</b> Readings</a></li>
+<li class="chapter" data-level="7.2" data-path="r-markdown.html"><a href="r-markdown.html#lessons"><i class="fa fa-check"></i><b>7.2</b> Lessons</a></li>
+<li class="chapter" data-level="7.3" data-path="r-markdown.html"><a href="r-markdown.html#exercise-4"><i class="fa fa-check"></i><b>7.3</b> Exercise</a></li>
+<li class="chapter" data-level="7.4" data-path="r-markdown.html"><a href="r-markdown.html#learning-more-4"><i class="fa fa-check"></i><b>7.4</b> Learning more</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="part-ii-overview-and-introduction.html"><a href="part-ii-overview-and-introduction.html"><i class="fa fa-check"></i><b>8</b> Part II: Overview and Introduction</a><ul>
+<li class="chapter" data-level="8.1" data-path="part-ii-overview-and-introduction.html"><a href="part-ii-overview-and-introduction.html#readings-2"><i class="fa fa-check"></i><b>8.1</b> Readings</a></li>
+<li class="chapter" data-level="8.2" data-path="part-ii-overview-and-introduction.html"><a href="part-ii-overview-and-introduction.html#the-tidyverse-workflow"><i class="fa fa-check"></i><b>8.2</b> The tidyverse workflow</a></li>
+<li class="chapter" data-level="8.3" data-path="part-ii-overview-and-introduction.html"><a href="part-ii-overview-and-introduction.html#the-tidyverse-packages"><i class="fa fa-check"></i><b>8.3</b> The tidyverse packages</a></li>
+<li class="chapter" data-level="8.4" data-path="part-ii-overview-and-introduction.html"><a href="part-ii-overview-and-introduction.html#pipe-operator"><i class="fa fa-check"></i><b>8.4</b> Pipe operator</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="part-ii-overview-and-introduction.html"><a href="part-ii-overview-and-introduction.html#rstudio-keyboard-shortcut-for"><i class="fa fa-check"></i><b>8.4.1</b> RStudio keyboard shortcut for <code>%&gt;%</code></a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="part-ii-overview-and-introduction.html"><a href="part-ii-overview-and-introduction.html#class-project-1"><i class="fa fa-check"></i><b>8.5</b> Class project</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="data-importing.html"><a href="data-importing.html"><i class="fa fa-check"></i><b>9</b> Data importing</a><ul>
+<li class="chapter" data-level="9.1" data-path="data-importing.html"><a href="data-importing.html#readings-3"><i class="fa fa-check"></i><b>9.1</b> Readings</a></li>
+<li class="chapter" data-level="9.2" data-path="data-importing.html"><a href="data-importing.html#tibbles-vs.data.frame-1"><i class="fa fa-check"></i><b>9.2</b> Tibbles vs. data.frame</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="data-importing.html"><a href="data-importing.html#data-frames-are-awesome-1"><i class="fa fa-check"></i><b>9.2.1</b> Data frames are awesome</a></li>
+<li class="chapter" data-level="9.2.2" data-path="data-importing.html"><a href="data-importing.html#printing-1"><i class="fa fa-check"></i><b>9.2.2</b> Printing</a></li>
+<li class="chapter" data-level="9.2.3" data-path="data-importing.html"><a href="data-importing.html#subsetting-1"><i class="fa fa-check"></i><b>9.2.3</b> Subsetting</a></li>
+<li class="chapter" data-level="9.2.4" data-path="data-importing.html"><a href="data-importing.html#converting-1"><i class="fa fa-check"></i><b>9.2.4</b> Converting</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="data-importing.html"><a href="data-importing.html#data-import-1"><i class="fa fa-check"></i><b>9.3</b> Data Import</a></li>
+<li class="chapter" data-level="9.4" data-path="data-importing.html"><a href="data-importing.html#exercise-5"><i class="fa fa-check"></i><b>9.4</b> Exercise</a></li>
+<li class="chapter" data-level="9.5" data-path="data-importing.html"><a href="data-importing.html#learning-more-5"><i class="fa fa-check"></i><b>9.5</b> Learning More</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="tidy-data.html"><a href="tidy-data.html"><i class="fa fa-check"></i><b>10</b> Tidy Data</a><ul>
+<li class="chapter" data-level="10.1" data-path="tidy-data.html"><a href="tidy-data.html#readings-4"><i class="fa fa-check"></i><b>10.1</b> Readings</a></li>
+<li class="chapter" data-level="10.2" data-path="tidy-data.html"><a href="tidy-data.html#tidy-data-1"><i class="fa fa-check"></i><b>10.2</b> Tidy Data</a></li>
+<li class="chapter" data-level="10.3" data-path="tidy-data.html"><a href="tidy-data.html#lesson-2"><i class="fa fa-check"></i><b>10.3</b> Lesson</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="tidy-data.html"><a href="tidy-data.html#spreading-and-gathering"><i class="fa fa-check"></i><b>10.3.1</b> Spreading and gathering</a></li>
+<li class="chapter" data-level="10.3.2" data-path="tidy-data.html"><a href="tidy-data.html#separating-and-uniting"><i class="fa fa-check"></i><b>10.3.2</b> Separating and uniting</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="tidy-data.html"><a href="tidy-data.html#exercise-6"><i class="fa fa-check"></i><b>10.4</b> Exercise</a></li>
+<li class="chapter" data-level="10.5" data-path="tidy-data.html"><a href="tidy-data.html#learning-more-6"><i class="fa fa-check"></i><b>10.5</b> Learning more</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html"><i class="fa fa-check"></i><b>11</b> Data manipulation with dplyr</a><ul>
+<li class="chapter" data-level="11.1" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#readings-5"><i class="fa fa-check"></i><b>11.1</b> Readings</a></li>
+<li class="chapter" data-level="11.2" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#overview"><i class="fa fa-check"></i><b>11.2</b> Overview</a></li>
+<li class="chapter" data-level="11.3" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#lesson-3"><i class="fa fa-check"></i><b>11.3</b> Lesson</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#prerequisites"><i class="fa fa-check"></i><b>11.3.1</b> Prerequisites</a></li>
+<li class="chapter" data-level="11.3.2" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#use-filter-to-subset-data-row-wise."><i class="fa fa-check"></i><b>11.3.2</b> Use <code>filter()</code> to subset data row-wise.</a></li>
+<li class="chapter" data-level="11.3.3" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#use-select-to-subset-the-data-on-variables-or-columns."><i class="fa fa-check"></i><b>11.3.3</b> Use <code>select()</code> to subset the data on variables or columns.</a></li>
+<li class="chapter" data-level="11.3.4" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#revel-in-the-convenience"><i class="fa fa-check"></i><b>11.3.4</b> Revel in the convenience</a></li>
+<li class="chapter" data-level="11.3.5" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#pure-predictable-pipeable"><i class="fa fa-check"></i><b>11.3.5</b> Pure, predictable, pipeable</a></li>
+<li class="chapter" data-level="11.3.6" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#use-mutate-to-add-new-variables"><i class="fa fa-check"></i><b>11.3.6</b> Use <code>mutate()</code> to add new variables</a></li>
+<li class="chapter" data-level="11.3.7" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#use-arrange-to-row-order-data-in-a-principled-way"><i class="fa fa-check"></i><b>11.3.7</b> Use <code>arrange()</code> to row-order data in a principled way</a></li>
+<li class="chapter" data-level="11.3.8" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#use-rename-to-rename-variables"><i class="fa fa-check"></i><b>11.3.8</b> Use <code>rename()</code> to rename variables</a></li>
+<li class="chapter" data-level="11.3.9" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#select-can-rename-and-reposition-variables"><i class="fa fa-check"></i><b>11.3.9</b> <code>select()</code> can rename and reposition variables</a></li>
+<li class="chapter" data-level="11.3.10" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#group_by-is-a-mighty-weapon"><i class="fa fa-check"></i><b>11.3.10</b> <code>group_by()</code> is a mighty weapon</a></li>
+<li class="chapter" data-level="11.3.11" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#grouped-mutate"><i class="fa fa-check"></i><b>11.3.11</b> Grouped mutate</a></li>
+<li class="chapter" data-level="11.3.12" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#grand-finale"><i class="fa fa-check"></i><b>11.3.12</b> Grand Finale</a></li>
+<li class="chapter" data-level="11.3.13" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#working-with-two-datasets"><i class="fa fa-check"></i><b>11.3.13</b> Working with two datasets</a></li>
+<li class="chapter" data-level="11.3.14" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#variable-recoding-with-dplyr"><i class="fa fa-check"></i><b>11.3.14</b> Variable recoding with dplyr</a></li>
+<li class="chapter" data-level="11.3.15" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#programming-with-dplyr"><i class="fa fa-check"></i><b>11.3.15</b> Programming with dplyr</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#exercise-7"><i class="fa fa-check"></i><b>11.4</b> Exercise</a></li>
+<li class="chapter" data-level="11.5" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#learning-more-7"><i class="fa fa-check"></i><b>11.5</b> Learning more</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="data-visulization-with-ggplot2.html"><a href="data-visulization-with-ggplot2.html"><i class="fa fa-check"></i><b>12</b> Data visulization with ggplot2</a><ul>
+<li class="chapter" data-level="12.1" data-path="data-visulization-with-ggplot2.html"><a href="data-visulization-with-ggplot2.html#readings-6"><i class="fa fa-check"></i><b>12.1</b> Readings</a></li>
+<li class="chapter" data-level="12.2" data-path="data-visulization-with-ggplot2.html"><a href="data-visulization-with-ggplot2.html#overview-1"><i class="fa fa-check"></i><b>12.2</b> Overview</a></li>
+<li class="chapter" data-level="12.3" data-path="data-visulization-with-ggplot2.html"><a href="data-visulization-with-ggplot2.html#tips"><i class="fa fa-check"></i><b>12.3</b> Tips</a></li>
+<li class="chapter" data-level="12.4" data-path="data-visulization-with-ggplot2.html"><a href="data-visulization-with-ggplot2.html#lesson-4"><i class="fa fa-check"></i><b>12.4</b> Lesson</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="data-visulization-with-ggplot2.html"><a href="data-visulization-with-ggplot2.html#prerequisites-1"><i class="fa fa-check"></i><b>12.4.1</b> Prerequisites</a></li>
+<li class="chapter" data-level="12.4.2" data-path="data-visulization-with-ggplot2.html"><a href="data-visulization-with-ggplot2.html#first-steps"><i class="fa fa-check"></i><b>12.4.2</b> First steps</a></li>
+<li class="chapter" data-level="12.4.3" data-path="data-visulization-with-ggplot2.html"><a href="data-visulization-with-ggplot2.html#the-mpg-data-frame"><i class="fa fa-check"></i><b>12.4.3</b> The <code>mpg</code> data frame</a></li>
+<li class="chapter" data-level="12.4.4" data-path="data-visulization-with-ggplot2.html"><a href="data-visulization-with-ggplot2.html#creating-a-ggplot"><i class="fa fa-check"></i><b>12.4.4</b> Creating a ggplot</a></li>
+<li class="chapter" data-level="12.4.5" data-path="data-visulization-with-ggplot2.html"><a href="data-visulization-with-ggplot2.html#a-graphing-template"><i class="fa fa-check"></i><b>12.4.5</b> A graphing template</a></li>
+<li class="chapter" data-level="12.4.6" data-path="data-visulization-with-ggplot2.html"><a href="data-visulization-with-ggplot2.html#aesthetic-mappings"><i class="fa fa-check"></i><b>12.4.6</b> Aesthetic mappings</a></li>
+<li class="chapter" data-level="12.4.7" data-path="data-visulization-with-ggplot2.html"><a href="data-visulization-with-ggplot2.html#facets"><i class="fa fa-check"></i><b>12.4.7</b> Facets</a></li>
+<li class="chapter" data-level="12.4.8" data-path="data-visulization-with-ggplot2.html"><a href="data-visulization-with-ggplot2.html#geometric-objects"><i class="fa fa-check"></i><b>12.4.8</b> Geometric objects</a></li>
+<li class="chapter" data-level="12.4.9" data-path="data-visulization-with-ggplot2.html"><a href="data-visulization-with-ggplot2.html#statistical-transformations"><i class="fa fa-check"></i><b>12.4.9</b> Statistical transformations</a></li>
+<li class="chapter" data-level="12.4.10" data-path="data-visulization-with-ggplot2.html"><a href="data-visulization-with-ggplot2.html#position-adjustments"><i class="fa fa-check"></i><b>12.4.10</b> Position adjustments</a></li>
+<li class="chapter" data-level="12.4.11" data-path="data-visulization-with-ggplot2.html"><a href="data-visulization-with-ggplot2.html#coordinate-systems"><i class="fa fa-check"></i><b>12.4.11</b> Coordinate systems</a></li>
+<li class="chapter" data-level="12.4.12" data-path="data-visulization-with-ggplot2.html"><a href="data-visulization-with-ggplot2.html#the-layered-grammar-of-graphics"><i class="fa fa-check"></i><b>12.4.12</b> The layered grammar of graphics</a></li>
+<li class="chapter" data-level="12.4.13" data-path="data-visulization-with-ggplot2.html"><a href="data-visulization-with-ggplot2.html#additional-resources"><i class="fa fa-check"></i><b>12.4.13</b> Additional Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="data-visulization-with-ggplot2.html"><a href="data-visulization-with-ggplot2.html#exercise-8"><i class="fa fa-check"></i><b>12.5</b> Exercise</a></li>
+<li class="chapter" data-level="12.6" data-path="data-visulization-with-ggplot2.html"><a href="data-visulization-with-ggplot2.html#learning-more-8"><i class="fa fa-check"></i><b>12.6</b> Learning more:</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="split-apply-combine-pattern-in-data-modeling.html"><a href="split-apply-combine-pattern-in-data-modeling.html"><i class="fa fa-check"></i><b>13</b> Split-Apply-Combine Pattern in Data Modeling</a><ul>
+<li class="chapter" data-level="13.1" data-path="split-apply-combine-pattern-in-data-modeling.html"><a href="split-apply-combine-pattern-in-data-modeling.html#readings-7"><i class="fa fa-check"></i><b>13.1</b> Readings</a></li>
+<li class="chapter" data-level="13.2" data-path="split-apply-combine-pattern-in-data-modeling.html"><a href="split-apply-combine-pattern-in-data-modeling.html#split-apply-combine"><i class="fa fa-check"></i><b>13.2</b> Split-Apply-Combine</a></li>
+<li class="chapter" data-level="13.3" data-path="split-apply-combine-pattern-in-data-modeling.html"><a href="split-apply-combine-pattern-in-data-modeling.html#lesson-5"><i class="fa fa-check"></i><b>13.3</b> Lesson</a><ul>
+<li class="chapter" data-level="13.3.1" data-path="split-apply-combine-pattern-in-data-modeling.html"><a href="split-apply-combine-pattern-in-data-modeling.html#think-before-you-create-excerpts-of-your-data"><i class="fa fa-check"></i><b>13.3.1</b> Think before you create excerpts of your data …</a></li>
+<li class="chapter" data-level="13.3.2" data-path="split-apply-combine-pattern-in-data-modeling.html"><a href="split-apply-combine-pattern-in-data-modeling.html#prerequisite-1"><i class="fa fa-check"></i><b>13.3.2</b> Prerequisite</a></li>
+<li class="chapter" data-level="13.3.3" data-path="split-apply-combine-pattern-in-data-modeling.html"><a href="split-apply-combine-pattern-in-data-modeling.html#split-apply-combine-1"><i class="fa fa-check"></i><b>13.3.3</b> Split Apply Combine</a></li>
+<li class="chapter" data-level="13.3.4" data-path="split-apply-combine-pattern-in-data-modeling.html"><a href="split-apply-combine-pattern-in-data-modeling.html#entry-level-dplyrgroup_by"><i class="fa fa-check"></i><b>13.3.4</b> Entry level: <code>dplyr::group_by()</code></a></li>
+<li class="chapter" data-level="13.3.5" data-path="split-apply-combine-pattern-in-data-modeling.html"><a href="split-apply-combine-pattern-in-data-modeling.html#general-approach-nesting"><i class="fa fa-check"></i><b>13.3.5</b> General approach: nesting</a></li>
+<li class="chapter" data-level="13.3.6" data-path="split-apply-combine-pattern-in-data-modeling.html"><a href="split-apply-combine-pattern-in-data-modeling.html#apply-a-function-purrrmap-and-mutate"><i class="fa fa-check"></i><b>13.3.6</b> Apply a function <code>purrr::map()</code> and <code>mutate()</code></a></li>
+<li class="chapter" data-level="13.3.7" data-path="split-apply-combine-pattern-in-data-modeling.html"><a href="split-apply-combine-pattern-in-data-modeling.html#always-have-an-exit-strategy"><i class="fa fa-check"></i><b>13.3.7</b> Always have an exit strategy</a></li>
+<li class="chapter" data-level="13.3.8" data-path="split-apply-combine-pattern-in-data-modeling.html"><a href="split-apply-combine-pattern-in-data-modeling.html#simplify-and-combine"><i class="fa fa-check"></i><b>13.3.8</b> Simplify and combine</a></li>
+<li class="chapter" data-level="13.3.9" data-path="split-apply-combine-pattern-in-data-modeling.html"><a href="split-apply-combine-pattern-in-data-modeling.html#recap"><i class="fa fa-check"></i><b>13.3.9</b> Recap</a></li>
+<li class="chapter" data-level="13.3.10" data-path="split-apply-combine-pattern-in-data-modeling.html"><a href="split-apply-combine-pattern-in-data-modeling.html#enjoy-the-payoff-of-your-work"><i class="fa fa-check"></i><b>13.3.10</b> Enjoy the payoff of your work</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="split-apply-combine-pattern-in-data-modeling.html"><a href="split-apply-combine-pattern-in-data-modeling.html#exercise-9"><i class="fa fa-check"></i><b>13.4</b> Exercise</a></li>
+<li class="chapter" data-level="13.5" data-path="split-apply-combine-pattern-in-data-modeling.html"><a href="split-apply-combine-pattern-in-data-modeling.html#resources"><i class="fa fa-check"></i><b>13.5</b> Resources:</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="where-to-go-from-here.html"><a href="where-to-go-from-here.html"><i class="fa fa-check"></i><b>14</b> Where to go from here</a><ul>
+<li class="chapter" data-level="14.1" data-path="where-to-go-from-here.html"><a href="where-to-go-from-here.html#noticeable-features-not-covered"><i class="fa fa-check"></i><b>14.1</b> Noticeable features not covered</a></li>
+<li class="chapter" data-level="14.2" data-path="where-to-go-from-here.html"><a href="where-to-go-from-here.html#automate-testing-your-code"><i class="fa fa-check"></i><b>14.2</b> Automate testing your code</a></li>
+<li class="chapter" data-level="14.3" data-path="where-to-go-from-here.html"><a href="where-to-go-from-here.html#automate-your-workflow"><i class="fa fa-check"></i><b>14.3</b> Automate your workflow</a></li>
+<li class="chapter" data-level="14.4" data-path="where-to-go-from-here.html"><a href="where-to-go-from-here.html#develop-interactive-apps-with-shiny"><i class="fa fa-check"></i><b>14.4</b> Develop interactive apps with Shiny</a></li>
+<li class="chapter" data-level="14.5" data-path="where-to-go-from-here.html"><a href="where-to-go-from-here.html#where-to-go-from-here-1"><i class="fa fa-check"></i><b>14.5</b> Where to go from here</a></li>
+<li class="chapter" data-level="14.6" data-path="where-to-go-from-here.html"><a href="where-to-go-from-here.html#where-to-find-help"><i class="fa fa-check"></i><b>14.6</b> Where to find help</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Data Science for Transportation Researchers, Planners, and Engineers</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-manipulation-with-dplyr" class="section level1">
+<h1><span class="header-section-number">11</span> Data manipulation with dplyr</h1>
+<div id="readings-5" class="section level2">
+<h2><span class="header-section-number">11.1</span> Readings</h2>
+<ol style="list-style-type: decimal">
+<li><a href="http://r4ds.had.co.nz/transform.html">R4DS Data Transformation</a></li>
+<li><a href="http://r4ds.had.co.nz/relational-data.html">R4DS Relational data</a></li>
+</ol>
+</div>
+<div id="overview" class="section level2">
+<h2><span class="header-section-number">11.2</span> Overview</h2>
+<p>dplyr is a grammar of data manipulation, providing a consistent set of verbs that help you solve the most common data manipulation challenges:</p>
+<ul>
+<li><code>mutate()</code> adds new variables that are functions of existing variables</li>
+<li><code>select()</code> picks variables based on their names.</li>
+<li><code>filter()</code> picks cases based on their values.</li>
+<li><code>summarise()</code> reduces multiple values down to a single summary.</li>
+<li><code>arrange()</code> changes the ordering of the rows.</li>
+</ul>
+<p>These all combine naturally with <code>group_by()</code> which allows you to perform any operation “by group”. You can learn more about them in <code>vignette(&quot;dplyr&quot;)</code>. As well as these single-table verbs, dplyr also provides a variety of two-table verbs, which you can learn about in <code>vignette(&quot;two-table&quot;)</code>.</p>
+<p>dplyr is designed to abstract over how the data is stored. That means as well as working with local data frames, you can also work with remote database tables, using exactly the same R code. Install the dbplyr package then read <code>vignette(&quot;databases&quot;, package = &quot;dbplyr&quot;)</code>.</p>
+</div>
+<div id="lesson-3" class="section level2">
+<h2><span class="header-section-number">11.3</span> Lesson</h2>
+<p>Lesson below is adapted from <a href="http://stat545.com/block009_dplyr-intro.html">UBC’s Stat 545 course materials by Professor Jenny Bryon</a>.</p>
+<div id="prerequisites" class="section level3">
+<h3><span class="header-section-number">11.3.1</span> Prerequisites</h3>
+<p>Load <code>dplyr</code> (or <code>tidyverse</code>, which will load <code>dplyr</code>) and <code>gapminder</code> (install it if not yet installed):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(gapminder)
+<span class="kw">library</span>(tidyverse)</code></pre></div>
+<pre><code>## Loading tidyverse: ggplot2
+## Loading tidyverse: tibble
+## Loading tidyverse: tidyr
+## Loading tidyverse: readr
+## Loading tidyverse: purrr
+## Loading tidyverse: dplyr</code></pre>
+<pre><code>## Conflicts with tidy packages ----------------------------------------------</code></pre>
+<pre><code>## filter(): dplyr, stats
+## lag():    dplyr, stats</code></pre>
+</div>
+<div id="use-filter-to-subset-data-row-wise." class="section level3">
+<h3><span class="header-section-number">11.3.2</span> Use <code>filter()</code> to subset data row-wise.</h3>
+<p><code>filter()</code> takes logical expressions and returns the rows for which all are <code>TRUE</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(gapminder, lifeExp <span class="op">&lt;</span><span class="st"> </span><span class="dv">29</span>)</code></pre></div>
+<pre><code>## # A tibble: 2 x 6
+##       country continent  year lifeExp     pop gdpPercap
+##        &lt;fctr&gt;    &lt;fctr&gt; &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;     &lt;dbl&gt;
+## 1 Afghanistan      Asia  1952  28.801 8425333  779.4453
+## 2      Rwanda    Africa  1992  23.599 7290203  737.0686</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(gapminder, country <span class="op">==</span><span class="st"> &quot;Rwanda&quot;</span>, year <span class="op">&gt;</span><span class="st"> </span><span class="dv">1979</span>)</code></pre></div>
+<pre><code>## # A tibble: 6 x 6
+##   country continent  year lifeExp     pop gdpPercap
+##    &lt;fctr&gt;    &lt;fctr&gt; &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;     &lt;dbl&gt;
+## 1  Rwanda    Africa  1982  46.218 5507565  881.5706
+## 2  Rwanda    Africa  1987  44.020 6349365  847.9912
+## 3  Rwanda    Africa  1992  23.599 7290203  737.0686
+## 4  Rwanda    Africa  1997  36.087 7212583  589.9445
+## 5  Rwanda    Africa  2002  43.413 7852401  785.6538
+## 6  Rwanda    Africa  2007  46.242 8860588  863.0885</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(gapminder, country <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Rwanda&quot;</span>, <span class="st">&quot;Afghanistan&quot;</span>))</code></pre></div>
+<pre><code>## # A tibble: 24 x 6
+##        country continent  year lifeExp      pop gdpPercap
+##         &lt;fctr&gt;    &lt;fctr&gt; &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+##  1 Afghanistan      Asia  1952  28.801  8425333  779.4453
+##  2 Afghanistan      Asia  1957  30.332  9240934  820.8530
+##  3 Afghanistan      Asia  1962  31.997 10267083  853.1007
+##  4 Afghanistan      Asia  1967  34.020 11537966  836.1971
+##  5 Afghanistan      Asia  1972  36.088 13079460  739.9811
+##  6 Afghanistan      Asia  1977  38.438 14880372  786.1134
+##  7 Afghanistan      Asia  1982  39.854 12881816  978.0114
+##  8 Afghanistan      Asia  1987  40.822 13867957  852.3959
+##  9 Afghanistan      Asia  1992  41.674 16317921  649.3414
+## 10 Afghanistan      Asia  1997  41.763 22227415  635.3414
+## # ... with 14 more rows</code></pre>
+<p>Under no circumstances should you subset your data the way I did at first:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">excerpt &lt;-<span class="st"> </span>gapminder[<span class="dv">241</span><span class="op">:</span><span class="dv">252</span>, ]</code></pre></div>
+<p>Why is this a terrible idea?</p>
+<ul>
+<li>It is not self-documenting. What is so special about rows 241 through 252?</li>
+<li>It is fragile. This line of code will produce different results if someone changes the row order of <code>gapminder</code>, e.g. sorts the data earlier in the script.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(gapminder, country <span class="op">==</span><span class="st"> &quot;Canada&quot;</span>)</code></pre></div>
+<p>This call explains itself and is fairly robust.</p>
+</div>
+<div id="use-select-to-subset-the-data-on-variables-or-columns." class="section level3">
+<h3><span class="header-section-number">11.3.3</span> Use <code>select()</code> to subset the data on variables or columns.</h3>
+<p>Use <code>select()</code> to subset the data on variables or columns. Here’s a conventional call:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(gapminder, year, lifeExp)</code></pre></div>
+<pre><code>## # A tibble: 1,704 x 2
+##     year lifeExp
+##    &lt;int&gt;   &lt;dbl&gt;
+##  1  1952  28.801
+##  2  1957  30.332
+##  3  1962  31.997
+##  4  1967  34.020
+##  5  1972  36.088
+##  6  1977  38.438
+##  7  1982  39.854
+##  8  1987  40.822
+##  9  1992  41.674
+## 10  1997  41.763
+## # ... with 1,694 more rows</code></pre>
+<p>Think: “Take <code>gapminder</code>, then select the variables year and lifeExp, then show the first 4 rows.”</p>
+</div>
+<div id="revel-in-the-convenience" class="section level3">
+<h3><span class="header-section-number">11.3.4</span> Revel in the convenience</h3>
+<p>Here’s the data for Cambodia, taking certain variables:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gapminder <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(country <span class="op">==</span><span class="st"> &quot;Cambodia&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(year, lifeExp)</code></pre></div>
+<pre><code>## # A tibble: 12 x 2
+##     year lifeExp
+##    &lt;int&gt;   &lt;dbl&gt;
+##  1  1952  39.417
+##  2  1957  41.366
+##  3  1962  43.415
+##  4  1967  45.415
+##  5  1972  40.317
+##  6  1977  31.220
+##  7  1982  50.957
+##  8  1987  53.914
+##  9  1992  55.803
+## 10  1997  56.534
+## 11  2002  56.752
+## 12  2007  59.723</code></pre>
+</div>
+<div id="pure-predictable-pipeable" class="section level3">
+<h3><span class="header-section-number">11.3.5</span> Pure, predictable, pipeable</h3>
+<p>We’ve barely scratched the surface of <code>dplyr</code> but I want to point out key principles you may start to appreciate. If you’re new to R or “programming with data”, feel free skip this section and <a href="block010_dplyr-end-single-table.html">move on</a>.</p>
+<p><code>dplyr</code>’s verbs, such as <code>filter()</code> and <code>select()</code>, are what’s called <a href="http://en.wikipedia.org/wiki/Pure_function">pure functions</a>. To quote from Wickham’s <a href="http://adv-r.had.co.nz/Functions.html">Advanced R Programming book</a>:</p>
+<blockquote>
+<p>The functions that are the easiest to understand and reason about are pure functions: functions that always map the same input to the same output and have no other impact on the workspace. In other words, pure functions have no side effects: they don’t affect the state of the world in any way apart from the value they return.</p>
+</blockquote>
+<p>In fact, these verbs are a special case of pure functions: they take the same flavor of object as input and output. Namely, a data frame or one of the other data receptacles <code>dplyr</code> supports.</p>
+<p>And finally, the data is <strong>always</strong> the very first argument of the verb functions.</p>
+<p>This set of deliberate design choices, together with the new pipe operator, produces a highly effective, low friction <a href="http://adv-r.had.co.nz/dsl.html">domain-specific language</a> for data analysis.</p>
+</div>
+<div id="use-mutate-to-add-new-variables" class="section level3">
+<h3><span class="header-section-number">11.3.6</span> Use <code>mutate()</code> to add new variables</h3>
+<p>Imagine we wanted to recover each country’s GDP. After all, the Gapminder data has a variable for population and GDP per capita. Let’s multiply them together.</p>
+<p><code>mutate()</code> is a function that defines and inserts new variables into a tibble. You can refer to existing variables by name.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gapminder <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">gdp =</span> pop <span class="op">*</span><span class="st"> </span>gdpPercap)</code></pre></div>
+<pre><code>## # A tibble: 1,704 x 7
+##        country continent  year lifeExp      pop gdpPercap         gdp
+##         &lt;fctr&gt;    &lt;fctr&gt; &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;       &lt;dbl&gt;
+##  1 Afghanistan      Asia  1952  28.801  8425333  779.4453  6567086330
+##  2 Afghanistan      Asia  1957  30.332  9240934  820.8530  7585448670
+##  3 Afghanistan      Asia  1962  31.997 10267083  853.1007  8758855797
+##  4 Afghanistan      Asia  1967  34.020 11537966  836.1971  9648014150
+##  5 Afghanistan      Asia  1972  36.088 13079460  739.9811  9678553274
+##  6 Afghanistan      Asia  1977  38.438 14880372  786.1134 11697659231
+##  7 Afghanistan      Asia  1982  39.854 12881816  978.0114 12598563401
+##  8 Afghanistan      Asia  1987  40.822 13867957  852.3959 11820990309
+##  9 Afghanistan      Asia  1992  41.674 16317921  649.3414 10595901589
+## 10 Afghanistan      Asia  1997  41.763 22227415  635.3414 14121995875
+## # ... with 1,694 more rows</code></pre>
+<p>Hmmmm … those GDP numbers are almost uselessly large and abstract. Consider the <a href="http://fivethirtyeight.com/datalab/xkcd-randall-munroe-qanda-what-if/">advice of Randall Munroe of xkcd</a>:</p>
+<blockquote>
+<p>One thing that bothers me is large numbers presented without context… ‘If I added a zero to this number, would the sentence containing it mean something different to me?’ If the answer is ‘no,’ maybe the number has no business being in the sentence in the first place.&quot;</p>
+</blockquote>
+<p>Maybe it would be more meaningful to consumers of my tables and figures to stick with GDP per capita. But what if I reported GDP per capita, relative to some a benchmark country.</p>
+<p>I need to create a new variable that is <code>gdpPercap</code> divided by Canadian <code>gdpPercap</code>, taking care that I always divide two numbers that pertain to the same year.</p>
+<p>How I achieve:</p>
+<ul>
+<li>Filter down to the rows for Canada</li>
+<li>Create a new temporary variable in <code>gapminder</code>:
+<ul>
+<li>Extract the <code>gdpPercap</code> variable from the Canadian data.</li>
+<li>Replicate it once per country in the dataset, so it has the right length.</li>
+</ul></li>
+<li>Divide raw <code>gdpPercap</code> by this Canadian figure.</li>
+<li>Discard the temporary variable of replicated Canadian <code>gdpPercap</code>.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ctib &lt;-<span class="st"> </span>gapminder <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(country <span class="op">==</span><span class="st"> &quot;Canada&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(year, <span class="dt">BasegdpPercap=</span>gdpPercap)
+ctib</code></pre></div>
+<pre><code>## # A tibble: 12 x 2
+##     year BasegdpPercap
+##    &lt;int&gt;         &lt;dbl&gt;
+##  1  1952      11367.16
+##  2  1957      12489.95
+##  3  1962      13462.49
+##  4  1967      16076.59
+##  5  1972      18970.57
+##  6  1977      22090.88
+##  7  1982      22898.79
+##  8  1987      26626.52
+##  9  1992      26342.88
+## 10  1997      28954.93
+## 11  2002      33328.97
+## 12  2007      36319.24</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_gap &lt;-<span class="st"> </span>gapminder <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">inner_join</span>(ctib, <span class="dt">by=</span><span class="st">&quot;year&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">gdpPercapRel =</span> gdpPercap <span class="op">/</span><span class="st"> </span>BasegdpPercap,
+         <span class="dt">BasegdpPercap =</span> <span class="ot">NULL</span>)
+my_gap</code></pre></div>
+<pre><code>## # A tibble: 1,704 x 7
+##        country continent  year lifeExp      pop gdpPercap gdpPercapRel
+##         &lt;fctr&gt;    &lt;fctr&gt; &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;        &lt;dbl&gt;
+##  1 Afghanistan      Asia  1952  28.801  8425333  779.4453   0.06856992
+##  2 Afghanistan      Asia  1957  30.332  9240934  820.8530   0.06572108
+##  3 Afghanistan      Asia  1962  31.997 10267083  853.1007   0.06336874
+##  4 Afghanistan      Asia  1967  34.020 11537966  836.1971   0.05201335
+##  5 Afghanistan      Asia  1972  36.088 13079460  739.9811   0.03900679
+##  6 Afghanistan      Asia  1977  38.438 14880372  786.1134   0.03558542
+##  7 Afghanistan      Asia  1982  39.854 12881816  978.0114   0.04271018
+##  8 Afghanistan      Asia  1987  40.822 13867957  852.3959   0.03201305
+##  9 Afghanistan      Asia  1992  41.674 16317921  649.3414   0.02464959
+## 10 Afghanistan      Asia  1997  41.763 22227415  635.3414   0.02194243
+## # ... with 1,694 more rows</code></pre>
+<p>Note that, <code>mutate()</code> builds new variables sequentially so you can reference earlier ones (like <code>tmp</code>) when defining later ones (like <code>gdpPercapRel</code>). Also, you can get rid of a variable by setting it to <code>NULL</code>.</p>
+<p>How could we sanity check that this worked? The Canadian values for <code>gdpPercapRel</code> better all be 1!</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_gap <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(country <span class="op">==</span><span class="st"> &quot;Canada&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(country, year, gdpPercapRel)</code></pre></div>
+<pre><code>## # A tibble: 12 x 3
+##    country  year gdpPercapRel
+##     &lt;fctr&gt; &lt;int&gt;        &lt;dbl&gt;
+##  1  Canada  1952            1
+##  2  Canada  1957            1
+##  3  Canada  1962            1
+##  4  Canada  1967            1
+##  5  Canada  1972            1
+##  6  Canada  1977            1
+##  7  Canada  1982            1
+##  8  Canada  1987            1
+##  9  Canada  1992            1
+## 10  Canada  1997            1
+## 11  Canada  2002            1
+## 12  Canada  2007            1</code></pre>
+<p>I perceive Canada to be a “high GDP” country, so I predict that the distribution of <code>gdpPercapRel</code> is located below 1, possibly even well below. Check your intuition!</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(my_gap<span class="op">$</span>gdpPercapRel)</code></pre></div>
+<pre><code>##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+## 0.007236 0.061648 0.171521 0.326659 0.446564 9.534690</code></pre>
+<p>The relative GDP per capita numbers are, in general, well below 1. We see that most of the countries covered by this dataset have substantially lower GDP per capita, relative to Canada, across the entire time period.</p>
+<p>Remember: Trust No One. Including (especially?) yourself. Always try to find a way to check that you’ve done what meant to. Prepare to be horrified.</p>
+</div>
+<div id="use-arrange-to-row-order-data-in-a-principled-way" class="section level3">
+<h3><span class="header-section-number">11.3.7</span> Use <code>arrange()</code> to row-order data in a principled way</h3>
+<p><code>arrange()</code> reorders the rows in a data frame. Imagine you wanted this data ordered by year then country, as opposed to by country then year.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_gap <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">arrange</span>(year, country)</code></pre></div>
+<pre><code>## # A tibble: 1,704 x 7
+##        country continent  year lifeExp      pop  gdpPercap gdpPercapRel
+##         &lt;fctr&gt;    &lt;fctr&gt; &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;      &lt;dbl&gt;        &lt;dbl&gt;
+##  1 Afghanistan      Asia  1952  28.801  8425333   779.4453   0.06856992
+##  2     Albania    Europe  1952  55.230  1282697  1601.0561   0.14084925
+##  3     Algeria    Africa  1952  43.077  9279525  2449.0082   0.21544589
+##  4      Angola    Africa  1952  30.015  4232095  3520.6103   0.30971764
+##  5   Argentina  Americas  1952  62.485 17876956  5911.3151   0.52003442
+##  6   Australia   Oceania  1952  69.120  8691212 10039.5956   0.88321046
+##  7     Austria    Europe  1952  66.800  6927772  6137.0765   0.53989527
+##  8     Bahrain      Asia  1952  50.939   120447  9867.0848   0.86803421
+##  9  Bangladesh      Asia  1952  37.484 46886859   684.2442   0.06019482
+## 10     Belgium    Europe  1952  68.000  8730405  8343.1051   0.73396559
+## # ... with 1,694 more rows</code></pre>
+<p>Or maybe you want just the data from 2007, sorted on life expectancy?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_gap <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">arrange</span>(lifeExp)</code></pre></div>
+<pre><code>## # A tibble: 142 x 7
+##                     country continent  year lifeExp      pop gdpPercap
+##                      &lt;fctr&gt;    &lt;fctr&gt; &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+##  1                Swaziland    Africa  2007  39.613  1133066 4513.4806
+##  2               Mozambique    Africa  2007  42.082 19951656  823.6856
+##  3                   Zambia    Africa  2007  42.384 11746035 1271.2116
+##  4             Sierra Leone    Africa  2007  42.568  6144562  862.5408
+##  5                  Lesotho    Africa  2007  42.592  2012649 1569.3314
+##  6                   Angola    Africa  2007  42.731 12420476 4797.2313
+##  7                 Zimbabwe    Africa  2007  43.487 12311143  469.7093
+##  8              Afghanistan      Asia  2007  43.828 31889923  974.5803
+##  9 Central African Republic    Africa  2007  44.741  4369038  706.0165
+## 10                  Liberia    Africa  2007  45.678  3193942  414.5073
+## # ... with 132 more rows, and 1 more variables: gdpPercapRel &lt;dbl&gt;</code></pre>
+<p>Oh, you’d like to sort on life expectancy in <strong>desc</strong>ending order? Then use <code>desc()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_gap <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(lifeExp))</code></pre></div>
+<pre><code>## # A tibble: 142 x 7
+##             country continent  year lifeExp       pop gdpPercap
+##              &lt;fctr&gt;    &lt;fctr&gt; &lt;int&gt;   &lt;dbl&gt;     &lt;int&gt;     &lt;dbl&gt;
+##  1            Japan      Asia  2007  82.603 127467972  31656.07
+##  2 Hong Kong, China      Asia  2007  82.208   6980412  39724.98
+##  3          Iceland    Europe  2007  81.757    301931  36180.79
+##  4      Switzerland    Europe  2007  81.701   7554661  37506.42
+##  5        Australia   Oceania  2007  81.235  20434176  34435.37
+##  6            Spain    Europe  2007  80.941  40448191  28821.06
+##  7           Sweden    Europe  2007  80.884   9031088  33859.75
+##  8           Israel      Asia  2007  80.745   6426679  25523.28
+##  9           France    Europe  2007  80.657  61083916  30470.02
+## 10           Canada  Americas  2007  80.653  33390141  36319.24
+## # ... with 132 more rows, and 1 more variables: gdpPercapRel &lt;dbl&gt;</code></pre>
+<p>I advise that your analyses NEVER rely on rows or variables being in a specific order. But it’s still true that human beings write the code and the interactive development process can be much nicer if you reorder the rows of your data as you go along. Also, once you are preparing tables for human eyeballs, it is imperative that you step up and take control of row order.</p>
+</div>
+<div id="use-rename-to-rename-variables" class="section level3">
+<h3><span class="header-section-number">11.3.8</span> Use <code>rename()</code> to rename variables</h3>
+<p>The Gapminder use <a href="http://en.wikipedia.org/wiki/CamelCase"><code>camelCase</code></a> for variable naming, an alternative convention is <a href="http://en.wikipedia.org/wiki/Snake_case"><code>snake_case</code></a>. Let’s rename some variables to use snake case!</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_gap <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">rename</span>(<span class="dt">life_exp =</span> lifeExp,
+         <span class="dt">gdp_percap =</span> gdpPercap,
+         <span class="dt">gdp_percap_rel =</span> gdpPercapRel)</code></pre></div>
+<pre><code>## # A tibble: 1,704 x 7
+##        country continent  year life_exp      pop gdp_percap gdp_percap_rel
+##         &lt;fctr&gt;    &lt;fctr&gt; &lt;int&gt;    &lt;dbl&gt;    &lt;int&gt;      &lt;dbl&gt;          &lt;dbl&gt;
+##  1 Afghanistan      Asia  1952   28.801  8425333   779.4453     0.06856992
+##  2 Afghanistan      Asia  1957   30.332  9240934   820.8530     0.06572108
+##  3 Afghanistan      Asia  1962   31.997 10267083   853.1007     0.06336874
+##  4 Afghanistan      Asia  1967   34.020 11537966   836.1971     0.05201335
+##  5 Afghanistan      Asia  1972   36.088 13079460   739.9811     0.03900679
+##  6 Afghanistan      Asia  1977   38.438 14880372   786.1134     0.03558542
+##  7 Afghanistan      Asia  1982   39.854 12881816   978.0114     0.04271018
+##  8 Afghanistan      Asia  1987   40.822 13867957   852.3959     0.03201305
+##  9 Afghanistan      Asia  1992   41.674 16317921   649.3414     0.02464959
+## 10 Afghanistan      Asia  1997   41.763 22227415   635.3414     0.02194243
+## # ... with 1,694 more rows</code></pre>
+<p>I did NOT assign the post-rename object back to <code>my_gap</code> because that would make the chunks in this tutorial harder to copy/paste and run out of order. In real life, I would probably assign this back to <code>my_gap</code>, in a data preparation script, and proceed with the new variable names.</p>
+</div>
+<div id="select-can-rename-and-reposition-variables" class="section level3">
+<h3><span class="header-section-number">11.3.9</span> <code>select()</code> can rename and reposition variables</h3>
+<p>You’ve seen simple use of <code>select()</code>. There are two tricks you might enjoy:</p>
+<ol style="list-style-type: decimal">
+<li><code>select()</code> can rename the variables you request to keep.</li>
+<li><code>select()</code> can be used with <code>everything()</code> to hoist a variable up to the front of the tibble.</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_gap <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(country <span class="op">==</span><span class="st"> &quot;Burundi&quot;</span>, year <span class="op">&gt;</span><span class="st"> </span><span class="dv">1996</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(<span class="dt">yr =</span> year, lifeExp, gdpPercap) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(gdpPercap, <span class="kw">everything</span>())</code></pre></div>
+<pre><code>## # A tibble: 3 x 3
+##   gdpPercap    yr lifeExp
+##       &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt;
+## 1  463.1151  1997  45.326
+## 2  446.4035  2002  47.360
+## 3  430.0707  2007  49.580</code></pre>
+<p><code>everything()</code> is one of several helpers for variable selection. Read its help to see the rest.</p>
+</div>
+<div id="group_by-is-a-mighty-weapon" class="section level3">
+<h3><span class="header-section-number">11.3.10</span> <code>group_by()</code> is a mighty weapon</h3>
+<p>I have found <del>friends and family</del> collaborators love to ask seemingly innocuous questions like, “which country experienced the sharpest 5-year drop in life expectancy?”. In fact, that is a totally natural question to ask. But if you are using a language that doesn’t know about data, it’s an incredibly annoying question to answer.</p>
+<p>dplyr offers powerful tools to solve this class of problem.</p>
+<ul>
+<li><code>group_by()</code> adds extra structure to your dataset – grouping information – which lays the groundwork for computations within the groups.</li>
+<li><code>summarize()</code> takes a dataset with <span class="math inline">\(n\)</span> observations, computes requested summaries, and returns a dataset with 1 observation.</li>
+<li>Window functions take a dataset with <span class="math inline">\(n\)</span> observations and return a dataset with <span class="math inline">\(n\)</span> observations.</li>
+<li><code>mutate()</code> and <code>summarize()</code> will honor groups.</li>
+<li>You can also do very general computations on your groups with <code>do()</code>, though elsewhere in this course, I advocate for other approaches that I find more intuitive, using the <code>purrr</code> package.</li>
+</ul>
+<p>Combined with the verbs you already know, these new tools allow you to solve an extremely diverse set of problems with relative ease.</p>
+<div id="counting-things-up" class="section level4">
+<h4><span class="header-section-number">11.3.10.1</span> Counting things up</h4>
+<p>Let’s start with simple counting. How many observations do we have per continent?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_gap <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(continent) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">n =</span> <span class="kw">n</span>())</code></pre></div>
+<pre><code>## # A tibble: 5 x 2
+##   continent     n
+##      &lt;fctr&gt; &lt;int&gt;
+## 1    Africa   624
+## 2  Americas   300
+## 3      Asia   396
+## 4    Europe   360
+## 5   Oceania    24</code></pre>
+<p>Let us pause here to think about the tidyverse. You could get these same frequencies using <code>table()</code> from base R.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(gapminder<span class="op">$</span>continent)</code></pre></div>
+<pre><code>## 
+##   Africa Americas     Asia   Europe  Oceania 
+##      624      300      396      360       24</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(<span class="kw">table</span>(gapminder<span class="op">$</span>continent))</code></pre></div>
+<pre><code>##  &#39;table&#39; int [1:5(1d)] 624 300 396 360 24
+##  - attr(*, &quot;dimnames&quot;)=List of 1
+##   ..$ : chr [1:5] &quot;Africa&quot; &quot;Americas&quot; &quot;Asia&quot; &quot;Europe&quot; ...</code></pre>
+<p>But the object of class <code>table</code> that is returned makes downstream computation a bit fiddlier than you’d like. For example, it’s too bad the continent levels come back only as <em>names</em> and not as a proper factor, with the original set of levels. This is an example of how the tidyverse smooths transitions where you want the output of step i to become the input of step i + 1.</p>
+<p>The <code>tally()</code> function is a convenience function that knows to count rows. It honors groups.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_gap <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(continent) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">tally</span>()</code></pre></div>
+<pre><code>## # A tibble: 5 x 2
+##   continent     n
+##      &lt;fctr&gt; &lt;int&gt;
+## 1    Africa   624
+## 2  Americas   300
+## 3      Asia   396
+## 4    Europe   360
+## 5   Oceania    24</code></pre>
+<p>The <code>count()</code> function is an even more convenient function that does both grouping and counting.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_gap <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">count</span>(continent)</code></pre></div>
+<pre><code>## # A tibble: 5 x 2
+##   continent     n
+##      &lt;fctr&gt; &lt;int&gt;
+## 1    Africa   624
+## 2  Americas   300
+## 3      Asia   396
+## 4    Europe   360
+## 5   Oceania    24</code></pre>
+<p>What if we wanted to add the number of unique countries for each continent? You can compute multiple summaries inside <code>summarize()</code>. Use the <code>n_distinct()</code> function to count the number of distinct countries within each continent.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_gap <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(continent) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">n =</span> <span class="kw">n</span>(),
+            <span class="dt">n_countries =</span> <span class="kw">n_distinct</span>(country))</code></pre></div>
+<pre><code>## # A tibble: 5 x 3
+##   continent     n n_countries
+##      &lt;fctr&gt; &lt;int&gt;       &lt;int&gt;
+## 1    Africa   624          52
+## 2  Americas   300          25
+## 3      Asia   396          33
+## 4    Europe   360          30
+## 5   Oceania    24           2</code></pre>
+</div>
+<div id="general-summarization" class="section level4">
+<h4><span class="header-section-number">11.3.10.2</span> General summarization</h4>
+<p>The functions you’ll apply within <code>summarize()</code> include classical statistical summaries, like <code>mean()</code>, <code>median()</code>, <code>var()</code>, <code>sd()</code>, <code>mad()</code>, <code>IQR()</code>, <code>min()</code>, and <code>max()</code>. Remember they are functions that take <span class="math inline">\(n\)</span> inputs and distill them down into 1 output.</p>
+<p>Although this may be statistically ill-advised, let’s compute the average life expectancy by continent.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_gap <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(continent) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">avg_lifeExp =</span> <span class="kw">mean</span>(lifeExp))</code></pre></div>
+<pre><code>## # A tibble: 5 x 2
+##   continent avg_lifeExp
+##      &lt;fctr&gt;       &lt;dbl&gt;
+## 1    Africa    48.86533
+## 2  Americas    64.65874
+## 3      Asia    60.06490
+## 4    Europe    71.90369
+## 5   Oceania    74.32621</code></pre>
+<p><code>summarize_each()</code> applies the same summary function(s) to multiple variables. Let’s compute average and median life expectancy and GDP per capita by continent by year … but only for 1952 and 2007.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_gap <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(year <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1952</span>, <span class="dv">2007</span>)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(continent, year) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise_each</span>(<span class="kw">funs</span>(mean, median), lifeExp, gdpPercap)</code></pre></div>
+<pre><code>## `summarise_each()` is deprecated.
+## Use `summarise_all()`, `summarise_at()` or `summarise_if()` instead.
+## To map `funs` over a selection of variables, use `summarise_at()`</code></pre>
+<pre><code>## # A tibble: 10 x 6
+## # Groups:   continent [?]
+##    continent  year lifeExp_mean gdpPercap_mean lifeExp_median
+##       &lt;fctr&gt; &lt;int&gt;        &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;
+##  1    Africa  1952     39.13550       1252.572        38.8330
+##  2    Africa  2007     54.80604       3089.033        52.9265
+##  3  Americas  1952     53.27984       4079.063        54.7450
+##  4  Americas  2007     73.60812      11003.032        72.8990
+##  5      Asia  1952     46.31439       5195.484        44.8690
+##  6      Asia  2007     70.72848      12473.027        72.3960
+##  7    Europe  1952     64.40850       5661.057        65.9000
+##  8    Europe  2007     77.64860      25054.482        78.6085
+##  9   Oceania  1952     69.25500      10298.086        69.2550
+## 10   Oceania  2007     80.71950      29810.188        80.7195
+## # ... with 1 more variables: gdpPercap_median &lt;dbl&gt;</code></pre>
+<p>Let’s focus just on Asia. What are the minimum and maximum life expectancies seen by year?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_gap <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(continent <span class="op">==</span><span class="st"> &quot;Asia&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">min_lifeExp =</span> <span class="kw">min</span>(lifeExp), <span class="dt">max_lifeExp =</span> <span class="kw">max</span>(lifeExp))</code></pre></div>
+<pre><code>## # A tibble: 12 x 3
+##     year min_lifeExp max_lifeExp
+##    &lt;int&gt;       &lt;dbl&gt;       &lt;dbl&gt;
+##  1  1952      28.801      65.390
+##  2  1957      30.332      67.840
+##  3  1962      31.997      69.390
+##  4  1967      34.020      71.430
+##  5  1972      36.088      73.420
+##  6  1977      31.220      75.380
+##  7  1982      39.854      77.110
+##  8  1987      40.822      78.670
+##  9  1992      41.674      79.360
+## 10  1997      41.763      80.690
+## 11  2002      42.129      82.000
+## 12  2007      43.828      82.603</code></pre>
+<p>Of course it would be much more interesting to see <em>which</em> country contributed these extreme observations. Is the minimum (maximum) always coming from the same country? We tackle that with window functions shortly.</p>
+</div>
+</div>
+<div id="grouped-mutate" class="section level3">
+<h3><span class="header-section-number">11.3.11</span> Grouped mutate</h3>
+<p>Sometimes you don’t want to collapse the <span class="math inline">\(n\)</span> rows for each group into one row. You want to keep your groups, but compute within them.</p>
+<div id="computing-with-group-wise-summaries" class="section level4">
+<h4><span class="header-section-number">11.3.11.1</span> Computing with group-wise summaries</h4>
+<p>Let’s make a new variable that is the years of life expectancy gained (lost) relative to 1952, for each individual country. We group by country and use <code>mutate()</code> to make a new variable. The <code>first()</code> function extracts the first value from a vector. Notice that <code>first()</code> is operating on the vector of life expectancies <em>within each country group</em>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_gap <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(country) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(country, year, lifeExp) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">lifeExp_gain =</span> lifeExp <span class="op">-</span><span class="st"> </span><span class="kw">first</span>(lifeExp)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(year <span class="op">&lt;</span><span class="st"> </span><span class="dv">1963</span>)</code></pre></div>
+<pre><code>## # A tibble: 426 x 4
+## # Groups:   country [142]
+##        country  year lifeExp lifeExp_gain
+##         &lt;fctr&gt; &lt;int&gt;   &lt;dbl&gt;        &lt;dbl&gt;
+##  1 Afghanistan  1952  28.801        0.000
+##  2 Afghanistan  1957  30.332        1.531
+##  3 Afghanistan  1962  31.997        3.196
+##  4     Albania  1952  55.230        0.000
+##  5     Albania  1957  59.280        4.050
+##  6     Albania  1962  64.820        9.590
+##  7     Algeria  1952  43.077        0.000
+##  8     Algeria  1957  45.685        2.608
+##  9     Algeria  1962  48.303        5.226
+## 10      Angola  1952  30.015        0.000
+## # ... with 416 more rows</code></pre>
+<p>Within country, we take the difference between life expectancy in year <span class="math inline">\(i\)</span> and life expectancy in 1952. Therefore we always see zeroes for 1952 and, for most countries, a sequence of positive and increasing numbers.</p>
+</div>
+<div id="window-functions" class="section level4">
+<h4><span class="header-section-number">11.3.11.2</span> Window functions</h4>
+<p>Window functions take <span class="math inline">\(n\)</span> inputs and give back <span class="math inline">\(n\)</span> outputs. Furthermore, the output depends on all the values. So <code>rank()</code> is a window function but <code>log()</code> is not. Here we use window functions based on ranks and offsets.</p>
+<p>Let’s revisit the worst and best life expectancies in Asia over time, but retaining info about <em>which</em> country contributes these extreme values.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_gap <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(continent <span class="op">==</span><span class="st"> &quot;Asia&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(year, country, lifeExp) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(<span class="kw">min_rank</span>(<span class="kw">desc</span>(lifeExp)) <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span> <span class="op">|</span><span class="st"> </span><span class="kw">min_rank</span>(lifeExp) <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">arrange</span>(year) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">print</span>(<span class="dt">n =</span> <span class="ot">Inf</span>)</code></pre></div>
+<pre><code>## # A tibble: 24 x 3
+## # Groups:   year [12]
+##     year     country lifeExp
+##    &lt;int&gt;      &lt;fctr&gt;   &lt;dbl&gt;
+##  1  1952 Afghanistan  28.801
+##  2  1952      Israel  65.390
+##  3  1957 Afghanistan  30.332
+##  4  1957      Israel  67.840
+##  5  1962 Afghanistan  31.997
+##  6  1962      Israel  69.390
+##  7  1967 Afghanistan  34.020
+##  8  1967       Japan  71.430
+##  9  1972 Afghanistan  36.088
+## 10  1972       Japan  73.420
+## 11  1977    Cambodia  31.220
+## 12  1977       Japan  75.380
+## 13  1982 Afghanistan  39.854
+## 14  1982       Japan  77.110
+## 15  1987 Afghanistan  40.822
+## 16  1987       Japan  78.670
+## 17  1992 Afghanistan  41.674
+## 18  1992       Japan  79.360
+## 19  1997 Afghanistan  41.763
+## 20  1997       Japan  80.690
+## 21  2002 Afghanistan  42.129
+## 22  2002       Japan  82.000
+## 23  2007 Afghanistan  43.828
+## 24  2007       Japan  82.603</code></pre>
+<p>We see that (min = Afghanistan, max = Japan) is the most frequent result, but Cambodia and Israel pop up at least once each as the min or max, respectively. That table should make you impatient for our upcoming work on tidying and reshaping data! Wouldn’t it be nice to have one row per year?</p>
+<p>How did that actually work? First, I store and view a partial that leaves off the <code>filter()</code> statement. All of these operations should be familiar.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">asia &lt;-<span class="st"> </span>my_gap <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(continent <span class="op">==</span><span class="st"> &quot;Asia&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(year, country, lifeExp) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(year)
+asia</code></pre></div>
+<pre><code>## # A tibble: 396 x 3
+## # Groups:   year [12]
+##     year     country lifeExp
+##    &lt;int&gt;      &lt;fctr&gt;   &lt;dbl&gt;
+##  1  1952 Afghanistan  28.801
+##  2  1957 Afghanistan  30.332
+##  3  1962 Afghanistan  31.997
+##  4  1967 Afghanistan  34.020
+##  5  1972 Afghanistan  36.088
+##  6  1977 Afghanistan  38.438
+##  7  1982 Afghanistan  39.854
+##  8  1987 Afghanistan  40.822
+##  9  1992 Afghanistan  41.674
+## 10  1997 Afghanistan  41.763
+## # ... with 386 more rows</code></pre>
+<p>Now we apply a window function – <code>min_rank()</code>. Since <code>asia</code> is grouped by year, <code>min_rank()</code> operates within mini-datasets, each for a specific year. Applied to the variable <code>lifeExp</code>, <code>min_rank()</code> returns the rank of each country’s observed life expectancy. FYI, the <code>min</code> part just specifies how ties are broken. Here is an explicit peek at these within-year life expectancy ranks, in both the (default) ascending and descending order.</p>
+<p>For concreteness, I use <code>mutate()</code> to actually create these variables, even though I dropped this in the solution above. Let’s look at a bit of that.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">asia <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">le_rank =</span> <span class="kw">min_rank</span>(lifeExp),
+         <span class="dt">le_desc_rank =</span> <span class="kw">min_rank</span>(<span class="kw">desc</span>(lifeExp))) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(country <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Afghanistan&quot;</span>, <span class="st">&quot;Japan&quot;</span>, <span class="st">&quot;Thailand&quot;</span>), year <span class="op">&gt;</span><span class="st"> </span><span class="dv">1995</span>)</code></pre></div>
+<pre><code>## # A tibble: 9 x 5
+## # Groups:   year [3]
+##    year     country lifeExp le_rank le_desc_rank
+##   &lt;int&gt;      &lt;fctr&gt;   &lt;dbl&gt;   &lt;int&gt;        &lt;int&gt;
+## 1  1997 Afghanistan  41.763       1           33
+## 2  2002 Afghanistan  42.129       1           33
+## 3  2007 Afghanistan  43.828       1           33
+## 4  1997       Japan  80.690      33            1
+## 5  2002       Japan  82.000      33            1
+## 6  2007       Japan  82.603      33            1
+## 7  1997    Thailand  67.521      12           22
+## 8  2002    Thailand  68.564      12           22
+## 9  2007    Thailand  70.616      12           22</code></pre>
+<p>Afghanistan tends to present 1’s in the <code>le_rank</code> variable, Japan tends to present 1’s in the <code>le_desc_rank</code> variable and other countries, like Thailand, present less extreme ranks.</p>
+<p>You can understand the original <code>filter()</code> statement now:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(<span class="kw">min_rank</span>(<span class="kw">desc</span>(lifeExp)) <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span> <span class="op">|</span><span class="st"> </span><span class="kw">min_rank</span>(lifeExp) <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span>)</code></pre></div>
+<p>These two sets of ranks are formed on-the-fly, within year group, and <code>filter()</code> retains rows with rank less than 2, which means … the row with rank = 1. Since we do for ascending and descending ranks, we get both the min and the max.</p>
+<p>If we had wanted just the min OR the max, an alternative approach using <code>top_n()</code> would have worked.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_gap <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(continent <span class="op">==</span><span class="st"> &quot;Asia&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(year, country, lifeExp) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">arrange</span>(year) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="co">#top_n(1, wt = lifeExp)        ## gets the min</span>
+<span class="st">  </span><span class="kw">top_n</span>(<span class="dv">1</span>, <span class="dt">wt =</span> <span class="kw">desc</span>(lifeExp)) ## gets the max</code></pre></div>
+<pre><code>## # A tibble: 12 x 3
+## # Groups:   year [12]
+##     year     country lifeExp
+##    &lt;int&gt;      &lt;fctr&gt;   &lt;dbl&gt;
+##  1  1952 Afghanistan  28.801
+##  2  1957 Afghanistan  30.332
+##  3  1962 Afghanistan  31.997
+##  4  1967 Afghanistan  34.020
+##  5  1972 Afghanistan  36.088
+##  6  1977    Cambodia  31.220
+##  7  1982 Afghanistan  39.854
+##  8  1987 Afghanistan  40.822
+##  9  1992 Afghanistan  41.674
+## 10  1997 Afghanistan  41.763
+## 11  2002 Afghanistan  42.129
+## 12  2007 Afghanistan  43.828</code></pre>
+</div>
+</div>
+<div id="grand-finale" class="section level3">
+<h3><span class="header-section-number">11.3.12</span> Grand Finale</h3>
+<p>So let’s answer that “simple” question: which country experienced the sharpest 5-year drop in life expectancy? Recall that this excerpt of the Gapminder data only has data every five years, e.g. for 1952, 1957, etc. So this really means looking at life expectancy changes between adjacent timepoints.</p>
+<p>At this point, that’s just too easy, so let’s do it by continent while we’re at it.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_gap <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(country, year, continent, lifeExp) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(continent, country) <span class="op">%&gt;%</span>
+<span class="st">  </span>## within country, take (lifeExp in year i) - (lifeExp in year i - 1)
+<span class="st">  </span>## positive means lifeExp went up, negative means it went down
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">le_delta =</span> lifeExp <span class="op">-</span><span class="st"> </span><span class="kw">lag</span>(lifeExp)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>## within country, retain the worst lifeExp change = smallest or most negative
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">worst_le_delta =</span> <span class="kw">min</span>(le_delta, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>## within continent, retain the row with the lowest worst_le_delta
+<span class="st">  </span><span class="kw">top_n</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dt">wt =</span> worst_le_delta) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">arrange</span>(worst_le_delta)</code></pre></div>
+<pre><code>## # A tibble: 5 x 3
+## # Groups:   continent [5]
+##   continent     country worst_le_delta
+##      &lt;fctr&gt;      &lt;fctr&gt;          &lt;dbl&gt;
+## 1    Africa      Rwanda        -20.421
+## 2      Asia    Cambodia         -9.097
+## 3  Americas El Salvador         -1.511
+## 4    Europe  Montenegro         -1.464
+## 5   Oceania   Australia          0.170</code></pre>
+<p>Ponder that for a while. The subject matter and the code. Mostly you’re seeing what genocide looks like in dry statistics on average life expectancy.</p>
+<p>Break the code into pieces, starting at the top, and inspect the intermediate results. That’s certainly how I was able to <em>write</em> such a thing. These commands do not <a href="http://tinyurl.com/athenaforehead">leap fully formed out of anyone’s forehead</a> – they are built up gradually, with lots of errors and refinements along the way. I’m not even sure it’s a great idea to do so much manipulation in one fell swoop. Is the statement above really hard for you to read? If yes, then by all means break it into pieces and make some intermediate objects. Your code should be easy to write and read when you’re done.</p>
+</div>
+<div id="working-with-two-datasets" class="section level3">
+<h3><span class="header-section-number">11.3.13</span> Working with two datasets</h3>
+<p>When working with two or more datasets, we routinely join them. <code>dplyr</code> adopts the SQL-dialect for joining datasets. Below are examples for those of us who don’t speak SQL so good. There are lots of <a href="https://encrypted.google.com/search?q=sql+join&amp;tbm=isch">Venn diagrams re: SQL joins on the interwebs</a>, but I wanted R examples.</p>
+<p><a href="http://www.rdocumentation.org/packages/dplyr">Full documentation</a> for the dplyr package, which is developed by Hadley Wickham and Romain Francois on <a href="https://github.com/hadley/dplyr">GitHub</a>. The <a href="https://cran.r-project.org/web/packages/dplyr/vignettes/two-table.html">vignette on Two-table verbs</a> covers the joins shown here.</p>
+</div>
+<div id="variable-recoding-with-dplyr" class="section level3">
+<h3><span class="header-section-number">11.3.14</span> Variable recoding with dplyr</h3>
+<ul>
+<li><code>recode</code> and <code>recode_factor</code>: Replace numeric values based on their position, and character values by their name;</li>
+<li><code>if_else</code>: Replace values based on a logical vector;</li>
+<li><code>case_when</code>: Vectorise multiple if and else if statements.</li>
+</ul>
+<p>Recoding, when to use which function: - one-to-one, many-to-one: <code>recode</code> and <code>recode_factor</code></p>
+<p>Download the NHTS 2009 data file for the demos <a href="https://raw.githubusercontent.com/cities/datascience2017/master/data/NHTS2009_dd.csv">here</a> (Right click &amp; select Save As…)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+
+<span class="co"># load NHTS2009 travel diaries subset</span>
+dd &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/NHTS2009_dd.csv&quot;</span>)</code></pre></div>
+<pre><code>## Parsed with column specification:
+## cols(
+##   HOUSEID = col_integer(),
+##   PERSONID = col_character(),
+##   HHSIZE = col_integer(),
+##   HH_RACE = col_character(),
+##   HHFAMINC = col_character(),
+##   URBRUR = col_character(),
+##   TRIPPURP = col_character(),
+##   TRPTRANS = col_character(),
+##   TRVLMIN = col_integer(),
+##   TRPMILES = col_double()
+## )</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># recode race (HH_RACE column) according to data dictionary: http://nhts.ornl.gov/tables09/CodebookPage.aspx?id=951</span>
+dd <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">hh_race_str=</span><span class="kw">recode</span>(HH_RACE, 
+                                 <span class="st">&quot;01&quot;</span>=<span class="st">&quot;White&quot;</span>,
+                                 <span class="st">&quot;02&quot;</span>=<span class="st">&quot;African American, Black&quot;</span>,
+                                 <span class="st">&quot;03&quot;</span>=<span class="st">&quot;Asian Only&quot;</span>,
+                                 <span class="st">&quot;04&quot;</span>=<span class="st">&quot;American Indian, Alaskan Native&quot;</span>,
+                                 <span class="st">&quot;05&quot;</span>=<span class="st">&quot;Native Hawaiian, other Pacific&quot;</span>,
+                                 <span class="st">&quot;06&quot;</span>=<span class="st">&quot;Multiracial&quot;</span>,
+                                 <span class="st">&quot;07&quot;</span>=<span class="st">&quot;Hispanic/Mexican&quot;</span>,
+                                 <span class="st">&quot;97&quot;</span>=<span class="st">&quot;Other specify&quot;</span>,
+                                 <span class="dt">.default =</span> <span class="kw">as.character</span>(<span class="ot">NA</span>) <span class="co"># any unspecified values would be assgined NA</span>
+                                 )) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(HH_RACE, hh_race_str)</code></pre></div>
+<pre><code>## # A tibble: 304 x 2
+##    HH_RACE hh_race_str
+##      &lt;chr&gt;       &lt;chr&gt;
+##  1      01       White
+##  2      01       White
+##  3      01       White
+##  4      01       White
+##  5      01       White
+##  6      01       White
+##  7      01       White
+##  8      01       White
+##  9      01       White
+## 10      01       White
+## # ... with 294 more rows</code></pre>
+<ul>
+<li>a logical condition: <code>if_else</code></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># code driving &amp; non-driving based on travel modes (TRPTRANS column) data dictionary: http://nhts.ornl.gov/tables09/CodebookPage.aspx?id=1084</span>
+dd <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">driving=</span><span class="kw">ifelse</span>(TRPTRANS <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;01&quot;</span>, <span class="st">&quot;02&quot;</span>, <span class="st">&quot;03&quot;</span>, <span class="st">&quot;04&quot;</span>, <span class="st">&quot;05&quot;</span>, <span class="st">&quot;06&quot;</span>, <span class="st">&quot;07&quot;</span>), <span class="dv">1</span>, <span class="dv">0</span>),
+              <span class="dt">driving=</span><span class="kw">ifelse</span>(TRPTRANS <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;-1&quot;</span>, <span class="st">&quot;-7&quot;</span>, <span class="st">&quot;-8&quot;</span>, <span class="st">&quot;-9&quot;</span>), <span class="ot">NA</span>, driving) <span class="co"># retain missing values as NA</span>
+             ) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(TRPTRANS, driving)</code></pre></div>
+<pre><code>## # A tibble: 304 x 2
+##    TRPTRANS driving
+##       &lt;chr&gt;   &lt;dbl&gt;
+##  1       03       1
+##  2       03       1
+##  3       03       1
+##  4       03       1
+##  5       03       1
+##  6       03       1
+##  7       03       1
+##  8       03       1
+##  9       03       1
+## 10       03       1
+## # ... with 294 more rows</code></pre>
+<ul>
+<li>multiple logical conditions: <code>case_when</code></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># code driving &amp; non-driving based on travel modes (TRPTRANS column) data dictionary: http://nhts.ornl.gov/tables09/CodebookPage.aspx?id=1084 use case_when</span>
+dd <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">driving=</span><span class="kw">case_when</span>(
+  TRPTRANS <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;01&quot;</span>, <span class="st">&quot;02&quot;</span>, <span class="st">&quot;03&quot;</span>, <span class="st">&quot;04&quot;</span>, <span class="st">&quot;05&quot;</span>, <span class="st">&quot;06&quot;</span>, <span class="st">&quot;07&quot;</span>) <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, 
+  TRPTRANS <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;-1&quot;</span>, <span class="st">&quot;-7&quot;</span>, <span class="st">&quot;-8&quot;</span>, <span class="st">&quot;-9&quot;</span>) <span class="op">~</span><span class="st"> </span><span class="kw">as.double</span>(<span class="ot">NA</span>), <span class="co"># retain missing values as NA</span>
+  <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> </span><span class="dv">0</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(TRPTRANS, driving)</code></pre></div>
+<pre><code>## # A tibble: 304 x 2
+##    TRPTRANS driving
+##       &lt;chr&gt;   &lt;dbl&gt;
+##  1       03       1
+##  2       03       1
+##  3       03       1
+##  4       03       1
+##  5       03       1
+##  6       03       1
+##  7       03       1
+##  8       03       1
+##  9       03       1
+## 10       03       1
+## # ... with 294 more rows</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># reclassify households into low, med, high income based on HHFAMINC column data dictionary: http://nhts.ornl.gov/tables09/CodebookPage.aspx?id=949 with brackets [0, 30000, 6000]</span>
+dd &lt;-<span class="st"> </span>dd <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">income_cat=</span><span class="kw">case_when</span>(
+  HHFAMINC <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;01&quot;</span>, <span class="st">&quot;02&quot;</span>, <span class="st">&quot;03&quot;</span>, <span class="st">&quot;04&quot;</span>, <span class="st">&quot;05&quot;</span>, <span class="st">&quot;06&quot;</span>) <span class="op">~</span><span class="st"> &quot;low income&quot;</span>,
+  HHFAMINC <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;07&quot;</span>, <span class="st">&quot;08&quot;</span>, <span class="st">&quot;09&quot;</span>, <span class="st">&quot;10&quot;</span>, <span class="st">&quot;11&quot;</span>, <span class="st">&quot;12&quot;</span>) <span class="op">~</span><span class="st"> &quot;med income&quot;</span>,
+  HHFAMINC <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;13&quot;</span>, <span class="st">&quot;14&quot;</span>, <span class="st">&quot;15&quot;</span>, <span class="st">&quot;16&quot;</span>, <span class="st">&quot;17&quot;</span>, <span class="st">&quot;18&quot;</span>) <span class="op">~</span><span class="st"> &quot;high income&quot;</span>,
+  <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> </span><span class="kw">as.character</span>(<span class="ot">NA</span>) <span class="co"># retain missing values as NA</span>
+  ))
+
+<span class="co"># verify recodeing results with group_by &amp; tally</span>
+dd <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(HHFAMINC, income_cat) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">tally</span>()</code></pre></div>
+<pre><code>## # A tibble: 13 x 3
+## # Groups:   HHFAMINC [?]
+##    HHFAMINC  income_cat     n
+##       &lt;chr&gt;       &lt;chr&gt; &lt;int&gt;
+##  1       01  low income     4
+##  2       02  low income     2
+##  3       03  low income    12
+##  4       04  low income     2
+##  5       06  low income    18
+##  6       07  med income     6
+##  7       08  med income    10
+##  8       12  med income     7
+##  9       14 high income    20
+## 10       16 high income    38
+## 11       17 high income    64
+## 12       18 high income   115
+## 13       -7        &lt;NA&gt;     6</code></pre>
+</div>
+<div id="programming-with-dplyr" class="section level3">
+<h3><span class="header-section-number">11.3.15</span> Programming with dplyr</h3>
+<ul>
+<li><a href="https://alexpghayes.github.io/2017/gentle-non-standard-evaluation-in-dplyr-0-6/">Non-standard Evaluation in dplyr 0.6+</a></li>
+<li><a href="http://dplyr.tidyverse.org/articles/programming.html">Programming with dplyr</a></li>
+</ul>
+</div>
+</div>
+<div id="exercise-7" class="section level2">
+<h2><span class="header-section-number">11.4</span> Exercise</h2>
+<ol style="list-style-type: decimal">
+<li>Filter days where there are missing values in bike counts and weather information. Count number of days with missing values on either bike counts or weather information;</li>
+<li>Calculate weekly, monthly, and annual bike counts from the daily bike counts data using dplyr verbs;</li>
+<li>Join the bike counts data with the weather data. Which type of joins works best here?</li>
+<li>With the <a href="https://raw.githubusercontent.com/cities/datascience2017/master/data/NHTS2009_dd.csv">NHTS2009 travel diaries data</a>, how do you cacluate total miles traveled (using any modes) and miles traveled by driving for each household (hint: the TRPMILES column contains information of trip distance for each member of a household).</li>
+<li>[Challenge] How do you compute the average household-level miles driving per capita by income categories (low, med, high)?</li>
+</ol>
+</div>
+<div id="learning-more-7" class="section level2">
+<h2><span class="header-section-number">11.5</span> Learning more</h2>
+<ol style="list-style-type: decimal">
+<li><a href="http://swcarpentry.github.io/r-novice-gapminder/13-dplyr/">Dataframe Manipulation with dplyr</a></li>
+<li><a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">Data Wrangling Cheat sheet</a></li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="tidy-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-visulization-with-ggplot2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/lunr.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
