@@ -1,4 +1,3 @@
-
 # R Markdown
 
 R Markdown provides an authoring framework for data science. You can use a single R Markdown file to both

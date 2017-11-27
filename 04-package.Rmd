@@ -1,5 +1,9 @@
 # Create R Package
 
+## Readings
+
+- [R packages](http://r-pkgs.had.co.nz/) Getting Started
+
 ## Lesson
 
 1. [Developing R Packages with RStudio](https://support.rstudio.com/hc/en-us/articles/200486488-Developing-Packages-with-RStudio)

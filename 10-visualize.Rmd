@@ -121,7 +121,7 @@ ggplot(data = mpg) +
 
 Or we could have mapped `class` to the _alpha_ aesthetic, which controls the transparency of the points, or the shape of the points.
 
-```{r out.width = "50%", fig.align = 'default', warning = FALSE, fig.asp = 1/2, fig.cap =""}
+```{r out.width = "50%", fig.align = 'default', warning = FALSE, fig.asp = 1/2, fig.cap ="", fig.show='hold'}
 # Left
 ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy, alpha = class))
@@ -170,7 +170,7 @@ If you prefer to not facet in the rows or columns dimension, use a `.` instead o
 
 How are these two plots similar? 
 
-```{r echo = FALSE, out.width = "50%", fig.align="default", message = FALSE}
+```{r echo = FALSE, out.width = "50%", fig.align="default", message = FALSE, fig.show='hold'}
 ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy))
 
@@ -217,7 +217,7 @@ ggplot2 provides over 30 geoms, and extension packages provide even more (see <h
 
 Many geoms, like `geom_smooth()`, use a single geometric object to display multiple rows of data. For these geoms, you can set the `group` aesthetic to a categorical variable to draw multiple objects. ggplot2 will draw a separate object for each unique value of the grouping variable. In practice, ggplot2 will automatically group the data for these geoms whenever you map an aesthetic to a discrete variable (as in the `linetype` example). It is convenient to rely on this feature because the group aesthetic by itself does not add a legend or distinguishing features to the geoms.
 
-```{r, fig.width = 3, fig.align = 'default', out.width = "33%", message = FALSE}
+```{r, fig.width = 3, fig.align = 'default', out.width = "33%", message = FALSE, fig.show='hold'}
 ggplot(data = mpg) +
   geom_smooth(mapping = aes(x = displ, y = hwy))
               
@@ -340,7 +340,7 @@ ggplot2 provides over 20 stats for you to use. Each stat is a function, so you c
 
 There's one more piece of magic associated with bar charts. You can colour a bar chart using either the `colour` aesthetic, or more usefully, `fill`:
 
-```{r out.width = "50%", fig.align = "default"}
+```{r out.width = "50%", fig.align = "default", fig.show='hold'}
 ggplot(data = diamonds) + 
   geom_bar(mapping = aes(x = cut, colour = cut))
 ggplot(data = diamonds) + 
@@ -362,7 +362,7 @@ The stacking is performed automatically by the __position adjustment__ specified
     slightly transparent by setting `alpha` to a small value, or completely
     transparent by setting `fill = NA`.
     
-    ```{r out.width = "50%", fig.align = "default"}
+    ```{r out.width = "50%", fig.align = "default", fig.show='hold'}
     ggplot(data = diamonds, mapping = aes(x = cut, fill = clarity)) + 
       geom_bar(alpha = 1/5, position = "identity")
     ggplot(data = diamonds, mapping = aes(x = cut, colour = clarity)) + 
@@ -417,7 +417,7 @@ Coordinate systems are probably the most complicated part of ggplot2. The defaul
     if you want horizontal boxplots. It's also useful for long labels: it's
     hard to get them to fit without overlapping on the x-axis.
     
-    ```{r fig.width = 3, out.width = "50%", fig.align = "default"}
+    ```{r fig.width = 3, out.width = "50%", fig.align = "default", fig.show='hold'}
     ggplot(data = mpg, mapping = aes(x = class, y = hwy)) + 
       geom_boxplot()
     ggplot(data = mpg, mapping = aes(x = class, y = hwy)) + 
@@ -429,7 +429,7 @@ Coordinate systems are probably the most complicated part of ggplot2. The defaul
     important if you're plotting spatial data with ggplot2 (which unfortunately
     we don't have the space to cover in this book).
 
-    ```{r fig.width = 3, out.width = "50%", fig.align = "default", message = FALSE}
+    ```{r fig.width = 3, out.width = "50%", fig.align = "default", message = FALSE, fig.show='hold'}
     nz <- map_data("nz")
 
     ggplot(nz, aes(long, lat, group = group)) +
@@ -443,7 +443,7 @@ Coordinate systems are probably the most complicated part of ggplot2. The defaul
 *   `coord_polar()` uses polar coordinates. Polar coordinates reveal an 
     interesting connection between a bar chart and a Coxcomb chart.
     
-    ```{r fig.width = 3, out.width = "50%", fig.align = "default", fig.asp = 1}
+    ```{r fig.width = 3, out.width = "50%", fig.align = "default", fig.asp = 1, fig.show='hold'}
     bar <- ggplot(data = diamonds) + 
       geom_bar(
         mapping = aes(x = cut, fill = cut), 

@@ -4,6 +4,16 @@ Data Science is a discipline that combines computing with statistics. A data ana
 
 <center><img src="http://r4ds.had.co.nz/diagrams/data-science.png"></center>
 
+## Part II: tidyverse work flow
+
+1. [Overview and Introduction]
+1. [Data importing]
+1. [Tidy Data]
+1. [Data manipulation with dplyr]
+1. [Data visulization with ggplot2]
+1. [Split-Apply-Combine Pattern in Data Modeling]
+1. [Where to go from here]
+
 ## Readings
 1. R4DS [Chapter 1](http://r4ds.had.co.nz/introduction.html)
 

@@ -1,5 +1,9 @@
 # Version Control with Git
 
+## Readings
+
+- [Happy Git and GitHub for the useR](http://happygitwithr.com/)
+
 ## Install Git {#install-git}
 
 ### For windows
@@ -49,6 +53,5 @@ git config --global color.ui "auto"
 3. Commit it to github by following these steps: http://happygitwithr.com/existing-github-last.html.
 
 ## Learning more
-1. [Happy Git with R](http://happygitwithr.com/)
-1. [try Git](https://try.github.io)
+1. [Try Git](https://try.github.io)
 1. [Pro Git](https://git-scm.com/book/en/v2), a book by Scott Chacon and Ben Straub

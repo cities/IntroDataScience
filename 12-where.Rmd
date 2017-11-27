@@ -1,5 +1,7 @@
 # Where to go from here
 
+Practice makes perfection. Use what you learned as much as possible in your research and work.
+
 ## Noticeable features not covered
 R is getting more powerful all the time. There are many exciting features and packages that we have not covered and many more are emerging. Below are a few features I think are worth mentioning:
 
@@ -26,10 +28,6 @@ install_github("richfitz/remake")
 
 Shiny allows you to develop interactive apps that run on top of R. Again Prof Jenny Bryan has a nice [tutorial for getting started with Shiny](http://stat545.com/shiny00_index.html).
 
-## Where to go from here
-
-Practice makes perfection. Use what you learned as much as possible in your research and work.
-
 ## Where to find help
 
 1. Help documents;
@@ -37,4 +35,4 @@ Practice makes perfection. Use what you learned as much as possible in your rese
 1. [R cookbook](http://www.cookbook-r.com/);
 1. [Stack Overflow](http://stackoverflow.com/questions/tagged/r) and [Cross Validated](https://stats.stackexchange.com/), A Q&A community for programming and statistics;
 1. Google is your friend;
-1. Ask a person that may know.
+1. Ask a person who may know.

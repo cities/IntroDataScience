@@ -1,8 +1,14 @@
 # R Coding Basics
 
+## Readings
+
+1. [Wilson, G., Aruliah, D. A., Brown, C. T., Hong, N. P. C., Davis, M., Guy, R. T., … Wilson, P. (2014). Best Practices for Scientific Computing. PLOS Biology, 12(1), e1001745. https://doi.org/10.1371/journal.pbio.1001745](http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745)
+2. [R for Reproducible Scientific Analysis by Software Carpentry](http://swcarpentry.github.io/r-novice-gapminder/)
+
+
 ## Best practices for data science 
 
-These are the best practices for data science recommended by [@Wilson2014]:
+These are the best practices for data science recommended by @Wilson2014:
 
 1. Write programs for people, not computers.
     i. a program should not require its readers to hold more than a handful of facts in memory at once
@@ -147,3 +153,4 @@ Why does the `foo` function claim "-1 is larger than 0"? Let's debug the `foo` f
 
 ## Learning more
 - [Introduction to R on Data Camp](https://campus.datacamp.com/courses/free-introduction-to-r/chapter-1-intro-to-basics-1?ex=1): A self-instruction course covering R basics.
+- [Try R by Code School](http://tryr.codeschool.com/)

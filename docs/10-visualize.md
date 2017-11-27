@@ -155,17 +155,13 @@ Or we could have mapped `class` to the _alpha_ aesthetic, which controls the tra
 # Left
 ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy, alpha = class))
-```
 
-<img src="10-visualize_files/figure-html/unnamed-chunk-8-1.png" width="50%" />
-
-```r
 # Right
 ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy, shape = class))
 ```
 
-<img src="10-visualize_files/figure-html/unnamed-chunk-8-2.png" width="50%" />
+<img src="10-visualize_files/figure-html/unnamed-chunk-8-1.png" width="50%" /><img src="10-visualize_files/figure-html/unnamed-chunk-8-2.png" width="50%" />
 
 What happened to the SUVs? ggplot2 will only use six shapes at a time. By default, additional groups will go unplotted when you use the shape aesthetic.
 
@@ -260,25 +256,17 @@ Many geoms, like `geom_smooth()`, use a single geometric object to display multi
 ```r
 ggplot(data = mpg) +
   geom_smooth(mapping = aes(x = displ, y = hwy))
-```
-
-<img src="10-visualize_files/figure-html/unnamed-chunk-16-1.png" width="33%" />
-
-```r
+              
 ggplot(data = mpg) +
   geom_smooth(mapping = aes(x = displ, y = hwy, group = drv))
-```
-
-<img src="10-visualize_files/figure-html/unnamed-chunk-16-2.png" width="33%" />
-
-```r
+    
 ggplot(data = mpg) +
   geom_smooth(
     mapping = aes(x = displ, y = hwy, group = drv)
   )
 ```
 
-<img src="10-visualize_files/figure-html/unnamed-chunk-16-3.png" width="33%" />
+<img src="10-visualize_files/figure-html/unnamed-chunk-16-1.png" width="33%" /><img src="10-visualize_files/figure-html/unnamed-chunk-16-2.png" width="33%" /><img src="10-visualize_files/figure-html/unnamed-chunk-16-3.png" width="33%" />
 
 To display multiple geoms in the same plot, add multiple geom functions to `ggplot()`:
 
@@ -411,16 +399,11 @@ There's one more piece of magic associated with bar charts. You can colour a bar
 ```r
 ggplot(data = diamonds) + 
   geom_bar(mapping = aes(x = cut, colour = cut))
-```
-
-<img src="10-visualize_files/figure-html/unnamed-chunk-25-1.png" width="50%" />
-
-```r
 ggplot(data = diamonds) + 
   geom_bar(mapping = aes(x = cut, fill = cut))
 ```
 
-<img src="10-visualize_files/figure-html/unnamed-chunk-25-2.png" width="50%" />
+<img src="10-visualize_files/figure-html/unnamed-chunk-25-1.png" width="50%" /><img src="10-visualize_files/figure-html/unnamed-chunk-25-2.png" width="50%" />
 
 Note what happens if you map the fill aesthetic to another variable, like `clarity`: the bars are automatically stacked. Each colored rectangle represents a combination of `cut` and `clarity`.
 
@@ -444,16 +427,11 @@ The stacking is performed automatically by the __position adjustment__ specified
     ```r
     ggplot(data = diamonds, mapping = aes(x = cut, fill = clarity)) + 
       geom_bar(alpha = 1/5, position = "identity")
-    ```
-    
-    <img src="10-visualize_files/figure-html/unnamed-chunk-27-1.png" width="50%" />
-    
-    ```r
     ggplot(data = diamonds, mapping = aes(x = cut, colour = clarity)) + 
       geom_bar(fill = NA, position = "identity")
     ```
     
-    <img src="10-visualize_files/figure-html/unnamed-chunk-27-2.png" width="50%" />
+    <img src="10-visualize_files/figure-html/unnamed-chunk-27-1.png" width="50%" /><img src="10-visualize_files/figure-html/unnamed-chunk-27-2.png" width="50%" />
     
     The identity position adjustment is more useful for 2d geoms, like points,
     where it is the default.
@@ -513,17 +491,12 @@ Coordinate systems are probably the most complicated part of ggplot2. The defaul
     ```r
     ggplot(data = mpg, mapping = aes(x = class, y = hwy)) + 
       geom_boxplot()
-    ```
-    
-    <img src="10-visualize_files/figure-html/unnamed-chunk-32-1.png" width="50%" />
-    
-    ```r
     ggplot(data = mpg, mapping = aes(x = class, y = hwy)) + 
       geom_boxplot() +
       coord_flip()
     ```
     
-    <img src="10-visualize_files/figure-html/unnamed-chunk-32-2.png" width="50%" />
+    <img src="10-visualize_files/figure-html/unnamed-chunk-32-1.png" width="50%" /><img src="10-visualize_files/figure-html/unnamed-chunk-32-2.png" width="50%" />
 
 *   `coord_quickmap()` sets the aspect ratio correctly for maps. This is very
     important if you're plotting spatial data with ggplot2 (which unfortunately
@@ -535,17 +508,13 @@ Coordinate systems are probably the most complicated part of ggplot2. The defaul
     
     ggplot(nz, aes(long, lat, group = group)) +
       geom_polygon(fill = "white", colour = "black")
-    ```
     
-    <img src="10-visualize_files/figure-html/unnamed-chunk-33-1.png" width="50%" />
-    
-    ```r
     ggplot(nz, aes(long, lat, group = group)) +
       geom_polygon(fill = "white", colour = "black") +
       coord_quickmap()
     ```
     
-    <img src="10-visualize_files/figure-html/unnamed-chunk-33-2.png" width="50%" />
+    <img src="10-visualize_files/figure-html/unnamed-chunk-33-1.png" width="50%" /><img src="10-visualize_files/figure-html/unnamed-chunk-33-2.png" width="50%" />
 
 *   `coord_polar()` uses polar coordinates. Polar coordinates reveal an 
     interesting connection between a bar chart and a Coxcomb chart.
@@ -562,15 +531,10 @@ Coordinate systems are probably the most complicated part of ggplot2. The defaul
       labs(x = NULL, y = NULL)
     
     bar + coord_flip()
-    ```
-    
-    <img src="10-visualize_files/figure-html/unnamed-chunk-34-1.png" width="50%" />
-    
-    ```r
     bar + coord_polar()
     ```
     
-    <img src="10-visualize_files/figure-html/unnamed-chunk-34-2.png" width="50%" />
+    <img src="10-visualize_files/figure-html/unnamed-chunk-34-1.png" width="50%" /><img src="10-visualize_files/figure-html/unnamed-chunk-34-2.png" width="50%" />
 
 ### The layered grammar of graphics
 

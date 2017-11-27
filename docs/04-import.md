@@ -1,10 +1,8 @@
-
-
 # Import
 
 ## Readings
 
-1. [R4DS] Chapter 10, 11
+- R4DS [Chapter 10](http://r4ds.had.co.nz/tibbles.html), [Chapter 11](http://r4ds.had.co.nz/data-import.html)
 
 ## Tibbles vs. data.frame
 
@@ -20,14 +18,14 @@ Whenever you have rectangular, spreadsheet-y data, your default data receptacle 
 
 Data frames -- unlike general arrays or, specifically, matrices in R -- can hold variables of different flavors, such as character data (subject ID or name), quantitative data (white blood cell count), and categorical information (treated vs. untreated). If you use homogenous structures, like matrices, for data analysis, you  are likely to make the terrible mistake of spreading a dataset out over multiple, unlinked objects. Why? Because you can't put character data, such as subject name, into the numeric matrix that holds white blood cell count. This fragmentation is a Bad Idea.
 
-In [Programming with R] we use `data.frame` in base R as our main data structure. From now on we will start to use `tibble` and other functions in  [`tidyverse`](https://github.com/hadley/tidyverse) as much as possible. This will provide a special type of data frame called a "tibble" that has nice default printing behavior, among other benefits such as speed performance and better default behavior.
+In [R Coding Basics] we use `data.frame` in base R as our main data structure. From now on we will start to use `tibble` and other functions in  [`tidyverse`](https://github.com/hadley/tidyverse) as much as possible. This will provide a special type of data frame called a "tibble" that has nice default printing behavior, among other benefits such as speed performance and better default behavior.
 
 First, install and load tidyverse packages if you haven't yet:
 
 
 ```r
-install.packages("tidyverse")
-library(tidyverse)
+if (!require(tidyverse))
+  install.packages("tidyverse"); library(tidyverse)
 ```
 
 There are two main differences in the usage of a tibble vs. a classic `data.frame`: printing and subsetting.
@@ -51,16 +49,16 @@ tibble(
 ## # A tibble: 1,000 x 5
 ##                      a          b     c          d     e
 ##                 <dttm>     <date> <int>      <dbl> <chr>
-##  1 2017-11-27 03:36:43 2017-11-29     1 0.45974954     k
-##  2 2017-11-27 18:21:43 2017-12-01     2 0.02470095     v
-##  3 2017-11-27 19:42:48 2017-11-26     3 0.30254975     j
-##  4 2017-11-27 18:31:04 2017-12-25     4 0.40509509     i
-##  5 2017-11-27 03:41:08 2017-11-29     5 0.53665002     c
-##  6 2017-11-27 19:47:56 2017-12-06     6 0.32244557     i
-##  7 2017-11-26 23:20:22 2017-11-26     7 0.78307251     e
-##  8 2017-11-27 17:18:42 2017-12-23     8 0.53158883     d
-##  9 2017-11-26 22:18:52 2017-11-26     9 0.06531483     k
-## 10 2017-11-27 10:42:00 2017-12-05    10 0.77263096     w
+##  1 2017-11-27 17:18:32 2017-12-25     1 0.07659894     j
+##  2 2017-11-27 20:29:09 2017-12-19     2 0.50174012     o
+##  3 2017-11-27 11:53:27 2017-12-06     3 0.44544000     b
+##  4 2017-11-27 03:44:09 2017-12-23     4 0.68567890     k
+##  5 2017-11-27 07:16:38 2017-12-03     5 0.63353081     l
+##  6 2017-11-27 17:45:31 2017-12-13     6 0.92768086     c
+##  7 2017-11-27 12:35:46 2017-12-24     7 0.34549211     o
+##  8 2017-11-27 22:13:37 2017-12-25     8 0.94264613     c
+##  9 2017-11-27 11:26:04 2017-12-17     9 0.72518358     z
+## 10 2017-11-27 03:24:34 2017-12-08    10 0.84166491     o
 ## # ... with 990 more rows
 ```
 
@@ -109,7 +107,7 @@ df$x
 ```
 
 ```
-## [1] 0.8274358 0.7709025 0.0776012 0.6567509 0.7675101
+## [1] 0.5551326 0.7178420 0.7773671 0.1380507 0.1864935
 ```
 
 ```r
@@ -117,7 +115,7 @@ df[["x"]]
 ```
 
 ```
-## [1] 0.8274358 0.7709025 0.0776012 0.6567509 0.7675101
+## [1] 0.5551326 0.7178420 0.7773671 0.1380507 0.1864935
 ```
 
 ```r
@@ -126,7 +124,7 @@ df[[1]]
 ```
 
 ```
-## [1] 0.8274358 0.7709025 0.0776012 0.6567509 0.7675101
+## [1] 0.5551326 0.7178420 0.7773671 0.1380507 0.1864935
 ```
 
 <!-- To use these in a pipe, you'll need to use the special placeholder `.`: -->
@@ -341,61 +339,6 @@ read_csv("a,b,c\n1,2,.", na = ".")
 
 This is all you need to know to read ~75% of CSV files that you'll encounter in practice. You can also easily adapt what you've learned to read tab separated files with `read_tsv()` and fixed width files with `read_fwf()`. To read in more challenging files, you'll need to learn more about how readr parses each column, turning them into R vectors.
 
-### Compared to base R
-
-If you've used R before, you might wonder why we're not using `read.csv()`. There are a few good reasons to favour readr functions over the base equivalents:
-
-* They are typically much faster (~10x) than their base equivalents.
-  Long running jobs have a progress bar, so you can see what's happening. 
-  If you're looking for raw speed, try `data.table::fread()`. It doesn't fit 
-  quite so well into the tidyverse, but it can be quite a bit faster.
-
-* They produce tibbles, they don't convert character vectors to factors,
-  use row names, or munge the column names. These are common sources of
-  frustration with the base R functions.
-
-* They are more reproducible. Base R functions inherit some behaviour from
-  your operating system and environment variables, so import code that works 
-  on your computer might not work on someone else's.
-
-* If you're interested in learning more on under the hood magics of how `readr` 
-  parses file, [this section](http://r4ds.had.co.nz/data-import.html#parsing-a-vector) 
-  in R for Data Science provides an overview.
-  
-### Exercises
-
-1.  What function would you use to read a file where fields were separated with  
-    "|"?
-    
-1.  Apart from `file`, `skip`, and `comment`, what other arguments do
-    `read_csv()` and `read_tsv()` have in common?
-    
-1.  What are the most important arguments to `read_fwf()`?
-   
-1.  Sometimes strings in a CSV file contain commas. To prevent them from
-    causing problems they need to be surrounded by a quoting character, like
-    `"` or `'`. By convention, `read_csv()` assumes that the quoting
-    character will be `"`, and if you want to change it you'll need to
-    use `read_delim()` instead. What arguments do you need to specify
-    to read the following text into a data frame?
-    
-    
-    ```r
-    "x,y\n1,'a,b'"
-    ```
-    
-1.  Identify what is wrong with each of the following inline CSV files. 
-    What happens when you run the code?
-    
-    
-    ```r
-    read_csv("a,b\n1,2,3\n4,5,6")
-    read_csv("a,b,c\n1,2\n1,2,3,4")
-    read_csv("a,b\n\"1")
-    read_csv("a,b\n1,2\na,b")
-    read_csv("a;b\n1;3")
-    ```
-
 
 ## Writing to a file
 
@@ -442,6 +385,18 @@ heights
 ```r
 write_csv(heights, "results/heights-2.csv")
 read_csv("results/heights-2.csv")
+```
+
+```
+## Parsed with column specification:
+## cols(
+##   earn = col_double(),
+##   height = col_double(),
+##   sex = col_character(),
+##   ed = col_integer(),
+##   age = col_integer(),
+##   race = col_character()
+## )
 ```
 
 ```

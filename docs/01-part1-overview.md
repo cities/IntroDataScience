@@ -1,12 +1,12 @@
 # Overview and Introduction
 
 ## Part I: Data Science Best Practices
-1. [Overview and Introduction](01-part1-overview.html)
-1. [R Coding Basics](02-coding.html)
-1. [Version Control with Git](03-git.html)
-1. [Creating R Package](04-package.html)
-1. [Producing Reports With R Markdown](05-rmarkdown.html)
-1. [Part I Wrap up](http://cities.github.io/datascience/resources.html)
+
+1. [Overview and Introduction]
+1. [R Coding Basics]
+1. [Version Control with Git]
+1. [Create R Package]
+1. [Producing Reports With R Markdown][R Markdown]
 
 ## Set up your computer
 

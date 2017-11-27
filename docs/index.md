@@ -1,15 +1,18 @@
 --- 
 title: "Introduction to Data Science \nfor Transportation Researchers, Planners, and Engineers"
 author: "Liming Wang"
-date: "2017-11-26"
+#date: "2017-11-26"
 site: "bookdown::bookdown_site"
 output:
     bookdown::gitbook:
       lib_dir: "book_assets"
       keep_md: false
-#output: 
-#    bookdown::word_document2:
-#        reference_docx: Final_Report_Template_July_2017.doc
+# output:
+#     bookdown::word_document2:
+#         reference_docx: Final_Report_Template_July_2017.docx
+bibliography: datascience.bib
+biblio-style: apalike
+link-citations: yes
 documentclass: book
 github-repo: cities/datascience
 description: ""

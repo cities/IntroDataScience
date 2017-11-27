@@ -1,27 +1,28 @@
 --- 
 title: "Introduction to Data Science \nfor Transportation Researchers, Planners, and Engineers"
 author: "Liming Wang"
-date: "`r Sys.Date()`"
+#date: "`r Sys.Date()`"
 site: "bookdown::bookdown_site"
 output:
     bookdown::gitbook:
       lib_dir: "book_assets"
       keep_md: false
-#output: 
-#    bookdown::word_document2:
-#        reference_docx: Final_Report_Template_July_2017.doc
+# output:
+#     bookdown::word_document2:
+#         reference_docx: Final_Report_Template_July_2017.docx
+bibliography: datascience.bib
+biblio-style: apalike
+link-citations: yes
 documentclass: book
 github-repo: cities/datascience
 description: ""
 ---
 
 ```{r setup, include=F}
-if (!require("pacman")) {install.packages("pacman"); library(pacman)}
-p_load(pander, knitr, tidyverse)
-#opts_knit$set(root.dir = normalizePath(".."))
-opts_chunk$set(message=FALSE, warning=F)
-panderOptions('round', 2)
-panderOptions('keep.trailing.zeros', TRUE)
+if (!require("tidyverse")) {install.packages("tidyverse"); library(tidyverse)}
+knitr::opts_chunk$set(message=FALSE, warning=F)
+pander::panderOptions('round', 2)
+pander::panderOptions('keep.trailing.zeros', TRUE)
 ```
 
 # Introduction to Data Science
@@ -103,7 +104,7 @@ This course is developed with the financial support from National Institute of T
 [![NITC](http://nitc.trec.pdx.edu/sites/default/files/nitc_4c_horiz_tag.jpg)](http://nitc.trec.pdx.edu/)
 </div>
 
-I am grateful to the participants of the 2017 summer course for the valueable feedback. The support of TREC staff, in particular, Lisa Patterson and Eva-Maria Muecke, is greatly appreciated.
+I am grateful to the participants of the 2017 summer course for their valueable feedback. The support of TREC staff, in particular, Lisa Patterson and Eva-Maria Muecke, is greatly appreciated. Jamaal Green and Dillon Mahmoudi, both graduate students at Portland State University, have given me valuable feedback and assistance in the process of developing the course.
 
 Parts of the course materials have been adpated from the following sources:
 
